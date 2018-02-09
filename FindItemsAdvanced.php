@@ -63,12 +63,17 @@ $Query = $_POST["Query"];
 $GlobalID = $_POST["GlobalID"];
 $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
-$connectionInfo = array("UID" => "ragnarok@ragnasvr", "pwd" => "Korangar2", "Database" => "ragnaDB", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:ragnasvr.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
+$serverName = "tcp:ragnasvr.database.windows.net, 1433";
+$connectionOptions = array(
+    "Database" => "ragnaDB",
+    "Uid" => "ragnarok@ragnasvr",
+    "PWD" => "Korangar2"
+);
+//Establishes the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 if (!($conn)) {
 
-    die("Connection error: ");
+    echo "Connection error: ";
 
 }
 else
