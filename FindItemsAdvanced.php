@@ -79,17 +79,31 @@ else
   echo "Connection successful";
 }
 // Run the create table query
-if (sqlsrv_query($conn, '
-CREATE TABLE Product_Searches (
-`Id` INT NOT NULL AUTO_INCREMENT ,
-`ProductName` VARCHAR(200) NOT NULL ,
-`Condition` VARCHAR(200) NOT NULL ,
-`Price` DOUBLE NOT NULL ,
-PRIMARY KEY (`Id`)
-);
-')) {
-printf("Table created\n");
+// if (sqlsrv_query($conn, '
+// CREATE TABLE Product_Searches (
+// `Id` INT NOT NULL AUTO_INCREMENT ,
+// `ProductName` VARCHAR(200) NOT NULL ,
+// `Condition` VARCHAR(200) NOT NULL ,
+// `Price` DOUBLE NOT NULL ,
+// PRIMARY KEY (`Id`)
+// );
+// '))
+// Got a connection, run simple query
+$sql = "CREATE TABLE productTest (
+  ID int NOT NULL IDENTITY(1, 1) ,
+  title varchar(80) NOT NULL,
+  price float NOT NULL,
+  serviceCost float NOT NULL,
+  PRIMARY KEY (ID)
+)";
+
+if($sql){
+  echo "Table created";
 }
+else{
+  echo "Unsuccessful";
+}
+
 
 //Close the connection
 sqlsrv_close($conn);
