@@ -71,10 +71,8 @@ $connectionOptions = array(
 );
 //Establishes the connection
 $conn = sqlsrv_connect($serverName, $connectionOptions);
-if (!($conn)) {
-
-    echo "Connection error: ";
-
+if( $conn === false ) {
+    die( FormatErrors( sqlsrv_errors()));
 }
 else
 {
