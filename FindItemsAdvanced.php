@@ -89,7 +89,7 @@ else
 // );
 // '))
 // Got a connection, run simple query
-$sql = "CREATE TABLE productTest (
+$sql = "CREATE TABLE Product_Searches (
   ID int NOT NULL IDENTITY(1, 1) ,
   title varchar(80) NOT NULL,
   price float NOT NULL,
