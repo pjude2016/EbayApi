@@ -63,6 +63,18 @@ $Query = $_POST["Query"];
 $GlobalID = $_POST["GlobalID"];
 $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
+$connectionInfo = array("UID" => "ragnarok@ragnasvr", "pwd" => "Korangar2", "Database" => "ragnaDB", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:ragnasvr.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+if (!($conn)) {
+
+    die("Connection error: ");
+
+}
+else
+{
+  echo "Connection succesful";
+}
 
 ?>
 <h1>eBay Watch Search form</h1>
