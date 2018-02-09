@@ -76,9 +76,23 @@ if( $conn === false ) {
 }
 else
 {
-  echo "Connection succesful";
+  echo "Connection successful";
+}
+// Run the create table query
+if (sqlsrv_query($conn, '
+CREATE TABLE Product_Searches (
+`Id` INT NOT NULL AUTO_INCREMENT ,
+`ProductName` VARCHAR(200) NOT NULL ,
+`Condition` VARCHAR(200) NOT NULL ,
+`Price` DOUBLE NOT NULL ,
+PRIMARY KEY (`Id`)
+);
+')) {
+printf("Table created\n");
 }
 
+//Close the connection
+sqlsrv_close($conn);
 ?>
 <h1>eBay Watch Search form</h1>
 <h4 style="color:red;"><span class="note">*</span> denotes mandotory</h4>
