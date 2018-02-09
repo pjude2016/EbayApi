@@ -135,6 +135,27 @@ else
 {
   echo "Connection succesful";
 }
+$sql = "CREATE TABLE Product_Searches (
+  ID int NOT NULL IDENTITY(1, 1) ,
+  title varchar(80) NOT NULL,
+  price float NOT NULL,
+  serviceCost float NOT NULL,
+  PRIMARY KEY (ID)
+)";
+
+$res = odbc_exec($conn, $sql);
+  if (!$res) {
+    print("Table creation failed with error:\n");
+    print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
+  } else {
+    print("Table fyi_links created.\n");
+  }
+
+
+  // Free the connection
+
+  @odbc_close($conn);
+
 ?>
 
 <h1>eBay Watch Search form</h1>
