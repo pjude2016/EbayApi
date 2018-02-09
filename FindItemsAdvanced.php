@@ -97,12 +97,13 @@ $sql = "CREATE TABLE Product_Searches (
   PRIMARY KEY (ID)
 )";
 
-if($sql){
-  echo "Table created";
-}
-else{
-  echo "Unsuccessful";
-}
+
+$res = sqlsrv_exec($conn, $sql);
+  if (!$res) {
+    print("Table creation failed with error:\n");
+  } else {
+    print("Table fyi_links created.\n");
+  }
 
 
 //Close the connection
