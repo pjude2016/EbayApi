@@ -98,7 +98,7 @@ $sql = "CREATE TABLE Product_Searches (
 )";
 
 
-$res = sqlsrv_exec($conn, $sql);
+$res = sqlsrv_execute($conn, $sql);
   if (!$res) {
     print("Table creation failed with error:\n");
   } else {
