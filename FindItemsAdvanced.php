@@ -27,36 +27,6 @@
 <body>
 
 
-  <!-- // if (mysqli_query($conn, '
-  //   CREATE TABLE User_Searches (
-  //   `Id` INT NOT NULL AUTO_INCREMENT ,
-  //   `ProductName` VARCHAR(200) NOT NULL ,
-  //   `Price` DOUBLE NOT NULL ,
-  //   PRIMARY KEY (`Id`)
-  // );')) {
-  //       printf("Table created\n");
-  // } -->
-
-
-
-    <!-- // $host = "ragnasvr.database.windows.net,1433";
-    // $db_name = "ragnaDB";
-    // $username = "ragnarok@ragnasvr";
-    // $password = "Korangar2";
-    // $conn = mysqli_init();
-    // mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
-    // if (mysqli_connect_errno($conn)) {
-    //   die('Failed to connect to MySQL: '.mysqli_connect_error());
-    // }
-    // else{
-    //   printf("successful");
-    // } -->
-
-
-
-
-
-
 <link rel="stylesheet" href="./css/flora.all.css" type="text/css" media="screen" title="Flora (Default)">
 <?php
 $Query = $_POST["Query"];
@@ -330,13 +300,17 @@ if(isset($_POST['Query']))
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
 
-        $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
-        $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
+        // $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
+        // $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
+        // $sqlItemTitle = $item->title;
+
+        $sqlItemPrice = $price
+        $sqlItemShippingInfo = $ship
         $sqlItemTitle = $item->title;
 
         $res = odbc_exec($conn, $sql);
         $sql = "INSERT INTO Product_Searches (title, price, serviceCost)
-        VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
+        VALUES ('$sqlItemTitle','$sqlItemPrice','$sqlItemShippingInfo' )";
         $res = odbc_exec($conn, $sql);
         if (!$res) {
           print("Table creation failed with error:\n");
