@@ -287,8 +287,8 @@ if(isset($_POST['Query']))
         //$endTime = strtotime($item->listingInfo->endTime);   // returns Epoch seconds
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
-        $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
-        $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
+        $sqlItemSellingStatus = sprintf("%01.2f", $item->sellingStatus->convertedCurrentPrice);
+        $sqlItemShippingInfo = sprintf("%01.2f", $item->shippingInfo->shippingServiceCost);
         $sqlItemTitle = $item->title;
         $res = odbc_exec($conn, $sql);
         $sql = "INSERT INTO Product_Searches (title, price, serviceCost)
