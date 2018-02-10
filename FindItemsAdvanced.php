@@ -27,13 +27,42 @@
 <body>
 
 
+  <!-- // if (mysqli_query($conn, '
+  //   CREATE TABLE User_Searches (
+  //   `Id` INT NOT NULL AUTO_INCREMENT ,
+  //   `ProductName` VARCHAR(200) NOT NULL ,
+  //   `Price` DOUBLE NOT NULL ,
+  //   PRIMARY KEY (`Id`)
+  // );')) {
+  //       printf("Table created\n");
+  // } -->
+
+
+
+    <!-- // $host = "ragnasvr.database.windows.net,1433";
+    // $db_name = "ragnaDB";
+    // $username = "ragnarok@ragnasvr";
+    // $password = "Korangar2";
+    // $conn = mysqli_init();
+    // mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
+    // if (mysqli_connect_errno($conn)) {
+    //   die('Failed to connect to MySQL: '.mysqli_connect_error());
+    // }
+    // else{
+    //   printf("successful");
+    // } -->
+
+
+
+
+
+
 <link rel="stylesheet" href="./css/flora.all.css" type="text/css" media="screen" title="Flora (Default)">
 <?php
 $Query = $_POST["Query"];
 $GlobalID = $_POST["GlobalID"];
 $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
-
 // Run the create table query
 // if (sqlsrv_query($conn, '
 // CREATE TABLE Product_Searches (
@@ -44,8 +73,6 @@ $Display = $_POST["Display"];
 // PRIMARY KEY (`Id`)
 // );
 // '))
-
-
 // $sql = "CREATE TABLE Product_Searches (
 //   ID int NOT NULL IDENTITY(1, 1) ,
 //   title varchar(80) NOT NULL,
@@ -53,7 +80,6 @@ $Display = $_POST["Display"];
 //   serviceCost float NOT NULL,
 //   PRIMARY KEY (ID)
 // )";
-
 ?>
 
 
@@ -132,66 +158,41 @@ $Display = $_POST["Display"];
 
 
 <?php
-
 require_once('DisplayUtils.php');  // functions to aid with display of information
 error_reporting(E_ALL);  // turn on all errors, warnings and notices for easier debugging
-
 $results = '';
-
 //checking for non-empty and non-negative integer
-
-
 if(isset($_POST['Query']))
 {
   $endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
   $responseEncoding = 'XML';   // Format of the response
-
   $safeQuery = urlencode (utf8_encode($_POST['Query']));
-
-
   $site  = $_POST['GlobalID'];
   $format  = $_POST['BuyingFormat'];
   $disp  = $_POST['Display'];
   // $priceRangeMin = 0.0;
-
   $host = "ragnasvr.database.windows.net,1433";
-
   $dbname = "ragnaDB";
-
   $dbuser = "ragnarok@ragnasvr";
-
   $dbpwd = "Korangar2";
-
   $driver = "{ODBC Driver 13 for SQL Server}";
-
-
   // Build connection string
-
   $dsn="Driver=$driver;Server=$host;Database=$dbname;";
-
   if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
-
       die("Connection error: " . odbc_errormsg());
-
   }
   else
   {
     echo "Connection succesful";
   }
-
-
-
   $priceRangeMin = $_POST['MinPrice'];
   $priceRangeMax = $_POST['MaxPrice'];
   $itemsPerRange = 10;
   // $debug = (boolean) $_POST['Debug'];
-
   $rangeArr = array('Low-Range', 'Mid-Range', 'High-Range');
-
   $priceRange = ($priceRangeMax - $priceRangeMin) / 3;  // find price ranges for three tables
   $priceRangeMin =  sprintf("%01.2f",$priceRangeMin );
   $priceRangeMax = $priceRangeMin;  // needed for initial setup
-
   foreach ($rangeArr as $range)
   {
     $priceRangeMax = sprintf("%01.2f", ($priceRangeMin + $priceRange));
@@ -211,7 +212,6 @@ if(isset($_POST['Query']))
          . "&itemFilter(1).value=$priceRangeMin"
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
-
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
@@ -219,12 +219,10 @@ if(isset($_POST['Query']))
         // . "&aspectFilter(1).aspectValueName=$company"
         // . "&aspectFilter(2).aspectName=Condition"
         // . "&aspectFilter(2).aspectValueName='New with tags'"
-
          . "&affiliate.networkId=9"  // fill in your information in next 3 lines
          . "&affiliate.trackingId=1234567890"
          . "&affiliate.customId=456"
          . "&RESPONSE-DATA-FORMAT=$responseEncoding";
-
     // if ($debug) {
     //   print "GET call = $apicall <br>";  // see GET request generated
     // }
@@ -237,7 +235,6 @@ if(isset($_POST['Query']))
       $results .= 'Total items : ' . $resp->paginationOutput->totalEntries . "<br />\n";
       $results .= '<table id="example" class="tablesorter" border="0" width="100%" cellpadding="0" cellspacing="1">' . "\n";
       $results .= "<thead><tr><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Start Time</th><th>End Time</th></tr></thead>\n";
-
       // If the response was loaded, parse it and build links
       foreach($resp->searchResult->item as $item) {
         if ($item->galleryURL) {
@@ -261,31 +258,23 @@ if(isset($_POST['Query']))
         else if((string) $item->condition->conditionDisplayName == "Used"){
             $conditionInfo = sprintf("An item that has been previously worn. See the seller’s listing for full details and description of any imperfections.");
         }
-
         //subtitle is optional description given by sellers
         $subtitle = $item->subtitle;
         //number of bids made for product
         $bids = sprintf("Number of bids: %u",$item->sellingStatus->bidCount);
         //unique ebay Id for product
         $ebayItemId  = sprintf("Item Id: %s ",$item->itemId);
-
         //display type e.g. analog or digital.
         //This is though copying filer selection.
         $display  = sprintf("Display type: %s",$disp);
-
         //seller info:
         //$positiveFeedbackPercent= sprintf("Seller name: %s",(string)$item->sellerInfo->sellerUserName);
         //location of product
         $location  = sprintf("Location: %s ",$item->location);
-
-
         $price = sprintf("%01.2f", $item->sellingStatus->convertedCurrentPrice);
         $ship  = sprintf("%01.2f", $item->shippingInfo->shippingServiceCost);
         $total = sprintf("%01.2f", ((float)$item->sellingStatus->convertedCurrentPrice
                       + (float)$item->shippingInfo->shippingServiceCost));
-
-
-
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
         $priceCurr = (string) $item->sellingStatus->convertedCurrentPrice['currencyId'];
         $shipCurr  = (string) $item->shippingInfo->shippingServiceCost['currencyId'];
@@ -294,23 +283,16 @@ if(isset($_POST['Query']))
         } else {
           $curr = "$priceCurr / $shipCurr";  // potential case where price/ship currencies differ
         }
-
         $timeLeft = getPrettyTimeFromEbayTime($item->sellingStatus->timeLeft);
         //$endTime = strtotime($item->listingInfo->endTime);   // returns Epoch seconds
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
-
-        // $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
-        // $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
-        // $sqlItemTitle = $item->title;
-
-        $sqlItemPrice = $price
-        $sqlItemShippingInfo = $ship
+        $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
+        $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
         $sqlItemTitle = $item->title;
-
         $res = odbc_exec($conn, $sql);
         $sql = "INSERT INTO Product_Searches (title, price, serviceCost)
-        VALUES ('$sqlItemTitle','$sqlItemPrice','$sqlItemShippingInfo' )";
+        VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
         $res = odbc_exec($conn, $sql);
         if (!$res) {
           print("Table creation failed with error:\n");
@@ -318,13 +300,8 @@ if(isset($_POST['Query']))
         } else {
             print("Table fyi_links created.\n");
           }
-
-
   // Free the connection
-
   @odbc_close($conn);
-
-
         $results .= "<tr><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td><a href=\"$link\">$title</a></br></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
              .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td>$timeLeft</td><td><nobr>$startTime</nobr></td><td><nobr>$endTime</nobr></td></tr>";
       }
@@ -336,15 +313,11 @@ if(isset($_POST['Query']))
     }
     $priceRangeMin = $priceRangeMax; // set up for next iteration
   } // foreach
-
 } // if
-
-
 ?>
 
 
 <?php echo $results;
-
 ?>
 </body>
 </html>
