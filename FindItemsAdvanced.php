@@ -63,78 +63,19 @@ $Query = $_POST["Query"];
 $GlobalID = $_POST["GlobalID"];
 $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
-// $serverName = "tcp:ragnasvr.database.windows.net, 1433";
-// $connectionOptions = array(
-//     "Database" => "ragnaDB",
-//     "Uid" => "ragnarok@ragnasvr",
-//     "PWD" => "Korangar2"
+
+// Run the create table query
+// if (sqlsrv_query($conn, '
+// CREATE TABLE Product_Searches (
+// `Id` INT NOT NULL AUTO_INCREMENT ,
+// `ProductName` VARCHAR(200) NOT NULL ,
+// `Condition` VARCHAR(200) NOT NULL ,
+// `Price` DOUBLE NOT NULL ,
+// PRIMARY KEY (`Id`)
 // );
-// //Establishes the connection
-// $conn = sqlsrv_connect($serverName, $connectionOptions);
-// if( $conn === false ) {
-//     die( FormatErrors( sqlsrv_errors()));
-// }
-// else
-// {
-//   echo "Connection successful";
-// }
-// // Run the create table query
-// // if (sqlsrv_query($conn, '
-// // CREATE TABLE Product_Searches (
-// // `Id` INT NOT NULL AUTO_INCREMENT ,
-// // `ProductName` VARCHAR(200) NOT NULL ,
-// // `Condition` VARCHAR(200) NOT NULL ,
-// // `Price` DOUBLE NOT NULL ,
-// // PRIMARY KEY (`Id`)
-// // );
-// // '))
-// // Got a connection, run simple query
-// $sql = "CREATE TABLE Product_Searches (
-//   ID int NOT NULL IDENTITY(1, 1) ,
-//   title varchar(80) NOT NULL,
-//   price float NOT NULL,
-//   serviceCost float NOT NULL,
-//   PRIMARY KEY (ID)
-// )";
-//
-//
-// $res = sqlsrv_execute($conn, $sql);
-//   if (!$res) {
-//     print("Table creation failed with error:\n");
-//   } else {
-//     print("Table fyi_links created.\n");
-//   }
-//
-//
-// //Close the connection
-// sqlsrv_close($conn);
-?>
-
-<?php
-$host = "ragnasvr.database.windows.net,1433";
-
-$dbname = "ragnaDB";
-
-$dbuser = "ragnarok@ragnasvr";
-
-$dbpwd = "Korangar2";
-
-$driver = "{ODBC Driver 13 for SQL Server}";
+// '))
 
 
-// Build connection string
-
-$dsn="Driver=$driver;Server=$host;Database=$dbname;";
-
-if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
-
-    die("Connection error: " . odbc_errormsg());
-
-}
-else
-{
-  echo "Connection succesful";
-}
 // $sql = "CREATE TABLE Product_Searches (
 //   ID int NOT NULL IDENTITY(1, 1) ,
 //   title varchar(80) NOT NULL,
@@ -143,23 +84,8 @@ else
 //   PRIMARY KEY (ID)
 // )";
 
-
-        // SQL connection
-
-// $res = odbc_exec($conn, $sql);
-//   if (!$res) {
-//     print("Table creation failed with error:\n");
-//     print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
-//   } else {
-//     print("Table fyi_links created.\n");
-//   }
-//
-//
-//   // Free the connection
-//
-//   @odbc_close($conn);
-
 ?>
+
 
 <h1>eBay Watch Search form</h1>
 <h4 style="color:red;"><span class="note">*</span> denotes mandotory</h4>
@@ -258,6 +184,30 @@ if(isset($_POST['Query']))
   $disp  = $_POST['Display'];
   // $priceRangeMin = 0.0;
 
+  $host = "ragnasvr.database.windows.net,1433";
+
+  $dbname = "ragnaDB";
+
+  $dbuser = "ragnarok@ragnasvr";
+
+  $dbpwd = "Korangar2";
+
+  $driver = "{ODBC Driver 13 for SQL Server}";
+
+
+  // Build connection string
+
+  $dsn="Driver=$driver;Server=$host;Database=$dbname;";
+
+  if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
+
+      die("Connection error: " . odbc_errormsg());
+
+  }
+  else
+  {
+    echo "Connection succesful";
+  }
 
 
 
