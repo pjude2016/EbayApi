@@ -135,26 +135,29 @@ else
 {
   echo "Connection succesful";
 }
-$sql = "CREATE TABLE Product_Searches (
-  ID int NOT NULL IDENTITY(1, 1) ,
-  title varchar(80) NOT NULL,
-  price float NOT NULL,
-  serviceCost float NOT NULL,
-  PRIMARY KEY (ID)
-)";
-
-$res = odbc_exec($conn, $sql);
-  if (!$res) {
-    print("Table creation failed with error:\n");
-    print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
-  } else {
-    print("Table fyi_links created.\n");
-  }
+// $sql = "CREATE TABLE Product_Searches (
+//   ID int NOT NULL IDENTITY(1, 1) ,
+//   title varchar(80) NOT NULL,
+//   price float NOT NULL,
+//   serviceCost float NOT NULL,
+//   PRIMARY KEY (ID)
+// )";
 
 
-  // Free the connection
+        // SQL connection
 
-  @odbc_close($conn);
+// $res = odbc_exec($conn, $sql);
+//   if (!$res) {
+//     print("Table creation failed with error:\n");
+//     print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
+//   } else {
+//     print("Table fyi_links created.\n");
+//   }
+//
+//
+//   // Free the connection
+//
+//   @odbc_close($conn);
 
 ?>
 
@@ -376,6 +379,26 @@ if(isset($_POST['Query']))
         //$endTime = strtotime($item->listingInfo->endTime);   // returns Epoch seconds
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
+
+        $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
+        $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
+        $sqlItemTitle = $item->title;
+
+        $res = odbc_exec($conn, $sql);
+        $sql = "INSERT INTO Product_Searches (title, price, serviceCost)
+        VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
+        $res = odbc_exec($conn, $sql);
+        if (!$res) {
+          print("Table creation failed with error:\n");
+          print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
+        } else {
+            print("Table fyi_links created.\n");
+          }
+
+
+  // Free the connection
+
+  @odbc_close($conn);
 
 
         $results .= "<tr><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td><a href=\"$link\">$title</a></br></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
