@@ -392,11 +392,13 @@ print("Connection succesful");
         VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
         $res = odbc_exec($conn, $sql);
           if (!$res) {
-            echo '$count';
+            echo $count;
             print("Table creation failed with error:\n");
             print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
+            echo '</br>';
           } else {
             print("Table fyi_links created.\n");
+            echo '</br>';
           }
 
 
