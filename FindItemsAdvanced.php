@@ -162,7 +162,8 @@ if(isset($_POST['Query']))
   $disp  = $_POST['Display'];
   // $priceRangeMin = 0.0;
 
-
+  $results .= 'Click <a href="#Mid-Range">here</a> to see Mid-Range.'. "<br />\n";
+  $results .= 'Click <a href="#High-Range">here</a> to see High-Range.'. "<br />\n";
 
 
   $priceRangeMin = $_POST['MinPrice'];
@@ -181,6 +182,14 @@ if(isset($_POST['Query']))
   foreach ($rangeArr as $range)
   {
     $priceRangeMax = sprintf("%01.2f", ($priceRangeMin + $priceRange));
+    if($range =='Mid-Range'){
+        $results .='<a name="Mid-Range"></a> '. "<br />\n";
+  }
+  else if ($range =='High-Range'){
+    $results .='<a name="High-Range"></a> '. "<br />\n";
+    //$results .= '<a href="https://www.w3schools.com">Visit W3Schools</a>'. "<br />\n";
+  }
+
     $results .=  "<h2>$range : $priceRangeMin ~ $priceRangeMax</h2>\n";
     // Construct the FindItems call
     $apicall = "$endpoint?OPERATION-NAME=findItemsAdvanced"
