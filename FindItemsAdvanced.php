@@ -227,11 +227,11 @@ if(isset($_POST['Query']))
          // Probably best to split into two different tests, but have as one for brevity
 
 
-           echo $rest->paginationOutput->totalEntries;
-           echo "</br>";
+           //echo $rest->paginationOutput->totalEntries;
+           //echo "</br>";
            $pageCount=(int)($rest->paginationOutput->totalEntries /$itemsPerRange)+1;
-           echo $pageCount;
-           echo "</br>";
+           //echo $pageCount;
+           //echo "</br>";
            $results .= 'Total items : ' . $rest->paginationOutput->totalEntries . "<br />\n";
            $results .= '<table id="example" class="tablesorter" border="0" width="100%" cellpadding="0" cellspacing="1">' . "\n";
            $results .= "<thead><tr><th>Count</th><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Start Time</th><th>End Time</th></tr></thead>\n";
