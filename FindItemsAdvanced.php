@@ -345,9 +345,9 @@ if(isset($_POST['Query']))
         $total = sprintf("%01.2f", ((float)$item->sellingStatus->convertedCurrentPrice
                       + (float)$item->shippingInfo->shippingServiceCost));
 
-        $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
-        $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
-        $sqlItemTitle = $item->title;
+        $sqlItemSellingStatus = (float)$item->sellingStatus->convertedCurrentPrice;
+        $sqlItemShippingInfo = (float)$item->shippingInfo->shippingServiceCost;
+        $sqlItemTitle = (string)$item->title;
         // SQL connection
         $host = "ragnasvr.database.windows.net,1433";
 
