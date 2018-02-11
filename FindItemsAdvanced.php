@@ -364,7 +364,7 @@ if(isset($_POST['Query']))
         $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
         $sqlItemTitle = $item->title;
 
-        $res = odbc_exec($conn, $sql);
+  
         $sql = "INSERT INTO Product_Searches (title, price, serviceCost)
         VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
         $res = odbc_exec($conn, $sql);
