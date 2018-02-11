@@ -291,15 +291,15 @@ if(isset($_POST['Query']))
         $sqlItemShippingInfo = sprintf("%01.2f", $item->shippingInfo->shippingServiceCost);
         $sqlItemTitle = $item->title;
         $res = odbc_exec($conn, $sql);
-        $sql = "INSERT INTO Product_Searches (title, price, serviceCost)
-        VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
-        $res = odbc_exec($conn, $sql);
-        if (!$res) {
-          print("Table creation failed with error:\n");
-          print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
-        } else {
-            print("Table fyi_links created.\n");
-          }
+      //  $sql = "INSERT INTO Product_Searches (title, price, serviceCost)
+        // VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
+        // $res = odbc_exec($conn, $sql);
+        // if (!$res) {
+        //   print("Table creation failed with error:\n");
+        //   print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
+        // } else {
+        //     print("Table fyi_links created.\n");
+        //   }
   // Free the connection
   @odbc_close($conn);
         $results .= "<tr><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td><a href=\"$link\">$title</a></br></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
