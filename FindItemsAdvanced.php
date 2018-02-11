@@ -356,7 +356,7 @@ $dbuser = "ragnarok@ragnasvr";
 
 $dbpwd = "Korangar2";
 
-$driver = "{ODBC Driver 11 for SQL Server}";
+$driver = "{ODBC Driver 13 for SQL Server}";
 
 
 // Build connection string
