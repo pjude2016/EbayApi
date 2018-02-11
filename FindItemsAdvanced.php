@@ -162,21 +162,21 @@ if(isset($_POST['Query']))
   $disp  = $_POST['Display'];
   // $priceRangeMin = 0.0;
 
-  $host = "ragnasvr.database.windows.net,1433";
-  $dbname = "ragnaDB";
-  $dbuser = "ragnarok@ragnasvr";
-  $dbpwd = "Korangar2";
-  $driver = "{ODBC Driver 13 for SQL Server}";
-  // Build connection string
-  $dsn="Driver=$driver;Server=$host;Database=$dbname;";
-  if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
-      die("Connection error: " . odbc_errormsg());
-  }
-  else
-  {
-    echo "Connection successful";
-    echo "</br>";
-  }
+  // $host = "ragnasvr.database.windows.net,1433";
+  // $dbname = "ragnaDB";
+  // $dbuser = "ragnarok@ragnasvr";
+  // $dbpwd = "Korangar2";
+  // $driver = "{ODBC Driver 13 for SQL Server}";
+  // // Build connection string
+  // $dsn="Driver=$driver;Server=$host;Database=$dbname;";
+  // if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
+  //     die("Connection error: " . odbc_errormsg());
+  // }
+  // else
+  // {
+  //   echo "Connection successful";
+  //   echo "</br>";
+  // }
 
 
   $results .= 'Click <a href="#Mid-Range">here</a> to see Mid-Range.'. "<br />\n";
@@ -344,6 +344,34 @@ if(isset($_POST['Query']))
         $ship  = sprintf("%01.2f", $item->shippingInfo->shippingServiceCost);
         $total = sprintf("%01.2f", ((float)$item->sellingStatus->convertedCurrentPrice
                       + (float)$item->shippingInfo->shippingServiceCost));
+                      $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
+$sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
+$sqlItemTitle = $item->title;
+// SQL connection
+$host = "ragnasvr.database.windows.net,1433";
+
+$dbname = "ragnaDB";
+
+$dbuser = "ragnarok@ragnasvr";
+
+$dbpwd = "Korangar2";
+
+$driver = "{ODBC Driver 11 for SQL Server}";
+
+
+// Build connection string
+
+$dsn="Driver=$driver;Server=$host;Database=$dbname;";
+
+if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
+
+die("Connection error: " . odbc_errormsg());
+
+}
+else
+{
+print("Connection succesful");
+}
 
 
 
