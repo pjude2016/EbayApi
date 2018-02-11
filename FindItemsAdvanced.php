@@ -344,34 +344,35 @@ if(isset($_POST['Query']))
         $ship  = sprintf("%01.2f", $item->shippingInfo->shippingServiceCost);
         $total = sprintf("%01.2f", ((float)$item->sellingStatus->convertedCurrentPrice
                       + (float)$item->shippingInfo->shippingServiceCost));
-                      $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
-$sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
-$sqlItemTitle = $item->title;
-// SQL connection
-$host = "ragnasvr.database.windows.net,1433";
 
-$dbname = "ragnaDB";
+        $sqlItemSellingStatus = $item->sellingStatus->convertedCurrentPrice;
+        $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
+        $sqlItemTitle = $item->title;
+        // SQL connection
+        $host = "ragnasvr.database.windows.net,1433";
 
-$dbuser = "ragnarok@ragnasvr";
+        $dbname = "ragnaDB";
 
-$dbpwd = "Korangar2";
+        $dbuser = "ragnarok@ragnasvr";
 
-$driver = "{ODBC Driver 13 for SQL Server}";
+        $dbpwd = "Korangar2";
+
+        $driver = "{ODBC Driver 13 for SQL Server}";
 
 
-// Build connection string
+        // Build connection string
 
-$dsn="Driver=$driver;Server=$host;Database=$dbname;";
+        $dsn="Driver=$driver;Server=$host;Database=$dbname;";
 
-if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
+        if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
 
-die("Connection error: " . odbc_errormsg());
+          die("Connection error: " . odbc_errormsg());
 
-}
-else
-{
-print("Connection succesful");
-}
+        }
+        else
+        {
+          //print("Connection succesful");
+        }
 
 
 
