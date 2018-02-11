@@ -10,7 +10,7 @@
 <script>
   $(document).ready(function() {
     $("table").tablesorter({
-      sortList:[[0,0],    // upon screen load, sort by col 7, 4 ascending (0)
+      sortList:[[0,0]],    // upon screen load, sort by col 7, 4 ascending (0)
       debug: false,        // if true, useful to debug Tablesorter issues
       headers: {
         0: { sorter: 'text'},
