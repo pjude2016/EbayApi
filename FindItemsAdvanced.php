@@ -162,6 +162,22 @@ if(isset($_POST['Query']))
   $disp  = $_POST['Display'];
   // $priceRangeMin = 0.0;
 
+  $host = "ragnasvr.database.windows.net,1433";
+  $dbname = "ragnaDB";
+  $dbuser = "ragnarok@ragnasvr";
+  $dbpwd = "Korangar2";
+  $driver = "{ODBC Driver 13 for SQL Server}";
+  // Build connection string
+  $dsn="Driver=$driver;Server=$host;Database=$dbname;";
+  if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
+      die("Connection error: " . odbc_errormsg());
+  }
+  else
+  {
+    echo "Connection succesful";
+  }
+
+
   $results .= 'Click <a href="#Mid-Range">here</a> to see Mid-Range.'. "<br />\n";
   $results .= 'Click <a href="#High-Range">here</a> to see High-Range.'. "<br />\n";
 
