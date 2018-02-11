@@ -13,7 +13,6 @@
       sortList:[[0,0]],    // upon screen load, sort by col 7, 4 ascending (0)
       debug: false,        // if true, useful to debug Tablesorter issues
       headers: {
-        0: { sorter: 'text'},
         1: { sorter: false },  // col 0 = first = left most column - no sorting
         7: { sorter: false },
         8: { sorter: false },
