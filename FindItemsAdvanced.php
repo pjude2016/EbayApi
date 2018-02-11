@@ -244,8 +244,8 @@ if(isset($_POST['Query']))
          // Probably best to split into two different tests, but have as one for brevity
 
 
-           //echo $rest->paginationOutput->totalEntries;
-           //echo "</br>";
+           echo $rest->paginationOutput->totalEntries;
+           echo "</br>";
            $pageCount=(int)($rest->paginationOutput->totalEntries /$itemsPerRange)+1;
            //echo $pageCount;
            //echo "</br>";
@@ -360,8 +360,8 @@ if(isset($_POST['Query']))
         //$endTime = strtotime($item->listingInfo->endTime);   // returns Epoch seconds
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
-        $sqlItemSellingStatus = sprintf("%01.2f", $item->sellingStatus->convertedCurrentPrice);
-        $sqlItemShippingInfo = sprintf("%01.2f", $item->shippingInfo->shippingServiceCost);
+        $sqlItemSellingStatus =  $item->sellingStatus->convertedCurrentPrice;
+        $sqlItemShippingInfo = $item->shippingInfo->shippingServiceCost;
         $sqlItemTitle = $item->title;
 
         $res = odbc_exec($conn, $sql);
