@@ -167,7 +167,7 @@ if(isset($_POST['Query']))
 
   $priceRangeMin = $_POST['MinPrice'];
   $priceRangeMax = $_POST['MaxPrice'];
-  $itemsPerRange = 10;
+  $itemsPerRange = 100;
   $pageNumber=1; //0-100
 
   // $debug = (boolean) $_POST['Debug'];
