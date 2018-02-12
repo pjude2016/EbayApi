@@ -409,7 +409,7 @@ if(isset($_POST['Query']))
             echo "</br>";
           }
           // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
-          sqlsrv_free_stmt($getResults);
+          //sqlsrv_free_stmt($getResults);
 
 
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
