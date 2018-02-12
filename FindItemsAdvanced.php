@@ -453,7 +453,7 @@ if(isset($_POST['Query']))
     } //if resp more than 0
     // If there was no response, print an error
     else {
-      $results = "<p><i><b>No items found<b></i></p>";
+      $results = "<p> $range <i><b>No items found<b></i></p>";
     }
 
   }// for each page
