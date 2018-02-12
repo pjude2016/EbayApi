@@ -394,6 +394,19 @@ if(isset($_POST['Query']))
           echo "</br>";
         }
 
+        $tsql= "INSERT INTO dbo.Product_Searches (title, price, servicecost) VALUES (?,?,?);";
+        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo);
+        $getResults= sqlsrv_query($conn, $tsql, $params);
+        $rowsAffected = sqlsrv_rows_affected($getResults);
+        if ($getResults == FALSE or $rowsAffected == FALSE)
+          {
+            echo $count;
+            die(FormatErrors(sqlsrv_errors()));
+          }
+          // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
+          sqlsrv_free_stmt($getResults);
+        exit;
+
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
         $priceCurr = (string) $item->sellingStatus->convertedCurrentPrice['currencyId'];
         $shipCurr  = (string) $item->shippingInfo->shippingServiceCost['currencyId'];
