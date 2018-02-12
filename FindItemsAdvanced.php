@@ -390,7 +390,7 @@ if(isset($_POST['Query']))
         }
         else
         {
-          print("Connection succesful ");
+          //print("Connection succesful ");
 
         }
 
@@ -404,9 +404,9 @@ if(isset($_POST['Query']))
             die(FormatErrors(sqlsrv_errors()));
           }
           else{
-            echo "Succeeded ";
-            echo $count;
-            echo "</br>";
+            //echo "Succeeded ";
+            //echo $count;
+            //echo "</br>";
           }
           // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
           //header("Location: FindItemsAdvanced.php");
