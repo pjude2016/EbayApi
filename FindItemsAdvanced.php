@@ -256,6 +256,7 @@ if(isset($_POST['Query']))
            $results .= '<table id="example" class="tablesorter" border="0" width="100%" cellpadding="0" cellspacing="1">' . "\n";
            $results .= "<thead><tr><th>Count</th><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Start Time</th><th>End Time</th></tr></thead>\n";
            $count=1;
+    if ($rest && $rest->paginationOutput->totalEntries > 0) {
     for($pageNumber=1;$pageNumber<=$pageCount;$pageNumber++){
     $apicall = "$endpoint?OPERATION-NAME=findItemsAdvanced"
          . "&SERVICE-VERSION=1.0.0"
@@ -295,7 +296,7 @@ if(isset($_POST['Query']))
     // Check to see if the response was loaded, else print an error
     // Probably best to split into two different tests, but have as one for brevity
 
-    if ($resp && $resp->paginationOutput->totalEntries > 0) {
+    //if ($resp && $resp->paginationOutput->totalEntries > 0) {
       // $results .= 'Total items : ' . $resp->paginationOutput->totalEntries . "<br />\n";
       // $results .= '<table id="example" class="tablesorter" border="0" width="100%" cellpadding="0" cellspacing="1">' . "\n";
       // $results .= "<thead><tr><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Start Time</th><th>End Time</th></tr></thead>\n";
@@ -453,13 +454,15 @@ if(isset($_POST['Query']))
       }// each item
 
 
-    } //if resp more than 0
+    //if resp more than 0
     // If there was no response, print an error
-    else {
-      $results = "<p> $range <i><b>No items found<b></i></p>";
-    }
+
 
   }// for each page
+}
+  else {
+    $results = "<p> $range <i><b>No items found<b></i></p>";
+  }
     $results .= "</table>";
     $priceRangeMin = $priceRangeMax; // set up for next iteration
 
