@@ -412,7 +412,6 @@ if(isset($_POST['Query']))
           header("Location: FindItemsAdvanced.php");
           sqlsrv_free_stmt($getResults);
 
-
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
         $priceCurr = (string) $item->sellingStatus->convertedCurrentPrice['currencyId'];
         $shipCurr  = (string) $item->shippingInfo->shippingServiceCost['currencyId'];
