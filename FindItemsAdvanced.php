@@ -394,7 +394,25 @@ if(isset($_POST['Query']))
 
         }
 
-
+        $tsql= "INSERT INTO dbo.Product_Searches (title, price, servicecost) VALUES (?,?,?);";
+        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo);
+        $getResults= sqlsrv_query($conn, $tsql, $params);
+        $rowsAffected = sqlsrv_rows_affected($getResults);
+        if ($getResults == FALSE or $rowsAffected == FALSE)
+          {
+            echo $count;
+            die(FormatErrors(sqlsrv_errors()));
+          }
+          else{
+            echo "Succeeded ";
+            echo $count;
+            echo "</br>";
+          }
+          // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
+          //header("Location: FindItemsAdvanced.php");
+          sqlsrv_free_stmt($getResults);
+          exit;
+          
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
         $priceCurr = (string) $item->sellingStatus->convertedCurrentPrice['currencyId'];
         $shipCurr  = (string) $item->shippingInfo->shippingServiceCost['currencyId'];
@@ -428,27 +446,7 @@ if(isset($_POST['Query']))
         //  @odbc_close($conn);
         $results .= "<tr><td>$count</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
              .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td>$timeLeft</td><td><nobr>$startTime</nobr></td><td><nobr>$endTime</nobr></td></tr>";
-
-                     $tsql= "INSERT INTO dbo.Product_Searches (title, price, servicecost) VALUES (?,?,?);";
-                     $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo);
-                     $getResults= sqlsrv_query($conn, $tsql, $params);
-                     $rowsAffected = sqlsrv_rows_affected($getResults);
-                     if ($getResults == FALSE or $rowsAffected == FALSE)
-                       {
-                         echo $count;
-                         die(FormatErrors(sqlsrv_errors()));
-                       }
-                       else{
-                         echo "Succeeded ";
-                         echo $count;
-                         echo "</br>";
-                       }
-                       // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
-                       //header("Location: FindItemsAdvanced.php");
-                       sqlsrv_free_stmt($getResults);
-
-                       $count++;
-
+            $count++;
       }
 
 
@@ -463,7 +461,7 @@ if(isset($_POST['Query']))
     $priceRangeMin = $priceRangeMax; // set up for next iteration
 
   } // foreach
-exit;
+
 } // if
 
 
