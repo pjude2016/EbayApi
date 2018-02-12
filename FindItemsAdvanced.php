@@ -178,7 +178,7 @@ if(isset($_POST['Query']))
   //   echo "</br>";
   // }
 
-
+  $results .= 'Click <a href="#Low-Range">here</a> to see Low-Range.'. "<br />\n";
   $results .= 'Click <a href="#Mid-Range">here</a> to see Mid-Range.'. "<br />\n";
   $results .= 'Click <a href="#High-Range">here</a> to see High-Range.'. "<br />\n";
 
@@ -199,7 +199,10 @@ if(isset($_POST['Query']))
   foreach ($rangeArr as $range)
   {
     $priceRangeMax = sprintf("%01.2f", ($priceRangeMin + $priceRange));
-    if($range =='Mid-Range'){
+    if($range =='Low-Range'){
+        $results .='<a name="Low-Range"></a> '. "<br />\n";
+      }
+    else if($range =='Mid-Range'){
         $results .='<a name="Mid-Range"></a> '. "<br />\n";
   }
   else if ($range =='High-Range'){
