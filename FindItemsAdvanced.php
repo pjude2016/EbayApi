@@ -383,14 +383,15 @@ if(isset($_POST['Query']))
         //Establishes the connection
         $conn = sqlsrv_connect($serverName, $connectionOptions);
 
-        if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
+        if (!($conn)) {
 
-          die("Connection error: " . odbc_errormsg());
+          die("Connection error: " . sqlsrb_connect_error());
 
         }
         else
         {
           print("Connection succesful");
+          echo "</br>";
         }
 
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
