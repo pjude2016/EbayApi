@@ -403,6 +403,9 @@ if(isset($_POST['Query']))
             echo $count;
             die(FormatErrors(sqlsrv_errors()));
           }
+          else{
+            echo "Succeeded";
+          }
           // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
           sqlsrv_free_stmt($getResults);
 
