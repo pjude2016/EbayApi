@@ -389,7 +389,7 @@ if(isset($_POST['Query']))
         //$endTime = strtotime($item->listingInfo->endTime);   // returns Epoch seconds
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
-        $sql = "INSERT INTO Product_Searches (title, price, serviceCost)
+        $sql = "INSERT INTO dbo.Product_Searches (title, price, serviceCost)
         VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
         $res = odbc_exec($conn, $sql);
           if (!$res) {
