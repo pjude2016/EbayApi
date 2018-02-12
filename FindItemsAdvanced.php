@@ -385,7 +385,7 @@ if(isset($_POST['Query']))
 
         if (!($conn)) {
 
-          die("Connection error: " . sqlsrb_connect_error());
+          die("Connection error: " . sqlsrv_connect_error());
 
         }
         else
