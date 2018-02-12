@@ -447,16 +447,16 @@ if(isset($_POST['Query']))
         $results .= "<tr><td>$count</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
              .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td>$timeLeft</td><td><nobr>$startTime</nobr></td><td><nobr>$endTime</nobr></td></tr>";
             $count++;
-      }
+      }// each item
 
 
-    }
+    } //if resp more than 0
     // If there was no response, print an error
     else {
       $results = "<p><i><b>No items found<b></i></p>";
     }
 
-  }
+  }// for each page
     $results .= "</table>";
     $priceRangeMin = $priceRangeMax; // set up for next iteration
 
