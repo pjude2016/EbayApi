@@ -390,8 +390,8 @@ if(isset($_POST['Query']))
         }
         else
         {
-          print("Connection succesful");
-          echo "</br>";
+          print("Connection succesful ");
+
         }
 
         $tsql= "INSERT INTO dbo.Product_Searches (title, price, servicecost) VALUES (?,?,?);";
@@ -404,7 +404,9 @@ if(isset($_POST['Query']))
             die(FormatErrors(sqlsrv_errors()));
           }
           else{
-            echo "Succeeded";
+            echo "Succeeded ";
+            echo $count;
+            echo "</br>";
           }
           // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
           sqlsrv_free_stmt($getResults);
@@ -456,9 +458,9 @@ if(isset($_POST['Query']))
   }
     $results .= "</table>";
     $priceRangeMin = $priceRangeMax; // set up for next iteration
-    exit;
-  } // foreach
 
+  } // foreach
+exit;
 } // if
 
 
