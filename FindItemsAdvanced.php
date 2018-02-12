@@ -349,20 +349,39 @@ if(isset($_POST['Query']))
         $sqlItemShippingInfo = (float)$item->shippingInfo->shippingServiceCost;
         $sqlItemTitle = (string)$item->title;
         // SQL connection
-        $host = "ragnasvr.database.windows.net,1433";
+        // $host = "ragnasvr.database.windows.net,1433";
+        //
+        // $dbname = "ragnaDB";
+        //
+        // $dbuser = "ragnarok@ragnasvr";
+        //
+        // $dbpwd = "Korangar2";
+        //
+        // $driver = "{ODBC Driver 13 for SQL Server}";
+        //
+        //
+        // // Build connection string
+        //
+        // $dsn="Driver=$driver;Server=$host;Database=$dbname;";
+        //
+        // if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
+        //
+        //   die("Connection error: " . odbc_errormsg());
+        //
+        // }
+        // else
+        // {
+        //   //print("Connection succesful");
+        // }
 
-        $dbname = "ragnaDB";
-
-        $dbuser = "ragnarok@ragnasvr";
-
-        $dbpwd = "Korangar2";
-
-        $driver = "{ODBC Driver 13 for SQL Server}";
-
-
-        // Build connection string
-
-        $dsn="Driver=$driver;Server=$host;Database=$dbname;";
+        $serverName = "tcp:ragnasvr.database.windows.net, 1433";
+        $connectionOptions = array(
+            "Database" => "ragnaDB",
+            "Uid" => "ragnarok@ragnasvr",
+            "PWD" => "Korangar2"
+        );
+        //Establishes the connection
+        $conn = sqlsrv_connect($serverName, $connectionOptions);
 
         if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
 
@@ -371,10 +390,8 @@ if(isset($_POST['Query']))
         }
         else
         {
-          //print("Connection succesful");
+          print("Connection succesful");
         }
-
-
 
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
         $priceCurr = (string) $item->sellingStatus->convertedCurrentPrice['currencyId'];
@@ -389,18 +406,19 @@ if(isset($_POST['Query']))
         //$endTime = strtotime($item->listingInfo->endTime);   // returns Epoch seconds
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
-        $sql = "INSERT INTO dbo.Product_Searches (title, price, serviceCost)
-        VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
-        $res = odbc_exec($conn, $sql);
-          if (!$res) {
-            echo $count;
-            print("Table creation failed with error:\n");
-            print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
-            echo '</br>';
-          } else {
-            print("Table fyi_links created.\n");
-            echo '</br>';
-          }
+
+        // $sql = "INSERT INTO dbo.Product_Searches (title, price, serviceCost)
+        // VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
+        // $res = odbc_exec($conn, $sql);
+        //   if (!$res) {
+        //     echo $count;
+        //     print("Table creation failed with error:\n");
+        //     print(odbc_error($conn).": ".odbc_errormsg($conn)."\n");
+        //     echo '</br>';
+        //   } else {
+        //     print("Table fyi_links created.\n");
+        //     echo '</br>';
+        //   }
 
 
           // Free the connection
