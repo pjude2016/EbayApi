@@ -405,7 +405,7 @@ if(isset($_POST['Query']))
           }
           // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
           sqlsrv_free_stmt($getResults);
-        exit;
+
 
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
         $priceCurr = (string) $item->sellingStatus->convertedCurrentPrice['currencyId'];
@@ -453,6 +453,7 @@ if(isset($_POST['Query']))
   }
     $results .= "</table>";
     $priceRangeMin = $priceRangeMax; // set up for next iteration
+    exit;
   } // foreach
 
 } // if
