@@ -435,24 +435,7 @@ if(isset($_POST['Query']))
              .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td>$timeLeft</td><td><nobr>$startTime</nobr></td><td><nobr>$endTime</nobr></td></tr>";
             $count++;
 
-            $tsql= "INSERT INTO dbo.Product_Searches (title, price, servicecost) VALUES (?,?,?);";
-            $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo);
-            $getResults= sqlsrv_query($conn, $tsql, $params);
-            $rowsAffected = sqlsrv_rows_affected($getResults);
-            if ($getResults == FALSE or $rowsAffected == FALSE)
-              {
-                echo $count;
-                die(FormatErrors(sqlsrv_errors()));
-              }
-              else{
-                //echo "Succeeded ";
-                //echo $count;
-                //echo "</br>";
-              }
-              // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
-              //header("Location: FindItemsAdvanced.php");
-              sqlsrv_free_stmt($getResults);
-
+            
       }// each item
 
 
