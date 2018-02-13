@@ -381,6 +381,7 @@ if(isset($_POST['Query']))
         $getMatches= sqlsrv_query($conn, $query);
 
         $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+        //check for duplication
         if(!$row){
         $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID) VALUES (?,?,?,?);";
         // $user_id = $_SESSION['user_id'];
