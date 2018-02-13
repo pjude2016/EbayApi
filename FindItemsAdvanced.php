@@ -377,6 +377,11 @@ if(isset($_POST['Query']))
         // {
         //   //print("Connection succesful ");
         // }
+        $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$sqlEbayItemID'";
+        $getMatches= sqlsrv_query($conn, $query);
+
+        $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+        if(!$row){
         $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID) VALUES (?,?,?,?);";
         // $user_id = $_SESSION['user_id'];
         $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID);
@@ -395,6 +400,7 @@ if(isset($_POST['Query']))
           // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
           //header("Location: FindItemsAdvanced.php");
           sqlsrv_free_stmt($getResults);
+        }
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
         $priceCurr = (string) $item->sellingStatus->convertedCurrentPrice['currencyId'];
         $shipCurr  = (string) $item->shippingInfo->shippingServiceCost['currencyId'];
