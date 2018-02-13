@@ -1,3 +1,23 @@
+<?php
+session_start();
+$_SESSION['message'] = '';
+$_SESSION['firstname'] = '';
+$serverName = "tcp:ragnasvr.database.windows.net, 1433";
+$connectionOptions = array(
+    "Database" => "ragnaDB",
+    "Uid" => "ragnarok@ragnasvr",
+    "PWD" => "Korangar2"
+);
+//Establishes the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
+?>
+
+
+
+
+
+
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -63,7 +83,6 @@ $Query = $_POST["Query"];
 $GlobalID = $_POST["GlobalID"];
 $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
-
 ?>
 <h1>eBay Watch Search form</h1>
 <h4 style="color:red;"><span class="note">*</span> denotes mandotory</h4>
@@ -140,28 +159,19 @@ $Display = $_POST["Display"];
 
 
 <?php
-
 require_once('DisplayUtils.php');  // functions to aid with display of information
 error_reporting(E_ALL);  // turn on all errors, warnings and notices for easier debugging
-
 $results = '';
-
 //checking for non-empty and non-negative integer
-
-
 if(isset($_POST['Query']))
 {
   $endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
   $responseEncoding = 'XML';   // Format of the response
-
   $safeQuery = urlencode (utf8_encode($_POST['Query']));
-
-
   $site  = $_POST['GlobalID'];
   $format  = $_POST['BuyingFormat'];
   $disp  = $_POST['Display'];
   // $priceRangeMin = 0.0;
-
   // $host = "ragnasvr.database.windows.net,1433";
   // $dbname = "ragnaDB";
   // $dbuser = "ragnarok@ragnasvr";
@@ -177,25 +187,18 @@ if(isset($_POST['Query']))
   //   echo "Connection successful";
   //   echo "</br>";
   // }
-
   $results .= 'Click <a href="#Low-Range">here</a> to see Low-Range.'. "<br />\n";
   $results .= 'Click <a href="#Mid-Range">here</a> to see Mid-Range.'. "<br />\n";
   $results .= 'Click <a href="#High-Range">here</a> to see High-Range.'. "<br />\n";
-
-
   $priceRangeMin = $_POST['MinPrice'];
   $priceRangeMax = $_POST['MaxPrice'];
   $itemsPerRange = 100;
   $pageNumber=1; //0-100
-
   // $debug = (boolean) $_POST['Debug'];
-
   $rangeArr = array('Low-Range', 'Mid-Range', 'High-Range');
-
   $priceRange = ($priceRangeMax - $priceRangeMin) / 3;  // find price ranges for three tables
   $priceRangeMin =  sprintf("%01.2f",$priceRangeMin );
   $priceRangeMax = $priceRangeMin;  // needed for initial setup
-
   foreach ($rangeArr as $range)
   {
     $priceRangeMax = sprintf("%01.2f", ($priceRangeMin + $priceRange));
@@ -209,7 +212,6 @@ if(isset($_POST['Query']))
     $results .='<a name="High-Range"></a> '. "<br />\n";
     //$results .= '<a href="https://www.w3schools.com">Visit W3Schools</a>'. "<br />\n";
   }
-
     $results .=  "<h2>$range : $priceRangeMin ~ $priceRangeMax</h2>\n";
     // Construct the FindItems call
     $apicall = "$endpoint?OPERATION-NAME=findItemsAdvanced"
@@ -227,7 +229,6 @@ if(isset($_POST['Query']))
          . "&itemFilter(1).value=$priceRangeMin"
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
-
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
@@ -235,18 +236,14 @@ if(isset($_POST['Query']))
         // . "&aspectFilter(1).aspectValueName=$company"
         // . "&aspectFilter(2).aspectName=Condition"
         // . "&aspectFilter(2).aspectValueName='New with tags'"
-
          . "&affiliate.networkId=9"  // fill in your information in next 3 lines
          . "&affiliate.trackingId=1234567890"
          . "&affiliate.customId=456"
          . "&RESPONSE-DATA-FORMAT=$responseEncoding";
-
          $rest = simplexml_load_file($apicall) or die("Error: Cannot create object");
          //print_r($resp);
          // Check to see if the response was loaded, else print an error
          // Probably best to split into two different tests, but have as one for brevity
-
-
            echo $rest->paginationOutput->totalEntries;
            echo "</br>";
            $pageCount=(int)($rest->paginationOutput->totalEntries /$itemsPerRange)+1;
@@ -273,7 +270,6 @@ if(isset($_POST['Query']))
          . "&itemFilter(1).value=$priceRangeMin"
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
-
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
@@ -281,12 +277,10 @@ if(isset($_POST['Query']))
         // . "&aspectFilter(1).aspectValueName=$company"
         // . "&aspectFilter(2).aspectName=Condition"
         // . "&aspectFilter(2).aspectValueName='New with tags'"
-
          . "&affiliate.networkId=9"  // fill in your information in next 3 lines
          . "&affiliate.trackingId=1234567890"
          . "&affiliate.customId=456"
          . "&RESPONSE-DATA-FORMAT=$responseEncoding";
-
     // if ($debug) {
     //   print "GET call = $apicall <br>";  // see GET request generated
     // }
@@ -295,15 +289,11 @@ if(isset($_POST['Query']))
     //print_r($resp);
     // Check to see if the response was loaded, else print an error
     // Probably best to split into two different tests, but have as one for brevity
-
     //if ($resp && $resp->paginationOutput->totalEntries > 0) {
       // $results .= 'Total items : ' . $resp->paginationOutput->totalEntries . "<br />\n";
       // $results .= '<table id="example" class="tablesorter" border="0" width="100%" cellpadding="0" cellspacing="1">' . "\n";
       // $results .= "<thead><tr><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Start Time</th><th>End Time</th></tr></thead>\n";
-
-
       // If the response was loaded, parse it and build links
-
       foreach($resp->searchResult->item as $item) {
         if ($item->galleryURL) {
           $picURL = $item->galleryURL;
@@ -326,29 +316,23 @@ if(isset($_POST['Query']))
         else if((string) $item->condition->conditionDisplayName == "Used"){
             $conditionInfo = sprintf("An item that has been previously worn. See the seller’s listing for full details and description of any imperfections.");
         }
-
         //subtitle is optional description given by sellers
         $subtitle = $item->subtitle;
         //number of bids made for product
         $bids = sprintf("Number of bids: %u",$item->sellingStatus->bidCount);
         //unique ebay Id for product
         $ebayItemId  = sprintf("Item Id: %s ",$item->itemId);
-
         //display type e.g. analog or digital.
         //This is though copying filer selection.
         $display  = sprintf("Display type: %s",$disp);
-
         //seller info:
         //$positiveFeedbackPercent= sprintf("Seller name: %s",(string)$item->sellerInfo->sellerUserName);
         //location of product
         $location  = sprintf("Location: %s ",$item->location);
-
-
         $price = sprintf("%01.2f", $item->sellingStatus->convertedCurrentPrice);
         $ship  = sprintf("%01.2f", $item->shippingInfo->shippingServiceCost);
         $total = sprintf("%01.2f", ((float)$item->sellingStatus->convertedCurrentPrice
                       + (float)$item->shippingInfo->shippingServiceCost));
-
         $sqlItemSellingStatus = (float)$item->sellingStatus->convertedCurrentPrice;
         $sqlItemShippingInfo = (float)$item->shippingInfo->shippingServiceCost;
         $sqlItemTitle = (string)$item->title;
@@ -377,28 +361,23 @@ if(isset($_POST['Query']))
         // {
         //   //print("Connection succesful");
         // }
-
-        $serverName = "tcp:ragnasvr.database.windows.net, 1433";
-        $connectionOptions = array(
-            "Database" => "ragnaDB",
-            "Uid" => "ragnarok@ragnasvr",
-            "PWD" => "Korangar2"
-        );
-        //Establishes the connection
-        $conn = sqlsrv_connect($serverName, $connectionOptions);
-
-        if (!($conn)) {
-
-          die("Connection error: " . sqlsrv_connect_error());
-
-        }
-        else
-        {
-          //print("Connection succesful ");
-
-        }
-
-        $tsql= "INSERT INTO dbo.Product_Searches (title, price, servicecost) VALUES (?,?,?);";
+        // $serverName = "tcp:ragnasvr.database.windows.net, 1433";
+        // $connectionOptions = array(
+        //     "Database" => "ragnaDB",
+        //     "Uid" => "ragnarok@ragnasvr",
+        //     "PWD" => "Korangar2"
+        // );
+        // //Establishes the connection
+        // $conn = sqlsrv_connect($serverName, $connectionOptions);
+        // if (!($conn)) {
+        //   die("Connection error: " . sqlsrv_connect_error());
+        // }
+        // else
+        // {
+        //   //print("Connection succesful ");
+        // }
+        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost) VALUES (?,?,?);";
+        // $user_id = $_SESSION['user_id'];
         $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo);
         $getResults= sqlsrv_query($conn, $tsql, $params);
         $rowsAffected = sqlsrv_rows_affected($getResults);
@@ -415,8 +394,6 @@ if(isset($_POST['Query']))
           // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
           //header("Location: FindItemsAdvanced.php");
           sqlsrv_free_stmt($getResults);
-
-
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
         $priceCurr = (string) $item->sellingStatus->convertedCurrentPrice['currencyId'];
         $shipCurr  = (string) $item->shippingInfo->shippingServiceCost['currencyId'];
@@ -425,12 +402,10 @@ if(isset($_POST['Query']))
         } else {
           $curr = "$priceCurr / $shipCurr";  // potential case where price/ship currencies differ
         }
-
         $timeLeft = getPrettyTimeFromEbayTime($item->sellingStatus->timeLeft);
         //$endTime = strtotime($item->listingInfo->endTime);   // returns Epoch seconds
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
-
         // $sql = "INSERT INTO dbo.Product_Searches (title, price, serviceCost)
         // VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
         // $res = odbc_exec($conn, $sql);
@@ -443,21 +418,14 @@ if(isset($_POST['Query']))
         //     print("Table fyi_links created.\n");
         //     echo '</br>';
         //   }
-
-
           // Free the connection
-
         //  @odbc_close($conn);
         $results .= "<tr><td>$count</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
              .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td>$timeLeft</td><td><nobr>$startTime</nobr></td><td><nobr>$endTime</nobr></td></tr>";
             $count++;
       }// each item
-
-
     //if resp more than 0
     // If there was no response, print an error
-
-
   }// for each page
 }
   else {
@@ -465,13 +433,10 @@ if(isset($_POST['Query']))
   }
     $results .= "</table>";
     $priceRangeMin = $priceRangeMax; // set up for next iteration
-
   } // foreach
       echo $results;
       exit;
 } // if
-
-
 ?>
 
 
