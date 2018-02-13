@@ -335,6 +335,7 @@ if(isset($_POST['Query']))
                       + (float)$item->shippingInfo->shippingServiceCost));
         $sqlItemSellingStatus = (float)$item->sellingStatus->convertedCurrentPrice;
         $sqlItemShippingInfo = (float)$item->shippingInfo->shippingServiceCost;
+        $sqlEbayItemID = (float)$item->itemId;
         $sqlItemTitle = (string)$item->title;
         // SQL connection
         // $host = "ragnasvr.database.windows.net,1433";
@@ -376,9 +377,9 @@ if(isset($_POST['Query']))
         // {
         //   //print("Connection succesful ");
         // }
-        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost) VALUES (?,?,?);";
+        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID) VALUES (?,?,?,?);";
         // $user_id = $_SESSION['user_id'];
-        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo);
+        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID);
         $getResults= sqlsrv_query($conn, $tsql, $params);
         $rowsAffected = sqlsrv_rows_affected($getResults);
         if ($getResults == FALSE or $rowsAffected == FALSE)
