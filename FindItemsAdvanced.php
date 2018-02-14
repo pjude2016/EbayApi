@@ -232,10 +232,11 @@ if(isset($_POST['Query']))
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
+
         // . "&aspectFilter(1).aspectName=Brand"
         // . "&aspectFilter(1).aspectValueName=$company"
-        // . "&aspectFilter(2).aspectName=Condition"
-        // . "&aspectFilter(2).aspectValueName='New with tags'"
+         . "&aspectFilter(1).aspectName=Condition"
+        . "&aspectFilter(1).aspectValueName='New with tags'"
          . "&affiliate.networkId=9"  // fill in your information in next 3 lines
          . "&affiliate.trackingId=1234567890"
          . "&affiliate.customId=456"
