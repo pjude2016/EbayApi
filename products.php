@@ -1,29 +1,117 @@
 <?php
 session_start();
 $_SESSION['message'] = '';
-$_SESSION['firstname'] = '';
 $serverName = "tcp:ragnasvr.database.windows.net, 1433";
 $connectionOptions = array(
     "Database" => "ragnaDB",
     "Uid" => "ragnarok@ragnasvr",
     "PWD" => "Korangar2"
 );
+// echo $_SESSION;
+
+// echo '<pre>';
+// var_dump($_SESSION);
+// echo '</pre>';
+
+
 //Establishes the connection
 $conn = sqlsrv_connect($serverName, $connectionOptions);
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+// $my_ebay_id = $_POST['add_to_watchlist'];
+  // echo "THIS" . $_POST['add_to_watchlist'];
+  if (isset($_POST['add_to_watchlist'])){
+    // echo "WE ARE IN NOW";
+    $my_ebay_id = $_POST['add_to_watchlist'];
+    $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$my_ebay_id'";
+
+    $getMatches= sqlsrv_query($conn, $query);
+
+    $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+    if($row){
+      // $_SESSION['logged_in'] = true;
+      // echo "WE ARE IN";
+      $title = $row['title'];
+      $price = $row['price'];
+      $serviceCost = $row['serviceCost'];
+
+
+      $tsql= "INSERT INTO auction.watch_list (title, price, serviceCost, ebayID, user_id) VALUES (?,?,?,?,?);";
+      $params = array($title, $price, $serviceCost, $my_ebay_id, $_SESSION['user_id']);
+      $getResults= sqlsrv_query($conn, $tsql, $params);
+      $rowsAffected = sqlsrv_rows_affected($getResults);
+      if ($getResults == FALSE or $rowsAffected == FALSE)
+          die(FormatErrors(sqlsrv_errors()));
+
+      // exit;
+
+
+
+    }
+
+
+
+
+  }
+
+}
 ?>
 
+<!--
+<html>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="body content">
+    <div class="welcome">
+        <div class="alert alert-success"><?= $_SESSION['message'] ?></div>
+        Welcome <span class="user"><?= $_SESSION['username'] ?></span>
+
+
+    </div>
+</div>
+
+</html>
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Scrolling Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
 
 
 
-
-
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>findItemsAdvanced</title>
-<link href="../../twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../twitter-bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet">
 <script src="./js/jQuery.js"></script>
 <script src="./js/jQueryUI/ui.tablesorter.js"></script>
 
@@ -43,37 +131,36 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
   });
 </script>
 
-</head>
-<body>
-
-
-  <!-- // if (mysqli_query($conn, '
-  //   CREATE TABLE User_Searches (
-  //   `Id` INT NOT NULL AUTO_INCREMENT ,
-  //   `ProductName` VARCHAR(200) NOT NULL ,
-  //   `Price` DOUBLE NOT NULL ,
-  //   PRIMARY KEY (`Id`)
-  // );')) {
-  //       printf("Table created\n");
-  // } -->
 
 
 
-    <!-- // $host = "ragnasvr.database.windows.net,1433";
-    // $db_name = "ragnaDB";
-    // $username = "ragnarok@ragnasvr";
-    // $password = "Korangar2";
-    // $conn = mysqli_init();
-    // mysqli_real_connect($conn, $host, $username, $password, $db_name, 3306);
-    // if (mysqli_connect_errno($conn)) {
-    //   die('Failed to connect to MySQL: '.mysqli_connect_error());
-    // }
-    // else{
-    //   printf("successful");
-    // } -->
 
+  </head>
 
+  <body id="page-top">
 
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#">A U C T O R A</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
+            </li>
+<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="products.php">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="logout.php">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
 
 
@@ -85,9 +172,13 @@ $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
 $Condition = $_POST["Condition"];
 ?>
-<h1>eBay Watch Search form</h1>
-<h4 style="color:red;"><span class="note">*</span> denotes mandotory</h4>
-<form action="FindItemsAdvanced.php" method="post">
+
+<br>
+<br>
+<br>
+<h1 align='center'>eBay Watch Search form</h1>
+<h4 style="color:red;" align='center'><span class="note">*</span> denotes mandotory</h4>
+<form action="products.php" method="post">
 
 <table cellpadding="2" border="0" align="center">
   <tr>
@@ -129,9 +220,7 @@ $Condition = $_POST["Condition"];
     </td>
     <td align="center"><input type="text" name="MinPrice" value="<?php if (isset($_POST['MinPrice'])) echo $_POST['MinPrice']; ?>"></td>
     <td align="center"><input type="text" name="MaxPrice" value="<?php if (isset($_POST['MaxPrice'])) echo $_POST['MaxPrice']; ?>"></td>
-    <td align="center">
 
-    </td>
     <!-- <td align="center">
     <select name="Debug" >
       <option value="1">true</option>
@@ -146,7 +235,7 @@ $Condition = $_POST["Condition"];
 </table>
 <table cellpadding="2" border="0" align="center">
   <tr><th>Display</th>
-      <th>Condition</th>
+     <th>Condition</th>
   </tr>
   <tr> <td align="center"> <select name="Display">
 
@@ -155,9 +244,11 @@ $Condition = $_POST["Condition"];
         <option value="Analog & Digital" <?php if (isset($Display) && $Display=="Analog & Digital") echo "selected";?>>Analog & Digital</option>
       </select></td>
       <td align="center"> <select name="Condition">
-        <option value="New" <?php if (isset($Condition) && $Display=="New") echo "selected";?>>New</option>
-        <option value="Used" <?php if (isset($Condition) && $Display=="Used") echo "selected";?>>Used</option>
-      </select></td></tr>
+        <option value="New" <?php if (isset($Condition) && $Condition=="New") echo "selected";?>>New</option>
+        <option value="Used" <?php if (isset($Condition) && $Condition=="Used") echo "selected";?>>Used</option>
+      </select></td>
+
+    </tr>
 </table>
 
     <p align="center"> <INPUT type="submit" name="submit" value="Search" ></p>
@@ -166,20 +257,29 @@ $Condition = $_POST["Condition"];
 
 
 <?php
+
 require_once('DisplayUtils.php');  // functions to aid with display of information
 error_reporting(E_ALL);  // turn on all errors, warnings and notices for easier debugging
+
 $results = '';
+
 //checking for non-empty and non-negative integer
+
+
 if(isset($_POST['Query']))
 {
   $endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
   $responseEncoding = 'XML';   // Format of the response
+
   $safeQuery = urlencode (utf8_encode($_POST['Query']));
+
+
   $site  = $_POST['GlobalID'];
   $format  = $_POST['BuyingFormat'];
   $disp  = $_POST['Display'];
   $cond  = $_POST['Condition'];
   // $priceRangeMin = 0.0;
+
   // $host = "ragnasvr.database.windows.net,1433";
   // $dbname = "ragnaDB";
   // $dbuser = "ragnarok@ragnasvr";
@@ -195,18 +295,25 @@ if(isset($_POST['Query']))
   //   echo "Connection successful";
   //   echo "</br>";
   // }
+
   $results .= 'Click <a href="#Low-Range">here</a> to see Low-Range.'. "<br />\n";
   $results .= 'Click <a href="#Mid-Range">here</a> to see Mid-Range.'. "<br />\n";
   $results .= 'Click <a href="#High-Range">here</a> to see High-Range.'. "<br />\n";
+
+
   $priceRangeMin = $_POST['MinPrice'];
   $priceRangeMax = $_POST['MaxPrice'];
   $itemsPerRange = 100;
   $pageNumber=1; //0-100
+
   // $debug = (boolean) $_POST['Debug'];
+
   $rangeArr = array('Low-Range', 'Mid-Range', 'High-Range');
+
   $priceRange = ($priceRangeMax - $priceRangeMin) / 3;  // find price ranges for three tables
   $priceRangeMin =  sprintf("%01.2f",$priceRangeMin );
   $priceRangeMax = $priceRangeMin;  // needed for initial setup
+
   foreach ($rangeArr as $range)
   {
     $priceRangeMax = sprintf("%01.2f", ($priceRangeMin + $priceRange));
@@ -220,6 +327,7 @@ if(isset($_POST['Query']))
     $results .='<a name="High-Range"></a> '. "<br />\n";
     //$results .= '<a href="https://www.w3schools.com">Visit W3Schools</a>'. "<br />\n";
   }
+
     $results .=  "<h2>$range : $priceRangeMin ~ $priceRangeMax</h2>\n";
     // Construct the FindItems call
     $apicall = "$endpoint?OPERATION-NAME=findItemsAdvanced"
@@ -240,21 +348,26 @@ if(isset($_POST['Query']))
          . "&itemFilter(3).name=Condition"
          . "&itemFilter(3).value=$cond"
 
+
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
-
         // . "&aspectFilter(1).aspectName=Brand"
         // . "&aspectFilter(1).aspectValueName=$company"
+        // . "&aspectFilter(2).aspectName=Condition"
+        // . "&aspectFilter(2).aspectValueName='New with tags'"
 
          . "&affiliate.networkId=9"  // fill in your information in next 3 lines
          . "&affiliate.trackingId=1234567890"
          . "&affiliate.customId=456"
          . "&RESPONSE-DATA-FORMAT=$responseEncoding";
-         $rest = simplexml_load_file($apicall) or die("Error: Cannot create object");
+
+         $rest = simplexml_load_file($apicall) or die("Error: Please select the required filters");
          //print_r($resp);
          // Check to see if the response was loaded, else print an error
          // Probably best to split into two different tests, but have as one for brevity
+
+
            echo $rest->paginationOutput->totalEntries;
            echo "</br>";
            $pageCount=(int)($rest->paginationOutput->totalEntries /$itemsPerRange)+1;
@@ -283,6 +396,8 @@ if(isset($_POST['Query']))
          . "&itemFilter(2).value=$priceRangeMax"
          . "&itemFilter(3).name=Condition"
          . "&itemFilter(3).value=$cond"
+
+
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
@@ -295,19 +410,24 @@ if(isset($_POST['Query']))
          . "&affiliate.trackingId=1234567890"
          . "&affiliate.customId=456"
          . "&RESPONSE-DATA-FORMAT=$responseEncoding";
+
     // if ($debug) {
     //   print "GET call = $apicall <br>";  // see GET request generated
     // }
     // Load the call and capture the document returned by the Finding API
-    $resp = simplexml_load_file($apicall) or die("Error: Cannot create object");
+    $resp = simplexml_load_file($apicall) or die("Error: Please select the required filters");
     //print_r($resp);
     // Check to see if the response was loaded, else print an error
     // Probably best to split into two different tests, but have as one for brevity
+
     //if ($resp && $resp->paginationOutput->totalEntries > 0) {
       // $results .= 'Total items : ' . $resp->paginationOutput->totalEntries . "<br />\n";
       // $results .= '<table id="example" class="tablesorter" border="0" width="100%" cellpadding="0" cellspacing="1">' . "\n";
       // $results .= "<thead><tr><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Start Time</th><th>End Time</th></tr></thead>\n";
+
+
       // If the response was loaded, parse it and build links
+
       foreach($resp->searchResult->item as $item) {
         if ($item->galleryURL) {
           $picURL = $item->galleryURL;
@@ -330,23 +450,29 @@ if(isset($_POST['Query']))
         else if((string) $item->condition->conditionDisplayName == "Used"){
             $conditionInfo = sprintf("An item that has been previously worn. See the seller’s listing for full details and description of any imperfections.");
         }
+
         //subtitle is optional description given by sellers
         $subtitle = $item->subtitle;
         //number of bids made for product
         $bids = sprintf("Number of bids: %u",$item->sellingStatus->bidCount);
         //unique ebay Id for product
         $ebayItemId  = sprintf("Item Id: %s ",$item->itemId);
+
         //display type e.g. analog or digital.
         //This is though copying filer selection.
         $display  = sprintf("Display type: %s",$disp);
+
         //seller info:
         //$positiveFeedbackPercent= sprintf("Seller name: %s",(string)$item->sellerInfo->sellerUserName);
         //location of product
         $location  = sprintf("Location: %s ",$item->location);
+
+
         $price = sprintf("%01.2f", $item->sellingStatus->convertedCurrentPrice);
         $ship  = sprintf("%01.2f", $item->shippingInfo->shippingServiceCost);
         $total = sprintf("%01.2f", ((float)$item->sellingStatus->convertedCurrentPrice
                       + (float)$item->shippingInfo->shippingServiceCost));
+
         $sqlItemSellingStatus = (float)$item->sellingStatus->convertedCurrentPrice;
         $sqlItemShippingInfo = (float)$item->shippingInfo->shippingServiceCost;
         $sqlEbayItemID = (float)$item->itemId;
@@ -376,6 +502,7 @@ if(isset($_POST['Query']))
         // {
         //   //print("Connection succesful");
         // }
+
         // $serverName = "tcp:ragnasvr.database.windows.net, 1433";
         // $connectionOptions = array(
         //     "Database" => "ragnaDB",
@@ -384,13 +511,18 @@ if(isset($_POST['Query']))
         // );
         // //Establishes the connection
         // $conn = sqlsrv_connect($serverName, $connectionOptions);
+
         // if (!($conn)) {
+
         //   die("Connection error: " . sqlsrv_connect_error());
+
         // }
         // else
         // {
         //   //print("Connection succesful ");
+
         // }
+
         $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$sqlEbayItemID'";
         $getMatches= sqlsrv_query($conn, $query);
 
@@ -428,6 +560,7 @@ if(isset($_POST['Query']))
         //$endTime = strtotime($item->listingInfo->endTime);   // returns Epoch seconds
         $endTime = $item->listingInfo->endTime;
         $startTime = $item->listingInfo->startTime;
+
         // $sql = "INSERT INTO dbo.Product_Searches (title, price, serviceCost)
         // VALUES ('$sqlItemTitle','$sqlItemSellingStatus','$sqlItemShippingInfo' )";
         // $res = odbc_exec($conn, $sql);
@@ -440,14 +573,21 @@ if(isset($_POST['Query']))
         //     print("Table fyi_links created.\n");
         //     echo '</br>';
         //   }
+
+
           // Free the connection
+
         //  @odbc_close($conn);
-        $results .= "<tr><td>$count</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
+        $results .= "<tr><td>$count</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br></br>     <button type=\"button\" class=\"btn btn-warning\" onclick=\"location.href = '$link';\">Buy/Bid</button> &nbsp;&nbsp;      <iframe name=\"votar\" style=\"display:none;\"></iframe>  <form id= \"add_to_watchlist\" target=\"votar\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"add_to_watchlist\" onclick=\"return confirm('Want to add item?');\" value=\"$sqlEbayItemID\">Add to Watchlist</button></form>           </br></br>      $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
              .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td>$timeLeft</td><td><nobr>$startTime</nobr></td><td><nobr>$endTime</nobr></td></tr>";
             $count++;
       }// each item
+
+
     //if resp more than 0
     // If there was no response, print an error
+
+
   }// for each page
 }
   else {
@@ -455,13 +595,67 @@ if(isset($_POST['Query']))
   }
     $results .= "</table>";
     $priceRangeMin = $priceRangeMax; // set up for next iteration
+
   } // foreach
       echo $results;
       exit;
 } // if
+
+
 ?>
 
 
 
-</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+  </body>
+
 </html>
