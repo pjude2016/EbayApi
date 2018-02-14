@@ -593,7 +593,7 @@ if(isset($_POST['Query']))
   }// for each page
 }// if total entries more than 0
   else {
-    $results .= "<p> $range <i><b>No items found<b></i></p>". "<br />\n";
+    $results .= "<p> $range <i><b>No items found</b></i></p>". "<br />\n";
   }
     $results .= "</table>";
     $priceRangeMin = $priceRangeMax; // set up for next iteration
