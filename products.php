@@ -381,7 +381,7 @@ if(isset($_POST['Query']))
          . "&paginationInput.pageNumber=$pageNumber"
          . "&sortOrder=BestMatch"
          . "&itemFilter(0).name=ListingType"
-         . "&itemFilter(0).value=$format"
+         . "&itemFilter(0).value=Auction"
          // . "&itemFilter(0).value(1)=AuctionWithBIN"
          . "&itemFilter(1).name=MinPrice"
          . "&itemFilter(1).value=$priceRangeMin"
