@@ -484,7 +484,7 @@ if(isset($_POST['Query']))
         $sqlItemShippingInfo = (float)$item->shippingInfo->shippingServiceCost;
         $sqlEbayItemID = (float)$item->itemId;
         $sqlItemTitle = (string)$item->title;
-        $sqlLink = (float)$item->viewItemURL;
+        $sqlLink = (string) $item->viewItemURL;
         // SQL connection
         // $host = "ragnasvr.database.windows.net,1433";
         //
