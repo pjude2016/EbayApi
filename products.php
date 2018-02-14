@@ -484,6 +484,7 @@ if(isset($_POST['Query']))
         $sqlItemShippingInfo = (float)$item->shippingInfo->shippingServiceCost;
         $sqlEbayItemID = (float)$item->itemId;
         $sqlItemTitle = (string)$item->title;
+        $sqlLink = (float)$item->viewItemURL;
         // SQL connection
         // $host = "ragnasvr.database.windows.net,1433";
         //
@@ -536,9 +537,9 @@ if(isset($_POST['Query']))
         $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
         //check for duplication
         if(!$row){
-        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID) VALUES (?,?,?,?);";
+        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID, product_link) VALUES (?,?,?,?,?);";
         // $user_id = $_SESSION['user_id'];
-        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID);
+        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID,$sqlLink);
         $getResults= sqlsrv_query($conn, $tsql, $params);
         $rowsAffected = sqlsrv_rows_affected($getResults);
         if ($getResults == FALSE or $rowsAffected == FALSE)
