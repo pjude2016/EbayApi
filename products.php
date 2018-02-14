@@ -341,7 +341,7 @@ if(isset($_POST['Query']))
          . "&itemFilter(3).name=Condition"
          . "&itemFilter(3).value=$cond"
          . "&itemFilter(4).name=ReturnsAcceptedOnly"
-         . "&itemFilter(4).value=true"
+         . "&itemFilter(4).value=1"
 
 
          . "&aspectFilter(0).aspectName=Display"
@@ -392,7 +392,7 @@ if(isset($_POST['Query']))
          . "&itemFilter(3).name=Condition"
          . "&itemFilter(3).value=$cond"
          . "&itemFilter(4).name=ReturnsAcceptedOnly"
-         . "&itemFilter(4).value=true"
+         . "&itemFilter(4).value=1"
 
 
          . "&aspectFilter(0).aspectName=Display"
