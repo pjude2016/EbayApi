@@ -318,7 +318,7 @@ if(isset($_POST['Query']))
   {
     $priceRangeMax = sprintf("%01.2f", ($priceRangeMin + $priceRange));
     if($range =='Low-Range'){
-        $results .='<a name="Low-Range"></a> '. "<br />\n";
+        $results .='<a name="Low-Range"></a> '. "<br/><br/><br/>\n";
       }
     else if($range =='Mid-Range'){
         $results .='<a name="Mid-Range"></a> '. "<br />\n";
