@@ -340,6 +340,8 @@ if(isset($_POST['Query']))
          . "&itemFilter(2).value=$priceRangeMax"
          . "&itemFilter(3).name=Condition"
          . "&itemFilter(3).value=$cond"
+         . "&itemFilter(4).name=ReturnsAcceptedOnly"
+         . "&itemFilter(4).value=True"
 
 
          . "&aspectFilter(0).aspectName=Display"
@@ -389,6 +391,8 @@ if(isset($_POST['Query']))
          . "&itemFilter(2).value=$priceRangeMax"
          . "&itemFilter(3).name=Condition"
          . "&itemFilter(3).value=$cond"
+         . "&itemFilter(4).name=ReturnsAcceptedOnly"
+         . "&itemFilter(4).value=True"
 
 
          . "&aspectFilter(0).aspectName=Display"
