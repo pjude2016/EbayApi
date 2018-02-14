@@ -229,13 +229,16 @@ if(isset($_POST['Query']))
          . "&itemFilter(1).value=$priceRangeMin"
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
+         . "&itemFilter(3).name=Condition"
+         . "&itemFilter(3).value=Used"
+
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
 
         // . "&aspectFilter(1).aspectName=Brand"
         // . "&aspectFilter(1).aspectValueName=$company"
-         . "&condition.conditionDisplayName=New with tags"
+
          . "&affiliate.networkId=9"  // fill in your information in next 3 lines
          . "&affiliate.trackingId=1234567890"
          . "&affiliate.customId=456"
@@ -270,6 +273,8 @@ if(isset($_POST['Query']))
          . "&itemFilter(1).value=$priceRangeMin"
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
+         . "&itemFilter(3).name=Condition"
+         . "&itemFilter(3).value=Used"
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
@@ -277,7 +282,7 @@ if(isset($_POST['Query']))
         // . "&aspectFilter(1).aspectValueName=$company"
         // . "&aspectFilter(2).aspectName=Condition"
         // . "&aspectFilter(2).aspectValueName='New with tags'"
-         . "&condition.conditionDisplayName=New with tags"
+
          . "&affiliate.networkId=9"  // fill in your information in next 3 lines
          . "&affiliate.trackingId=1234567890"
          . "&affiliate.customId=456"
