@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 $Query = $_POST["Query"];
 $GlobalID = $_POST["GlobalID"];
-$BuyingFormat = $_POST["BuyingFormat"];
+// $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
 $Condition = $_POST["Condition"];
 ?>
@@ -184,13 +184,13 @@ $Condition = $_POST["Condition"];
   <tr>
     <th>Shop by Brand <span class="note" style="color:red;">*</span></th>
     <th>Country <span class="note" style="color:red;">*</span></th>
-    <th>Buying Format <span class="note" style="color:red;">*</span></th>
+    <!-- <th>Buying Format <span class="note" style="color:red;">*</span></th> -->
     <th>Min Price <span class="note" style="color:red;">*</span></th>
     <th>Max Price <span class="note" style="color:red;">*</span></th>
     <!-- <th align="center">Debug</th> -->
   </tr>
   <tr>
-    <!-- <td><input type="text"  name="Query" value="<?php if (isset($_POST['Query'])) echo $_POST['Query']; ?>"></td> -->
+
     <td align="center">
     <select name="Query">
       <option value="Casio" <?php if (isset($Query) && $Query=="Casio") echo "selected";?>>Casio</option>
@@ -210,14 +210,7 @@ $Condition = $_POST["Condition"];
       <option value="EBAY-US">United States - EBAY-US - USD</option> -->
       </select>
     </td>
-    <td align="center">
-    <select name="BuyingFormat">
-      <option value="All" <?php if (isset($BuyingFormat) && $BuyingFormat=="All") echo "selected";?>>All</option>
-      <option value="Auction" <?php if (isset($BuyingFormat) && $BuyingFormat=="Auction") echo "selected";?>>Auction</option>
-      <option value="AuctionWithBIN" <?php if (isset($BuyingFormat) && $BuyingFormat=="AuctionWithBIN") echo "selected";?>>Auction With Buy it Now</option>
-      <option value="FixedPrice" <?php if (isset($BuyingFormat) && $BuyingFormat=="FixedPrice") echo "selected";?>>Fixed Price</option>
-      </select>
-    </td>
+
     <td align="center"><input type="text" name="MinPrice" value="<?php if (isset($_POST['MinPrice'])) echo $_POST['MinPrice']; ?>"></td>
     <td align="center"><input type="text" name="MaxPrice" value="<?php if (isset($_POST['MaxPrice'])) echo $_POST['MaxPrice']; ?>"></td>
 
@@ -275,7 +268,7 @@ if(isset($_POST['Query']))
 
 
   $site  = $_POST['GlobalID'];
-  $format  = $_POST['BuyingFormat'];
+  //$format  = $_POST['BuyingFormat'];
   $disp  = $_POST['Display'];
   $cond  = $_POST['Condition'];
   // $priceRangeMin = 0.0;
@@ -339,7 +332,7 @@ if(isset($_POST['Query']))
          //. "&paginationInput.pageNumber=$pageNumber"
          . "&sortOrder=BestMatch"
          . "&itemFilter(0).name=ListingType"
-         . "&itemFilter(0).value=$format"
+         . "&itemFilter(0).value=Auction"
          // . "&itemFilter(0).value(1)=AuctionWithBIN"
          . "&itemFilter(1).name=MinPrice"
          . "&itemFilter(1).value=$priceRangeMin"
