@@ -145,19 +145,19 @@ $Condition = $_POST["Condition"];
   </tr>
 </table>
 <table cellpadding="2" border="0" align="center">
-  <tr><th>Display</th></tr>
-  <tr><th>Condition</th></tr>
+  <tr><th>Display</th>
+      <th>Condition</th>
+  </tr>
   <tr> <td align="center"> <select name="Display">
 
         <option value="Analog" <?php if (isset($Display) && $Display=="Analog") echo "selected";?>>Analog</option>
         <option value="Digital" <?php if (isset($Display) && $Display=="Digital") echo "selected";?>>Digital</option>
         <option value="Analog & Digital" <?php if (isset($Display) && $Display=="Analog & Digital") echo "selected";?>>Analog & Digital</option>
+      </select></td>
+      <td align="center"> <select name="Condition">
+        <option value="New" <?php if (isset($Condition) && $Display=="New") echo "selected";?>>New</option>
+        <option value="Used" <?php if (isset($Condition) && $Display=="Used") echo "selected";?>>Used</option>
       </select></td></tr>
-      <tr> <td align="center"> <select name="Condition">
-
-            <option value="New" <?php if (isset($Condition) && $Display=="New") echo "selected";?>>New</option>
-            <option value="Used" <?php if (isset($Condition) && $Display=="Used") echo "selected";?>>Used</option>
-          </select></td></tr>
 </table>
 
     <p align="center"> <INPUT type="submit" name="submit" value="Search" ></p>
