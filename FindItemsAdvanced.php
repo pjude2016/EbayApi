@@ -230,7 +230,7 @@ if(isset($_POST['Query']))
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
          . "&itemFilter(3).name=Condition"
-         . "&itemFilter(3).value=Used"
+         . "&itemFilter(3).value=New"
 
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
@@ -274,7 +274,7 @@ if(isset($_POST['Query']))
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
          . "&itemFilter(3).name=Condition"
-         . "&itemFilter(3).value=Used"
+         . "&itemFilter(3).value=New"
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
