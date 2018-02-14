@@ -83,6 +83,7 @@ $Query = $_POST["Query"];
 $GlobalID = $_POST["GlobalID"];
 $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
+$Condition = $_POST["Condition"];
 ?>
 <h1>eBay Watch Search form</h1>
 <h4 style="color:red;"><span class="note">*</span> denotes mandotory</h4>
@@ -145,12 +146,18 @@ $Display = $_POST["Display"];
 </table>
 <table cellpadding="2" border="0" align="center">
   <tr><th>Display</th></tr>
+  <tr><th>Condition</th></tr>
   <tr> <td align="center"> <select name="Display">
 
         <option value="Analog" <?php if (isset($Display) && $Display=="Analog") echo "selected";?>>Analog</option>
         <option value="Digital" <?php if (isset($Display) && $Display=="Digital") echo "selected";?>>Digital</option>
         <option value="Analog & Digital" <?php if (isset($Display) && $Display=="Analog & Digital") echo "selected";?>>Analog & Digital</option>
       </select></td></tr>
+      <tr> <td align="center"> <select name="Condition">
+
+            <option value="New" <?php if (isset($Condition) && $Display=="New") echo "selected";?>>New</option>
+            <option value="Used" <?php if (isset($Condition) && $Display=="Used") echo "selected";?>>Used</option>
+          </select></td></tr>
 </table>
 
     <p align="center"> <INPUT type="submit" name="submit" value="Search" ></p>
@@ -171,6 +178,7 @@ if(isset($_POST['Query']))
   $site  = $_POST['GlobalID'];
   $format  = $_POST['BuyingFormat'];
   $disp  = $_POST['Display'];
+  $cond  = $_POST['Condition'];
   // $priceRangeMin = 0.0;
   // $host = "ragnasvr.database.windows.net,1433";
   // $dbname = "ragnaDB";
@@ -230,7 +238,7 @@ if(isset($_POST['Query']))
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
          . "&itemFilter(3).name=Condition"
-         . "&itemFilter(3).value=New"
+         . "&itemFilter(3).value=$cond"
 
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
@@ -274,7 +282,7 @@ if(isset($_POST['Query']))
          . "&itemFilter(2).name=MaxPrice"
          . "&itemFilter(2).value=$priceRangeMax"
          . "&itemFilter(3).name=Condition"
-         . "&itemFilter(3).value=New"
+         . "&itemFilter(3).value=$cond"
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
