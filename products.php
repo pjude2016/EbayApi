@@ -171,6 +171,7 @@ $GlobalID = $_POST["GlobalID"];
 // $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
 $Condition = $_POST["Condition"];
+$Gender = $_POST["Gender"];
 ?>
 
 <br>
@@ -229,6 +230,7 @@ $Condition = $_POST["Condition"];
 <table cellpadding="2" border="0" align="center">
   <tr><th>Display</th>
      <th>Condition</th>
+     <th>Gender</th>
   </tr>
   <tr> <td align="center"> <select name="Display">
 
@@ -239,6 +241,12 @@ $Condition = $_POST["Condition"];
       <td align="center"> <select name="Condition">
         <option value="New" <?php if (isset($Condition) && $Condition=="New") echo "selected";?>>New</option>
         <option value="Used" <?php if (isset($Condition) && $Condition=="Used") echo "selected";?>>Used</option>
+      </select></td>
+      <td align="center"> <select name="Gender">
+        <option value="Men's" <?php if (isset($Gender) && $Gender=="Men's") echo "selected";?>>Men's</option>
+        <option value="Women's" <?php if (isset($Gender) && $Gender=="Women's") echo "selected";?>>Women's</option>
+        <option value="Unisex" <?php if (isset($Gender) && $Gender=="Unisex") echo "selected";?>>Unisex </option>
+        <option value="Children" <?php if (isset($Gender) && $Gender=="Children") echo "selected";?>>Children</option>
       </select></td>
 
     </tr>
@@ -271,6 +279,7 @@ if(isset($_POST['Query']))
   //$format  = $_POST['BuyingFormat'];
   $disp  = $_POST['Display'];
   $cond  = $_POST['Condition'];
+  $gend  = $_POST['Gender'];
   // $priceRangeMin = 0.0;
 
   // $host = "ragnasvr.database.windows.net,1433";
@@ -346,7 +355,7 @@ if(isset($_POST['Query']))
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
          . "&aspectFilter(1).aspectName=Gender"
-         . "&aspectFilter(1).aspectValueName=Women's"
+         . "&aspectFilter(1).aspectValueName=$gend"
 
         // . "&aspectFilter(1).aspectName=Brand"
         // . "&aspectFilter(1).aspectValueName=$company"
@@ -398,7 +407,7 @@ if(isset($_POST['Query']))
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
          . "&aspectFilter(1).aspectName=Gender"
-         . "&aspectFilter(1).aspectValueName=Women's"
+         . "&aspectFilter(1).aspectValueName=$gend"
         // . "&aspectFilter(1).aspectName=Brand"
         // . "&aspectFilter(1).aspectValueName=$company"
         // . "&aspectFilter(2).aspectName=Condition"
