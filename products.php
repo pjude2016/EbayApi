@@ -362,7 +362,7 @@ if(isset($_POST['Query']))
          . "&aspectFilter(1).aspectName=Gender"
          . "&aspectFilter(1).aspectValueName=$gend"
          . "&aspectFilter(2).aspectName=Year of Manufacture"
-         . "&aspectFilter(2).aspectValueName=2010-Now"
+         . "&aspectFilter(2).aspectValueName=1980-1989"
 
         // . "&aspectFilter(1).aspectName=Brand"
         // . "&aspectFilter(1).aspectValueName=$company"
@@ -417,7 +417,7 @@ if(isset($_POST['Query']))
          . "&aspectFilter(1).aspectName=Gender"
          . "&aspectFilter(1).aspectValueName=$gend"
          . "&aspectFilter(2).aspectName=Year of Manufacture"
-         . "&aspectFilter(2).aspectValueName=2010-Now"
+         . "&aspectFilter(2).aspectValueName=1980-1989"
         // . "&aspectFilter(1).aspectName=Brand"
         // . "&aspectFilter(1).aspectValueName=$company"
         // . "&aspectFilter(2).aspectName=Condition"
