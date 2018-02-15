@@ -410,11 +410,14 @@ if(isset($_POST['Query']))
          . "&itemFilter(3).value=$cond"
 
 
+
          . "&aspectFilter(0).aspectName=Display"
         // . "&aspectFilter(0).aspectValueName=Analog"
          . "&aspectFilter(0).aspectValueName=$disp"
          . "&aspectFilter(1).aspectName=Gender"
          . "&aspectFilter(1).aspectValueName=$gend"
+         . "&aspectFilter(2).aspectName=Year of Manufacture"
+         . "&aspectFilter(2).aspectValueName=2010-Now"
         // . "&aspectFilter(1).aspectName=Brand"
         // . "&aspectFilter(1).aspectValueName=$company"
         // . "&aspectFilter(2).aspectName=Condition"
