@@ -26,11 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // echo "WE ARE IN NOW";
     $my_ebay_id = $_POST['add_to_watchlist'];
     $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$my_ebay_id'";
-
     $getMatches= sqlsrv_query($conn, $query);
-
     $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
-    if($row){
+
+    $current_uid = $_SESSION['user_id'];
+    $query_to_avoid_watchlist_duplication = "SELECT * FROM auction.watch_list WHERE ebayID = '$my_ebay_id' AND user_id = '$current_uid'";
+    $getMatches2= sqlsrv_query($conn, $query_to_avoid_watchlist_duplication);
+    $row_2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
+
+
+    if($row and !$row_2){
       // $_SESSION['logged_in'] = true;
       // echo "WE ARE IN";
       $title = $row['title'];
@@ -38,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $serviceCost = $row['serviceCost'];
 
 
-      $tsql= "INSERT INTO auction.watch_list (title, price, serviceCost, ebayID, user_id) VALUES (?,?,?,?,?);";
-      $params = array($title, $price, $serviceCost, $my_ebay_id, $_SESSION['user_id']);
+      $tsql= "INSERT INTO auction.watch_list (title, price, serviceCost, ebayID, user_id, product_link) VALUES (?,?,?,?,?,?);";
+      $params = array($title, $price, $serviceCost, $my_ebay_id, $_SESSION['user_id'], (string) $row['product_link']);
       $getResults= sqlsrv_query($conn, $tsql, $params);
       $rowsAffected = sqlsrv_rows_affected($getResults);
       if ($getResults == FALSE or $rowsAffected == FALSE)
@@ -178,7 +183,7 @@ $Gender = $_POST["Gender"];
 <br>
 <br>
 <h1 align='center'>eBay Watch Search form</h1>
-<h4 style="color:red;" align='center'><span class="note">*</span> denotes mandotory</h4>
+<h4 style="color:red;" align='center'><span class="note">*</span> denotes mandatory</h4>
 <form action="products.php" method="post">
 
 <table cellpadding="2" border="0" align="center">
