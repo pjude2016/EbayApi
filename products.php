@@ -266,7 +266,7 @@ $Year_Manu = $_POST["Year_Manu"];
         <option value="1980-1989" <?php if (isset($Year_Manu) && $Year_Manu=="1980-1989") echo "selected";?>>1980-1989</option>
         <option value="1990-1999" <?php if (isset($Year_Manu) && $Year_Manu=="1990-1999") echo "selected";?>>1990-1999</option>
         <option value="2000-2009" <?php if (isset($Year_Manu) && $Year_Manu=="2000-2009") echo "selected";?>>2000-2009</option>
-        <option selected="selected" value="2010-Now" <?php if (isset($Year_Manu) && $Year_Manu=="2010-Now") echo "selected";?>>2010-Now</option>
+        <option value="2010-Now" <?php if (isset($Year_Manu) && $Year_Manu=="2010-Now") echo "selected";?>>2010-Now</option>
         <option value="Not specified" <?php if (isset($Year_Manu) && $Year_Manu=="Not specified") echo "selected";?>>Not specified</option>
       </select></td>
 
