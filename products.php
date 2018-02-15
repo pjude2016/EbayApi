@@ -201,7 +201,7 @@ $Year_Manu = $_POST["Year_Manu"];
     <td align="center">
     <select name="Query">
       <option value="Casio" <?php if (isset($Query) && $Query=="Casio") echo "selected";?>>Casio</option>
-      <option value="Rolex watch" <?php if (isset($Query) && $Query=="Rolex watch") echo "selected";?>>Rolex</option>
+      <option value="Rolex" <?php if (isset($Query) && $Query=="Rolex") echo "selected";?>>Rolex</option>
       <option value="Seiko" <?php if (isset($Query) && $Query=="Seiko") echo "selected";?>>Seiko</option>
       </select>
     </td>
