@@ -301,7 +301,7 @@ if(isset($_POST['Query']))
   $priceRangeMin = $_POST['MinPrice'];
   $priceRangeMax = $_POST['MaxPrice'];
 
-  $query2 = "SELECT * FROM auction.filters WHERE (brand = '$brand' AND min_price = '$priceRangeMin' AND max_price = '$priceRangeMax' AND display ='$disp' AND condition = '$cond' AND gender = '$gend'AND year_manufacture = '$year')"
+  $query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' AND min_price = '$priceRangeMin' AND max_price = '$priceRangeMax' AND display ='$disp' AND condition = '$cond' AND gender = '$gend' AND year_manufacture = '$year' "
   $getMatches2= sqlsrv_query($conn, $query2);
   $row2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
   if(!$row2){
