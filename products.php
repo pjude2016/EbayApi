@@ -290,7 +290,7 @@ if(isset($_POST['Query']))
   $responseEncoding = 'XML';   // Format of the response
 
   $safeQuery = urlencode (utf8_encode($_POST['Query']));
-
+  $brand = $_POST['Query'];
 
   $site  = $_POST['GlobalID'];
   //$format  = $_POST['BuyingFormat'];
@@ -298,6 +298,21 @@ if(isset($_POST['Query']))
   $cond  = $_POST['Condition'];
   $gend  = $_POST['Gender'];
   $year  = $_POST['Year_Manu'];
+  $priceRangeMin = $_POST['MinPrice'];
+  $priceRangeMax = $_POST['MaxPrice'];
+
+
+$tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, year_manufacture) VALUES (?,?,?,?,?,?,?);";
+$params2 = array($brand,$priceRangeMin,$priceRangeMax,$disp,$cond,$gend,$year);
+$getResults2= sqlsrv_query($conn, $tsql2, $params2);
+$rowsAffected2 = sqlsrv_rows_affected($getResults2);
+if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+    die(FormatErrors(sqlsrv_errors()));
+  }
+// echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
+
+sqlsrv_free_stmt($getResults2);
+exit;
 
   // $priceRangeMin = 0.0;
 
@@ -322,8 +337,7 @@ if(isset($_POST['Query']))
   $results .= 'Click <a href="#High-Range">here</a> to see High-Range.'. "<br />\n";
 
 
-  $priceRangeMin = $_POST['MinPrice'];
-  $priceRangeMax = $_POST['MaxPrice'];
+
   $itemsPerRange = 100;
   $pageNumber=1; //0-100
 
