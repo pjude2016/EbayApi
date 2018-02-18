@@ -304,7 +304,8 @@ if(isset($_POST['Query']))
   if(!($max>0)) {
     $rest2 = die("Error: Please select the required filters");
 }
-  $query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' AND min_price = '$min' "
+  //$query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max' AND display ='$disp' AND condition = '$cond' AND gender = '$gend' AND year_manufacture = '$year' "
+  $query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' "
   $getMatches2= sqlsrv_query($conn, $query2);
   $row2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
   if(!$row2){
