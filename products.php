@@ -306,11 +306,11 @@ if(isset($_POST['Query']))
     $rest2 = die("Error: Please select the required filters");
 }
   //$query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max' AND display ='$disp' AND condition = '$cond' AND gender = '$gend' AND year_manufacture = '$year' "
-  $query = "SELECT * FROM auction.filters WHERE  brand = '$brand'";
-  $getMatches= sqlsrv_query($conn, $query);
+  $queryB = "SELECT * FROM auction.filters WHERE  brand = '$brand'";
+  $getMatchesB= sqlsrv_query($conn, $queryB);
 
-  $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
-  if(!$row2){
+  $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
+  if(!$rowB){
       $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, year_manufacture) VALUES (?,?,?,?,?,?,?);";
       $params2 = array($brand,$min,$max,$disp,$cond,$gend,$year);
       $getResults2= sqlsrv_query($conn, $tsql2, $params2);
