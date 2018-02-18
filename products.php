@@ -299,7 +299,8 @@ if(isset($_POST['Query']))
   $gend  = $_POST['Gender'];
   $year  = $_POST['Year_Manu'];
   $priceRangeMin = $_POST['MinPrice'];
-  $priceRangeMax = $_POST['MaxPrice'];
+  $min = $_POST['MinPrice'];
+  $max = $_POST['MaxPrice'];
 
 
 
@@ -402,7 +403,7 @@ if(isset($_POST['Query']))
          $row2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
          if(!$row2){*/
              $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, year_manufacture) VALUES (?,?,?,?,?,?,?);";
-             $params2 = array($brand,$priceRangeMin,$priceRangeMax,$disp,$cond,$gend,$year);
+             $params2 = array($brand,$min,$max,$disp,$cond,$gend,$year);
              $getResults2= sqlsrv_query($conn, $tsql2, $params2);
              $rowsAffected2 = sqlsrv_rows_affected($getResults2);
              if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
