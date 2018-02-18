@@ -302,8 +302,8 @@ if(isset($_POST['Query']))
   $priceRangeMax = $_POST['MaxPrice'];
   $min = $_POST['MinPrice'];
   $max = $_POST['MaxPrice'];
-  if(!($max>0) || !($min>0) ||!($max>min) ) {
-    $rest2 = die("Error: Please select the required filters");
+  if(!($max>0) || !($min>=0) ||!($max>min) ) {
+    $rest2 = die("Error: Please input valid price");
 }
   /*$query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max' AND display ='$disp' AND condition = '$cond' AND gender = '$gend' AND year_manufacture = '$year' "
 
