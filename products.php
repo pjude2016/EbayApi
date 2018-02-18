@@ -289,7 +289,8 @@ if(isset($_POST['Query']))
   $responseEncoding = 'XML';   // Format of the response
 
   $safeQuery = urlencode (utf8_encode($_POST['Query']));
-  $brand = (string)$_POST['Query'];
+  $brand = $_POST['Query'];
+  $brand1 = (string)$brand;
 
   $site  = $_POST['GlobalID'];
   //$format  = $_POST['BuyingFormat'];
@@ -305,7 +306,7 @@ if(isset($_POST['Query']))
     $rest2 = die("Error: Please select the required filters");
 }
   //$query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max' AND display ='$disp' AND condition = '$cond' AND gender = '$gend' AND year_manufacture = '$year' "
-  $query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' "
+  $query2 = "SELECT * FROM auction.filters WHERE brand = '$brand1' "
   $getMatches2= sqlsrv_query($conn, $query2);
   $row2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
   if(!$row2){
