@@ -38,13 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if($row and !$row_2){
       // $_SESSION['logged_in'] = true;
       // echo "WE ARE IN";
-      $title = $row['title'];
-      $price = $row['price'];
-      $serviceCost = $row['serviceCost'];
 
-
-      $tsql= "INSERT INTO auction.watch_list (title, price, serviceCost, ebayID, user_id, product_link) VALUES (?,?,?,?,?,?);";
-      $params = array($title, $price, $serviceCost, $my_ebay_id, $_SESSION['user_id'], (string) $row['product_link']);
+      $tsql= "INSERT INTO auction.watch_list (ebayID, user_id) VALUES (?,?);";
+      $params = array($my_ebay_id, $_SESSION['user_id']);
       $getResults= sqlsrv_query($conn, $tsql, $params);
       $rowsAffected = sqlsrv_rows_affected($getResults);
       if ($getResults == FALSE or $rowsAffected == FALSE)
@@ -256,17 +252,17 @@ $Year_Manu = $_POST["Year_Manu"];
         <option value="Children" <?php if (isset($Gender) && $Gender=="Children") echo "selected";?>>Children</option>
       </select></td>
       <td align="center"> <select name="Year_Manu">
-        <option value="Pre-1920" <?php if (isset($Year_Manu) && $Year_Manu=="Pre-1920") echo "selected";?>>Pre-1920</option>
-        <option value="1920-1929" <?php if (isset($Year_Manu) && $Year_Manu=="1920-1929") echo "selected";?>>1920-1929 </option>
-        <option value="1930-1939" <?php if (isset($Year_Manu) && $Year_Manu=="1930-1939") echo "selected";?>>1930-1939 </option>
-        <option value="1940-1949" <?php if (isset($Year_Manu) && $Year_Manu=="1940-1949") echo "selected";?>>1940-1949</option>
-        <option value="1950-1959" <?php if (isset($Year_Manu) && $Year_Manu=="1950-1959") echo "selected";?>>1950-1959</option>
-        <option value="1960-1969" <?php if (isset($Year_Manu) && $Year_Manu=="1960-1969") echo "selected";?>>1960-1969</option>
-        <option value="1970-1979" <?php if (isset($Year_Manu) && $Year_Manu=="1970-1979") echo "selected";?>>1970-1979</option>
-        <option value="1980-1989" <?php if (isset($Year_Manu) && $Year_Manu=="1980-1989") echo "selected";?>>1980-1989</option>
-        <option value="1990-1999" <?php if (isset($Year_Manu) && $Year_Manu=="1990-1999") echo "selected";?>>1990-1999</option>
-        <option value="2000-2009" <?php if (isset($Year_Manu) && $Year_Manu=="2000-2009") echo "selected";?>>2000-2009</option>
         <option value="2010-Now" <?php if (isset($Year_Manu) && $Year_Manu=="2010-Now") echo "selected";?>>2010-Now</option>
+        <option value="2000-2009" <?php if (isset($Year_Manu) && $Year_Manu=="2000-2009") echo "selected";?>>2000-2009</option>
+        <option value="1990-1999" <?php if (isset($Year_Manu) && $Year_Manu=="1990-1999") echo "selected";?>>1990-1999</option>
+        <option value="1980-1989" <?php if (isset($Year_Manu) && $Year_Manu=="1980-1989") echo "selected";?>>1980-1989</option>
+        <option value="1970-1979" <?php if (isset($Year_Manu) && $Year_Manu=="1970-1979") echo "selected";?>>1970-1979</option>
+        <option value="1960-1969" <?php if (isset($Year_Manu) && $Year_Manu=="1960-1969") echo "selected";?>>1960-1969</option>
+        <option value="1950-1959" <?php if (isset($Year_Manu) && $Year_Manu=="1950-1959") echo "selected";?>>1950-1959</option>
+        <option value="1940-1949" <?php if (isset($Year_Manu) && $Year_Manu=="1940-1949") echo "selected";?>>1940-1949</option>
+        <option value="1930-1939" <?php if (isset($Year_Manu) && $Year_Manu=="1930-1939") echo "selected";?>>1930-1939 </option>
+        <option value="1920-1929" <?php if (isset($Year_Manu) && $Year_Manu=="1920-1929") echo "selected";?>>1920-1929 </option>
+        <option value="Pre-1920" <?php if (isset($Year_Manu) && $Year_Manu=="Pre-1920") echo "selected";?>>Pre-1920</option>
         <option value="Not specified" <?php if (isset($Year_Manu) && $Year_Manu=="Not specified") echo "selected";?>>Not specified</option>
       </select></td>
 
