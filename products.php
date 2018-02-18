@@ -312,7 +312,7 @@ if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
 // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
 
 sqlsrv_free_stmt($getResults2);
-exit;
+
 
   // $priceRangeMin = 0.0;
 
