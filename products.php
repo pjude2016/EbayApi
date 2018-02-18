@@ -289,7 +289,7 @@ if(isset($_POST['Query']))
   $responseEncoding = 'XML';   // Format of the response
 
   $safeQuery = urlencode (utf8_encode($_POST['Query']));
-  $brand = $_POST['Query'];
+  $brand = (string)$_POST['Query'];
 
   $site  = $_POST['GlobalID'];
   //$format  = $_POST['BuyingFormat'];
