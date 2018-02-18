@@ -301,21 +301,7 @@ if(isset($_POST['Query']))
   $priceRangeMin = $_POST['MinPrice'];
   $priceRangeMax = $_POST['MaxPrice'];
 
-  /*$query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' AND min_price = '$priceRangeMin' AND max_price = '$priceRangeMax' AND display ='$disp' AND condition = '$cond' AND gender = '$gend' AND year_manufacture = '$year' "
-  $getMatches2= sqlsrv_query($conn, $query2);
-  $row2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
-  if(!$row2){*/
-      $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, year_manufacture) VALUES (?,?,?,?,?,?,?);";
-      $params2 = array($brand,$priceRangeMin,$priceRangeMax,$disp,$cond,$gend,$year);
-      $getResults2= sqlsrv_query($conn, $tsql2, $params2);
-      $rowsAffected2 = sqlsrv_rows_affected($getResults2);
-      if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
-        die(FormatErrors(sqlsrv_errors()));
-      }
-// echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
 
-    sqlsrv_free_stmt($getResults2);
-//  }
 
   // $priceRangeMin = 0.0;
 
@@ -409,6 +395,25 @@ if(isset($_POST['Query']))
          //print_r($resp);
          // Check to see if the response was loaded, else print an error
          // Probably best to split into two different tests, but have as one for brevity
+
+
+         /*$query2 = "SELECT * FROM auction.filters WHERE brand = '$brand' AND min_price = '$priceRangeMin' AND max_price = '$priceRangeMax' AND display ='$disp' AND condition = '$cond' AND gender = '$gend' AND year_manufacture = '$year' "
+         $getMatches2= sqlsrv_query($conn, $query2);
+         $row2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
+         if(!$row2){*/
+             $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, year_manufacture) VALUES (?,?,?,?,?,?,?);";
+             $params2 = array($brand,$priceRangeMin,$priceRangeMax,$disp,$cond,$gend,$year);
+             $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+             $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+             if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+               die(FormatErrors(sqlsrv_errors()));
+             }
+       // echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
+
+           sqlsrv_free_stmt($getResults2);
+       //  }
+
+
 
 
            echo $rest->paginationOutput->totalEntries;
