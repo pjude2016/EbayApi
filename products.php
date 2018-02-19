@@ -485,7 +485,7 @@ if(isset($_POST['Query']))
         } else {
           $picURL = "http://pics.ebaystatic.com/aw/pics/express/icons/iconPlaceholder_96x96.gif";
         }
-        $image = $_FILES['$picURL']['tmp_name'];
+        $image = $_FILES[$picURL]['tmp_name'];
         $imgContent = addslashes(file_get_contents($image));
 
         $link  = $item->viewItemURL;
