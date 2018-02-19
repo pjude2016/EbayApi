@@ -39,6 +39,7 @@ echo "
 <br><br><br><br><br>
 <table border='1' align='center'>
 <tr>
+<th>Image</th>
 <th>Title</th>
 <th>Price</th>
 <th>Service Cost</th>
@@ -58,7 +59,10 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   $product_link = $row['product_link'];
   $title = $row['title'];
   $ebayidval = $row['ebayID'];
+  $img_src = $row['image'];
   echo "<tr>";
+
+  echo "<td>" . "<a href=\"$product_link\"><img src=\"$img_src\"></a>" . "</td>";
   echo "<td>" . "<a href=\"$product_link\" target=\"_blank\">$title</a>" . "</td>";
   echo "<td>" . $row['price'] . "</td>";
   echo "<td>" . $row['serviceCost'] . "</td>";
