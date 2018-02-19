@@ -485,8 +485,7 @@ if(isset($_POST['Query']))
         } else {
           $picURL = "http://pics.ebaystatic.com/aw/pics/express/icons/iconPlaceholder_96x96.gif";
         }
-        $image = $_FILES[$picURL]['tmp_name'];
-        $imgContent = addslashes(file_get_contents($image));
+        $image = (string) $picURL;
 
         $link  = $item->viewItemURL;
         $title = $item->title;
@@ -586,7 +585,7 @@ if(isset($_POST['Query']))
         if(!$row){
         $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID, product_link, image) VALUES (?,?,?,?,?,?);";
         // $user_id = $_SESSION['user_id'];
-        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID,$sqlLink,$imgContent);
+        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID,$sqlLink,$image);
         $getResults= sqlsrv_query($conn, $tsql, $params);
         $rowsAffected = sqlsrv_rows_affected($getResults);
         if ($getResults == FALSE or $rowsAffected == FALSE)
