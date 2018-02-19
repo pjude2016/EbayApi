@@ -485,6 +485,9 @@ if(isset($_POST['Query']))
         } else {
           $picURL = "http://pics.ebaystatic.com/aw/pics/express/icons/iconPlaceholder_96x96.gif";
         }
+        $image = $_FILES['$picURL']['tmp_name'];
+        $imgContent = addslashes(file_get_contents($image));
+
         $link  = $item->viewItemURL;
         $title = $item->title;
         $sellingState = sprintf("Selling Status: %s",(string) $item->sellingStatus->sellingState);
@@ -581,9 +584,9 @@ if(isset($_POST['Query']))
         $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
         //check for duplication
         if(!$row){
-        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID, product_link) VALUES (?,?,?,?,?);";
+        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID, product_link, image) VALUES (?,?,?,?,?,?);";
         // $user_id = $_SESSION['user_id'];
-        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID,$sqlLink);
+        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID,$sqlLink,$imgContent);
         $getResults= sqlsrv_query($conn, $tsql, $params);
         $rowsAffected = sqlsrv_rows_affected($getResults);
         if ($getResults == FALSE or $rowsAffected == FALSE)
