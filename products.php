@@ -311,36 +311,32 @@ if(isset($_POST['Query']))
 
   $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
   if(!$rowB){*/
-      $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, year_manufacture) VALUES (?,?,?,?,?,?,?);";
-      $params2 = array($brand,$min,$max,$disp,$cond,$gend,$year);
+
+    $current_uid = $_SESSION['user_id'];
+    $gend_for_filters = str_replace ("'s","",$gend);
+    $query = "SELECT * FROM auction.filters
+    WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max'
+    AND display ='$disp' AND condition = '$cond' AND year_manufacture = '$year' AND gender = '$gend_for_filters' AND user_id = '$current_uid' ";
+    $getMatches= sqlsrv_query($conn, $query);
+
+    $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+    // echo "HERE -> " . $row;
+
+    if(!$row){
+
+      $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, year_manufacture, user_id) VALUES (?,?,?,?,?,?,?,?);";
+      $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$year,$current_uid);
       $getResults2= sqlsrv_query($conn, $tsql2, $params2);
       $rowsAffected2 = sqlsrv_rows_affected($getResults2);
       if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
         die(FormatErrors(sqlsrv_errors()));
       }
-// echo ($rowsAffected. " row(s) inserted: " . PHP_EOL);
-
-    sqlsrv_free_stmt($getResults2);
-  //}
 
 
-  // $priceRangeMin = 0.0;
+    }
 
-  // $host = "ragnasvr.database.windows.net,1433";
-  // $dbname = "ragnaDB";
-  // $dbuser = "ragnarok@ragnasvr";
-  // $dbpwd = "Korangar2";
-  // $driver = "{ODBC Driver 13 for SQL Server}";
-  // // Build connection string
-  // $dsn="Driver=$driver;Server=$host;Database=$dbname;";
-  // if (!($conn = @odbc_connect($dsn, $dbuser, $dbpwd))) {
-  //     die("Connection error: " . odbc_errormsg());
-  // }
-  // else
-  // {
-  //   echo "Connection successful";
-  //   echo "</br>";
-  // }
+
+
 
   $results .= 'Click <a href="#Low-Range">here</a> to see Low-Range.'. "<br />\n";
   $results .= 'Click <a href="#Mid-Range">here</a> to see Mid-Range.'. "<br />\n";
