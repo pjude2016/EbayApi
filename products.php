@@ -311,8 +311,8 @@ if(isset($_POST['Query']))
 
     if(!$row){
 
-      $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, year_manufacture, user_id) VALUES (?,?,?,?,?,?,?,?);";
-      $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$year,$current_uid);
+      $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id) VALUES (?,?,?,?,?,?,?);";
+      $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid);
       $getResults2= sqlsrv_query($conn, $tsql2, $params2);
       $rowsAffected2 = sqlsrv_rows_affected($getResults2);
       if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
