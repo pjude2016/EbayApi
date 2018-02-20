@@ -303,7 +303,7 @@ if(isset($_POST['Query']))
     $gend_for_filters = str_replace ("'s","",$gend);
     $query = "SELECT * FROM auction.filters
     WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max'
-    AND display ='$disp' AND condition = '$cond' AND year_manufacture = '$year' AND gender = '$gend_for_filters' AND user_id = '$current_uid' ";
+    AND display ='$disp' AND condition = '$cond' AND gender = '$gend_for_filters' AND user_id = '$current_uid' ";
     $getMatches= sqlsrv_query($conn, $query);
 
     $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
