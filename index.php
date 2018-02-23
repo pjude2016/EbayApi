@@ -3,7 +3,7 @@ session_start();
 
 $_SESSION['message'] = '';
 $_SESSION['firstname'] = '';
-$serverName = "tcp:auctora-server.database.windows.net,1433";
+$serverName = "tcp:auctora-server.database.windows.net, 1433";
 $connectionOptions = array(
     "Database" => " auctoraDB",
     "Uid" => " auctora@auctora-server",
