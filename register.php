@@ -1,7 +1,7 @@
 <?php
 session_start();
 $_SESSION['message'] = '';
-$serverName = "tcp:auctora-server.database.windows.net, 1433";
+$serverName = "tcp:auctora-server.database.windows.net,1433";
 $connectionOptions = array(
     "Database" => " auctoraDB",
     "Uid" => " auctora@auctora-server",
@@ -11,7 +11,13 @@ $connectionOptions = array(
 //Establishes the connection
 $conn = sqlsrv_connect($serverName, $connectionOptions);
 
+if ($conn) {
 
+  print("Connection succesful");
+}
+else{
+      die("Connection error: " . odbc_errormsg());
+}
 
 //the form has been submitted with post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
