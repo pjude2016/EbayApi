@@ -1,12 +1,13 @@
 <?php
 session_start();
 $_SESSION['message'] = '';
-$serverName = "tcp:ragnasvr.database.windows.net, 1433";
+$serverName = "tcp:auctora-server.database.windows.net,1433";
 $connectionOptions = array(
-    "Database" => "ragnaDB",
-    "Uid" => "ragnarok@ragnasvr",
-    "PWD" => "Korangar2"
+    "Database" => " auctoraDB",
+    "Uid" => " auctora@auctora-server",
+    "PWD" => "arotcua1!"
 );
+
 // echo $_SESSION;
 
 // echo '<pre>';
