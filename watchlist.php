@@ -1,12 +1,9 @@
 <?php
 session_start();
 $_SESSION['message'] = '';
-$serverName = "tcp:auctora-server.database.windows.net, 1433";
-$connectionOptions = array(
-    "Database" => " auctoraDB",
-    "Uid" => " auctora@auctora-server",
-    "PWD" => "arotcua1!"
-);
+$connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!", "Database" => "auctoraDB");
+$serverName = "tcp:auctora-server.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 // echo $_SESSION;
 
@@ -16,7 +13,7 @@ $connectionOptions = array(
 
 
 //Establishes the connection
-$conn = sqlsrv_connect($serverName, $connectionOptions);
+
 
 
 $current_user_id = $_SESSION['user_id'];
