@@ -594,13 +594,13 @@ if(isset($_POST['Query']))
           echo "id ";
           echo $id;
           $update_count = $count + 1;
-          //echo $update_count;
+          echo $update_count;
           echo "</br>";
-          // $sql = "UPDATE auction.product_searches SET view_count=$update_count WHERE id=$id";
-          // $getResultsD= sqlsrv_query($conn, $sql);
-          // $rowsAffected = sqlsrv_rows_affected($getResultsD);
-          // if ($getResults == FALSE or $rowsAffected == FALSE)
-          //     die(FormatErrors(sqlsrv_errors()));
+          $sql = "UPDATE auction.product_searches SET view_count=$update_count WHERE id=$id";
+          $getResultsD= sqlsrv_query($conn, $sql);
+          $rowsAffected = sqlsrv_rows_affected($getResultsD);
+          if ($getResults == FALSE or $rowsAffected == FALSE)
+              die(FormatErrors(sqlsrv_errors()));
 
         }
 
