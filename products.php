@@ -591,6 +591,7 @@ if(isset($_POST['Query']))
         else{
           $count = $row['view_count'];
           echo $count;
+          echo </br>
 
 
         }
