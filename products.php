@@ -598,8 +598,8 @@ if(isset($_POST['Query']))
           echo "</br>";
           $sql = "UPDATE auction.product_searches SET view_count=$update_count WHERE id=$id";
           $getResultsD= sqlsrv_query($conn, $sql);
-          $rowsAffected = sqlsrv_rows_affected($getResultsD);
-          if ($getResults == FALSE or $rowsAffected == FALSE)
+          $rowsAffectedD = sqlsrv_rows_affected($getResultsD);
+          if ($getResultsD == FALSE or $rowsAffectedD == FALSE)
               die(FormatErrors(sqlsrv_errors()));
 
         }
