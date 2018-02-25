@@ -592,8 +592,8 @@ if(isset($_POST['Query']))
           $count = $row['view_count'];
           echo $count;
           $update_count = $count + 1
-          echo $update_count; 
-          echo </br>
+          echo $update_count;
+        
 
         }
 
