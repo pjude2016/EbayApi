@@ -590,11 +590,13 @@ if(isset($_POST['Query']))
         }
         else{
           $count = $row['view_count'];
+          $id = $row['id'];
           echo $count;
           $update_count = $count + 1;
           echo "</br>";
           echo $update_count;
           echo "</br>";
+          $sql = "UPDATE auction.product_searches SET view_count=$update_count WHERE id=$id";
 
 
         }
