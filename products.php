@@ -590,7 +590,7 @@ if(isset($_POST['Query']))
         }
         else{
           $count = $row['view_count'];
-          escho $count;
+          echo $count;
         }
 
         // Determine currency to display - so far only seen cases where priceCurr = shipCurr, but may be others
