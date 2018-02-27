@@ -11,7 +11,6 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 echo "<h1 align='center'>eBay Watch Search form</h1>";
 echo "</br>";
 $ebayItemId = $_POST['ebayID'];
-echo $ebayItemId;
 
 
 echo "</br></br>";
@@ -24,7 +23,7 @@ $id = $row['ID'];
 
 
 echo "
-<br><br><br><br><br>
+
 <table border='1' align='center'>
 <tr>
 <th>Image</th>
