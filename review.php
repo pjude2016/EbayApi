@@ -5,15 +5,12 @@ $_SESSION['message'] = '';
 $connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!", "Database" => "auctoraDB");
 $serverName = "tcp:auctora-server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-if ($conn){
-  echo "hello";
-}
+
  echo "<br><br><br><br><br>";
 
-echo "Review";
+echo "<h1 align='center'>eBay Watch Search form</h1>";
 echo "</br>";
 $ebayItemId = $_POST['ebayID'];
-echo "Ebay Item ID: ";
 echo $ebayItemId;
 
 
