@@ -6,8 +6,8 @@
 <?php
 session_start();
 echo "hello";
-$current_item = $_SESSION['reviewItem'];
-echo $current_item;
-
+echo "</br>";
+$ebayItemId = $_POST['ebayID'];
+echo $ebayItemId;
 ?>
 </html>
