@@ -18,7 +18,7 @@ echo $ebayItemId;
 
 
 echo "</br></br>";
-$query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemID'";
+$query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
 $getMatches= sqlsrv_query($conn, $query);
 
 $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
