@@ -661,7 +661,7 @@ if(isset($_POST['Query']))
         //     print("Table fyi_links created.\n");
         //     echo '</br>';
         //   }
-
+        $_SESSION['reviewItem'] = $sqlEbayItemID;
 
           // Free the connection
 
