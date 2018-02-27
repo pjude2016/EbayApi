@@ -5,10 +5,10 @@
 </body>
 <?php
 session_start();
-echo "hello";
+echo "Review";
 echo "</br>";
 $ebayItemId = $_POST['ebayID'];
-echo "Ebay Item ID";
+echo "Ebay Item ID: ";
 echo $ebayItemId;
 ?>
 </html>
