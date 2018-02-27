@@ -4,7 +4,6 @@ $_SESSION['message'] = '';
 $connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!", "Database" => "auctoraDB");
 $serverName = "tcp:auctora-server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
-
 // echo $_SESSION;
 
 // echo '<pre>';
@@ -12,15 +11,13 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 // echo '</pre>';
 
 
-//Establishes the connection
-
 
 
 $current_user_id = $_SESSION['user_id'];
 
 // $tsql= "SELECT * FROM auction.watch_list WHERE user_id = '$current_user_id'";
 $tsql = "SELECT * FROM auction.product_searches AS auc
-WHERE auc.ebayID IN (SELECT ebayID FROM auction.watch_list WHERE user_id = '$current_user_id')";
+WHERE auc.ebayID IN (SELECT ebayID FROM auction.watch_list WHERE user_id = '$current_user_id') AND auc.status LIKE 'active'";
 $getResults= sqlsrv_query($conn, $tsql, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
 if ($getResults == FALSE)
     die(FormatErrors(sqlsrv_errors()));

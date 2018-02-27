@@ -13,7 +13,6 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 
-
 if($_SESSION['logged_in_val'] == true){
 	$_SESSION['logged_in_val'] = false;
     session_destroy();

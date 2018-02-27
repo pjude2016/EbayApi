@@ -1,18 +1,11 @@
 <?php
 session_start();
 $_SESSION['message'] = '';
-
 $connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!", "Database" => "auctoraDB");
 $serverName = "tcp:auctora-server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
-if ($conn) {
 
-  print("Connection succesful");
-}
-else{
-      die("Connection error: " . odbc_errormsg());
-}
 
 //the form has been submitted with post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
