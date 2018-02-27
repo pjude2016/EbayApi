@@ -662,7 +662,7 @@ if(isset($_POST['Query']))
         //     echo '</br>';
         //   }
         $_SESSION['reviewItem'] = $sqlEbayItemID;
-
+        header("Location: review.php");
           // Free the connection
 
         //  @odbc_close($conn);

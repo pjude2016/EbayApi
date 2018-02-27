@@ -8,5 +8,6 @@ session_start();
 echo "hello";
 $current_item = $_SESSION['reviewItem'];
 echo $current_item;
+
 ?>
 </html>
