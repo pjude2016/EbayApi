@@ -11,6 +11,11 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 $ebayItemId = $_POST['ebayID'];
+$current_uid = $_SESSION['user_id'];
+$currentId = $_SESSION['userID'];
+echo $current_uid;
+echo "</br>";
+echo $currentId;
 
 
 echo "</br></br>";
@@ -44,6 +49,16 @@ echo "<td>" . $row['price'] . "</td>";
 echo "<td>" . $row['serviceCost'] . "</td>";
 echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
+
+$rating =5;
+
+$tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
+$params2 = array($title,$rating,$currentId,$id);
+$getResults2= sqlsrv_query($conn, $tsql2, $params2);
+$rowsAffected2 = sqlsrv_rows_affected($getResults2);
+if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+  die(FormatErrors(sqlsrv_errors()));
+}
 ?>
 
 
