@@ -201,8 +201,6 @@ if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
         </form>
     </div>
     <div class="col-md-2"></div>
-  </div>
-
 
 
   <?php
