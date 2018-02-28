@@ -180,7 +180,7 @@ echo "</tr>";
     <div class="col-md-2"></div>
   </div>
 
-  <?php echo $_POST['reviewBody']; ?>
+
 
   <?php
   $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
@@ -190,10 +190,11 @@ echo "</tr>";
   $count = $row['view_count'];
   $ids = $row['ID'];
   $rating =5;
+  $comment = $_POST['reviewBody'];
 
   $currentUserId = $_SESSION['userID'];
   $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
-  $params2 = array($reviewBody,$rating,$currentUserId,$ids);
+  $params2 = array($comment,$rating,$currentUserId,$ids);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
