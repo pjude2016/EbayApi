@@ -63,10 +63,10 @@ echo "</tr>";
 //   die(FormatErrors(sqlsrv_errors()));
 // }
 
-$comment = "Hello";
+
 $currentUserId = $_SESSION['userID'];
 
-$productid = $rowB['ID'];
+$productid = $row['ID'];
 
 echo "product";
 echo $productid;
