@@ -64,24 +64,24 @@ echo "</tr>";
 // }
 
 
-$currentUserId = $_SESSION['userID'];
-
-$productid = $row['ID'];
-$comment = $_POST['reviewBody'];
-echo "product";
-echo $productid;
-
-$rating =5;
-
-
-
-$tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
-$params2 = array($comment,$rating,$currentUserId,$productid);
-$getResults2= sqlsrv_query($conn, $tsql2, $params2);
-$rowsAffected2 = sqlsrv_rows_affected($getResults2);
-if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
-  die(FormatErrors(sqlsrv_errors()));
-}
+// $currentUserId = $_SESSION['userID'];
+//
+// $productid = $row['ID'];
+// $comment = $_POST['reviewBody'];
+// echo "product";
+// echo $productid;
+//
+// $rating =5;
+//
+//
+//
+// $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
+// $params2 = array($comment,$rating,$currentUserId,$productid);
+// $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+// $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+// if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+//   die(FormatErrors(sqlsrv_errors()));
+// }
 ?>
 
 
@@ -204,25 +204,25 @@ if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
 
 
   <?php
-  // $comment = $_POST['reviewBody'];
-  // $currentUserId = $_SESSION['userID'];
-  //
-  // //$productid = $rowB['ID'];
-  // $productid=$_SESSION['productID'];
-  // echo "product";
-  // echo $productid;
-  //
-  // $rating =5;
-  //
-  //
-  //
-  // $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
-  // $params2 = array($comment,$rating,$currentUserId,$productid);
-  // $getResults2= sqlsrv_query($conn, $tsql2, $params2);
-  // $rowsAffected2 = sqlsrv_rows_affected($getResults2);
-  // if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
-  //   die(FormatErrors(sqlsrv_errors()));
-  // }
+  $comment = $_POST['reviewBody'];
+  $currentUserId = $_SESSION['userID'];
+
+  //$productid = $rowB['ID'];
+  $productid=$_SESSION['productID'];
+  echo "product";
+  echo $productid;
+
+  $rating =5;
+
+
+
+  $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
+  $params2 = array($comment,$rating,$currentUserId,$productid);
+  $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+  $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+  if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+    die(FormatErrors(sqlsrv_errors()));
+  }
   ?>
 <!-- <section>
 Welcome HERREE <span class="user"><?= $_SESSION['firstname'] ?></span>
