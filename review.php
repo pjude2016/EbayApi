@@ -180,7 +180,7 @@ echo "</tr>";
     <div class="col-md-2"></div>
   </div>
 
-  <?= $reviewBody ?>
+  <?php echo $_POST['reviewBody']; ?>
 
   <?php
   $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
