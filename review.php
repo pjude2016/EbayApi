@@ -192,10 +192,10 @@ echo "</tr>";
   $getMatchesB= sqlsrv_query($conn, $queryB);
 
   $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
-  $productid = $rowB['ID'];
+  //$productid = $rowB['ID'];
+  $productid=216;
 
-  echo "prod2 id ";
-  echo $productid;
+
   $rating =5;
 
 
