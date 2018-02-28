@@ -63,7 +63,7 @@ echo "</tr>";
 //   die(FormatErrors(sqlsrv_errors()));
 // }
 
-$comment = $_POST['reviewBody'];
+$comment = "Hello";
 $currentUserId = $_SESSION['userID'];
 
 $productid = $rowB['ID'];
