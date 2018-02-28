@@ -15,7 +15,7 @@ $current_uid = $_SESSION['user_id'];
 $currentId = $_SESSION['userID'];
 echo $current_uid;
 echo "</br>";
-echo $currentID;
+echo $currentId;
 
 
 echo "</br></br>";
