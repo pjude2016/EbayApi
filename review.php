@@ -173,14 +173,22 @@ $rating =5;
     <div class="col-md-2"></div>
     <div class="col-md-8 container forum-full">
         <form action="" method="post" id="writereviews">
-          <textarea placeholder="Write your review..." class="col-md-12 ckeditor" name="commentBody" rows="8"></textarea>
+          <textarea placeholder="Write your review..." class="col-md-12 ckeditor" name="reviewBody" rows="8"></textarea>
           <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;">
         </form>
     </div>
     <div class="col-md-2"></div>
   </div>
 
-  <?php echo $_POST['commentBody'] ?>
+  <?php
+  $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
+  $params2 = array($reviewBody,$rating,$currentId,$id);
+  $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+  $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+  if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+    die(FormatErrors(sqlsrv_errors()));
+  }
+  ?>
 <!-- <section>
 Welcome HERREE <span class="user"><?= $_SESSION['firstname'] ?></span>
 </section> -->
