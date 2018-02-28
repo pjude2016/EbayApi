@@ -169,19 +169,6 @@ $rating =5;
 
     <!-- <a href="#writereview">Write a review</a> -->
 
-    <!-- <?php  () { ?>
-      <div class="col-md-12"> <hr>
-        <div class="col-md-12" style="margin-top:15px;border-radius:2px 2px;">
-          <div class="col-md-2"></div>
-          <div class="col-md-8 container forum-full">
-            <div class="body-full">  </div>
-            <div class="post-by">Post by: user ID  </div>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
-      </div>
-    <?php } ?> -->
-
     <!-- Write review -->
     <div class="col-md-2"></div>
     <div class="col-md-8 container forum-full">
