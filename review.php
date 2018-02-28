@@ -180,6 +180,8 @@ $rating =5;
     <div class="col-md-2"></div>
   </div>
 
+  <?= $reviewBody ?>
+
   <?php
   $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
   $params2 = array($reviewBody,$rating,$currentId,$id);
