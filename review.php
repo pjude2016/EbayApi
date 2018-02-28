@@ -65,6 +65,66 @@ echo "</tr>";
     <!-- Custom styles for this template -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
 
+    <script src="ckeditor/ckeditor.js"></script>
+
+    <style>
+      body {
+        overflow-x: hidden;
+        margin-bottom: 15px;
+      }
+
+      textarea {
+        resize: none;
+      }
+
+      .forum-full {
+        background-color: rgba(0, 0, 0, 0.7);
+        max-width: 100%;
+        max-height: 100%;
+        border: 1px solid;
+        padding: 15px;
+        margin: .4%;
+      }
+
+      .topic {
+        margin-top: 5px;
+        color: rgba(215, 169, 60, 0.8);
+      }
+
+      .body-full {
+        color: white;
+        margin-bottom: 1%;
+      }
+
+      .comment {
+        position: absolute;
+        right: 35px;
+        bottom: 10px;
+        font-size: 40px
+      }
+
+      .comment-box {
+        width: 100%;
+        row: 9;
+      }
+
+      .post-by {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.4);
+        bottom: 1px;
+        right: 84%;
+        font-size: 12px;
+      }
+
+      hr {
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+    </style>
+
   </head>
 
   <body id="page-top">
@@ -91,6 +151,31 @@ echo "</tr>";
         </div>
       </div>
     </nav>
+
+    <a href="#writereview">Write a review</a>
+
+    <?php foreach () { ?>
+      <div class="col-md-12"> <hr>
+        <div class="col-md-12" style="margin-top:15px;border-radius:2px 2px;">
+          <div class="col-md-2"></div>
+          <div class="col-md-8 container forum-full">
+            <div class="body-full"> <?php echo $comment['commentBody'] ?> </div>
+            <div class="post-by">Post by: user ID <?php echo  ?> </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    <?php } ?>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8 container forum-full">
+        <form action="" method="post" id="writereviews">
+          <textarea placeholder="Write your comment..." class="col-md-12 ckeditor" name="commentBody" rows="8"></textarea>
+          <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;">
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
 
 <!-- <section>
 Welcome HERREE <span class="user"><?= $_SESSION['firstname'] ?></span>
