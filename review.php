@@ -67,7 +67,7 @@ echo "</tr>";
 $currentUserId = $_SESSION['userID'];
 
 $productid = $row['ID'];
-
+$comment = $_POST['reviewBody'];
 echo "product";
 echo $productid;
 
@@ -76,7 +76,7 @@ $rating =5;
 
 
 $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
-$params2 = array($title,$rating,$currentUserId,$productid);
+$params2 = array($comment,$rating,$currentUserId,$productid);
 $getResults2= sqlsrv_query($conn, $tsql2, $params2);
 $rowsAffected2 = sqlsrv_rows_affected($getResults2);
 if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
