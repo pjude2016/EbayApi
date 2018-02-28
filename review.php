@@ -25,6 +25,7 @@ $getMatches= sqlsrv_query($conn, $query);
 $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 $count = $row['view_count'];
 $prod_id = $row['ID'];
+$_SESSION['productID'] = $row['ID'];
 echo "product1_id ";
 echo $prod_id;
 
@@ -188,12 +189,9 @@ echo "</tr>";
   $ebayItemIds = $_POST['ebayID'];
   $comment = $_POST['reviewBody'];
   $currentUserId = $_SESSION['userID'];
-  $queryB = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemIds'";
-  $getMatchesB= sqlsrv_query($conn, $queryB);
 
-  $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
   //$productid = $rowB['ID'];
-  $productid=216;
+  $productid=$_SESSION['productID'];;
 
 
   $rating =5;
