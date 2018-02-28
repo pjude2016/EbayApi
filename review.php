@@ -169,23 +169,24 @@ if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
 
     <a href="#writereview">Write a review</a>
 
-    <!-- <?php foreach () { ?> -->
+    <!-- <?php foreach () { ?>
       <div class="col-md-12"> <hr>
         <div class="col-md-12" style="margin-top:15px;border-radius:2px 2px;">
           <div class="col-md-2"></div>
           <div class="col-md-8 container forum-full">
-            <!-- <div class="body-full"> <?php echo $comment['commentBody'] ?> </div> -->
-            <!-- <div class="post-by">Post by: user ID <?php echo  ?> </div> -->
+            <div class="body-full"> <?php echo $_POST['review'] ?> </div>
+            <div class="post-by">Post by: user ID <?php echo $_POST['userID'] ?> </div>
           </div>
           <div class="col-md-2"></div>
         </div>
       </div>
-    <!-- <?php } ?> -->
+    <?php } ?> -->
 
+    <!-- Write review -->
     <div class="col-md-2"></div>
     <div class="col-md-8 container forum-full">
         <form action="" method="post" id="writereviews">
-          <textarea placeholder="Write your comment..." class="col-md-12 ckeditor" name="commentBody" rows="8"></textarea>
+          <textarea placeholder="Write your review..." class="col-md-12 ckeditor" name="commentBody" rows="8"></textarea>
           <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;">
         </form>
     </div>
