@@ -214,10 +214,10 @@ echo "</tr>";
 
   $rating =5;
 
-
+$prodid=5;
 
   $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
-  $params2 = array($prod_id,$currentUserId,$comment,$rating);
+  $params2 = array($prodid,$currentUserId,$comment,$rating);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
