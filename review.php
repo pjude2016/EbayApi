@@ -183,6 +183,7 @@ echo "</tr>";
 
 
   <?php
+  $ebayItemId = $_POST['ebayID'];
   $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
   $getMatches= sqlsrv_query($conn, $query);
 
