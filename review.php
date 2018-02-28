@@ -52,13 +52,13 @@ echo "</tr>";
 
 $rating =5;
 
-$tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
-$params2 = array($title,$rating,$currentId,$id);
-$getResults2= sqlsrv_query($conn, $tsql2, $params2);
-$rowsAffected2 = sqlsrv_rows_affected($getResults2);
-if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
-  die(FormatErrors(sqlsrv_errors()));
-}
+// $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
+// $params2 = array($title,$rating,$currentId,$id);
+// $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+// $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+// if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+//   die(FormatErrors(sqlsrv_errors()));
+// }
 ?>
 
 
@@ -167,7 +167,7 @@ if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
       </div>
     </nav>
 
-    <a href="#writereview">Write a review</a>
+    <!-- <a href="#writereview">Write a review</a> -->
 
     <!-- <?php foreach () { ?>
       <div class="col-md-12"> <hr>
