@@ -79,8 +79,6 @@ echo "<div class="col-md-2"></div>
 
 
 $comment = $_POST['reviewBody'];
-echo "product";
-echo $productid;
 
 $rating =5;
 
