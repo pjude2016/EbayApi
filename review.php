@@ -191,8 +191,9 @@ echo "</tr>";
   $currentUserId = $_SESSION['userID'];
 
   //$productid = $rowB['ID'];
-  $productid=$_SESSION['productID'];;
-
+  $productid=$_SESSION['productID'];
+  echo "product";
+  echo $productid;
 
   $rating =5;
 
