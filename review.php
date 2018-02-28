@@ -186,7 +186,12 @@ echo "</tr>";
 
   <?php
   $ebayItemIds = $_POST['ebayID'];
-  $product_id = $_POST['prod_id'];
+  $queryB = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemIds'";
+  $getMatchesB= sqlsrv_query($conn, $queryB);
+
+  $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
+  $product_id = $rowB['ID'];
+
   echo "prod2 id ";
   echo $product_id;
   $rating =5;
