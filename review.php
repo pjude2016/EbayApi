@@ -11,6 +11,8 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 $ebayItemId = $_POST['ebayID'];
+$current_uid = $_SESSION['user_id'];
+echo $current_uid;
 
 
 echo "</br></br>";
