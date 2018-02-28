@@ -13,9 +13,9 @@ echo "</br>";
 $ebayItemId = $_POST['ebayID'];
 $current_uid = $_SESSION['user_id'];
 $currentId = $_SESSION['userID'];
-echo $current_uid;
+
 echo "</br>";
-echo $currentId;
+
 
 
 echo "</br></br>";
@@ -25,6 +25,7 @@ $getMatches= sqlsrv_query($conn, $query);
 $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 $count = $row['view_count'];
 $prod_id = $row['ID'];
+echo "product1_id ";
 echo $prod_id;
 
 
@@ -186,7 +187,7 @@ echo "</tr>";
   <?php
   $ebayItemIds = $_POST['ebayID'];
   $product_id = $_POST['prod_id'];
-  echo "prod id ";
+  echo "prod2 id ";
   echo $product_id;
   $rating =5;
   $comment = $_POST['reviewBody'];
