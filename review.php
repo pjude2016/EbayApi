@@ -24,7 +24,7 @@ $getMatches= sqlsrv_query($conn, $query);
 
 $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 $count = $row['view_count'];
-$id = $row['ID'];
+$prod_id = $row['ID'];
 
 
 echo "
@@ -183,19 +183,14 @@ echo "</tr>";
 
 
   <?php
-  $ebayItemId = $_POST['ebayID'];
-  $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
-  $getMatches= sqlsrv_query($conn, $query);
-
-  $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
-  $count = $row['view_count'];
-  $ids = $row['ID'];
+  $ebayItemIds = $_POST['ebayID'];
+  $product_id = $_POST['$prod_id'];
   $rating =5;
   $comment = $_POST['reviewBody'];
 
   $currentUserId = $_SESSION['userID'];
   $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
-  $params2 = array($comment,$rating,$currentUserId,$ids);
+  $params2 = array($comment,$rating,$currentUserId,$product_id);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
