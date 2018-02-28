@@ -184,7 +184,7 @@ echo "</tr>";
 
   <?php
   $ebayItemIds = $_POST['ebayID'];
-  $product_id = $_POST['$prod_id'];
+  $product_id = $_POST['prod_id'];
   $rating =5;
   $comment = $_POST['reviewBody'];
 
