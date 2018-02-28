@@ -25,6 +25,7 @@ $getMatches= sqlsrv_query($conn, $query);
 $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 $count = $row['view_count'];
 $prod_id = $row['ID'];
+echo $prod_id;
 
 
 echo "
