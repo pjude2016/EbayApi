@@ -10,8 +10,11 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
+//ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
 $current_uid = $_SESSION['user_id'];
+
+//user primary key
 $currentId = $_SESSION['userID'];
 
 echo "</br>";
@@ -24,6 +27,7 @@ $getMatches= sqlsrv_query($conn, $query);
 
 $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 $count = $row['view_count'];
+//obtain below product primary key id from database
 $prod_id = $row['ID'];
 $_SESSION['productID'] = $row['ID'];
 echo "product1_id ";
@@ -207,17 +211,15 @@ echo "</tr>";
   $comment = $_POST['reviewBody'];
   $currentUserId = $_SESSION['userID'];
 
-  //$productid = $rowB['ID'];
 
-  echo "product";
-  echo $prod_id;
+  //echo "product";
+  //echo $prod_id;
 
   $rating =5;
 
-$prodid=5;
-
+  //push review to database
   $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
-  $params2 = array($prodid,$currentUserId,$comment,$rating);
+  $params2 = array($prod_id,$currentUserId,$comment,$rating);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
