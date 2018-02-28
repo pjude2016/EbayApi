@@ -8,7 +8,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
  echo "<br><br><br><br><br>";
 
-echo "<h1 align='center'>eBay Watch Search form</h1>";
+echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 $ebayItemId = $_POST['ebayID'];
 
