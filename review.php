@@ -186,20 +186,22 @@ echo "</tr>";
 
   <?php
   $ebayItemIds = $_POST['ebayID'];
+  $comment = $_POST['reviewBody'];
+  $currentUserId = $_SESSION['userID'];
   $queryB = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemIds'";
   $getMatchesB= sqlsrv_query($conn, $queryB);
 
   $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
-  $product_id = $rowB['ID'];
+  $productid = $rowB['ID'];
 
   echo "prod2 id ";
   echo $product_id;
   $rating =5;
-  $comment = $_POST['reviewBody'];
 
-  $currentUserId = $_SESSION['userID'];
+
+
   $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
-  $params2 = array($comment,$rating,$currentUserId,$product_id);
+  $params2 = array($comment,$rating,$currentUserId,$productid);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
