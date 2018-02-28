@@ -195,7 +195,7 @@ echo "</tr>";
   $productid = $rowB['ID'];
 
   echo "prod2 id ";
-  echo $product_id;
+  echo $productid;
   $rating =5;
 
 
