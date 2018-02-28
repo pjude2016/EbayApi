@@ -50,7 +50,7 @@ echo "<td>" . $row['serviceCost'] . "</td>";
 echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
 
-$rating =5;
+
 
 // $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
 // $params2 = array($title,$rating,$currentId,$id);
@@ -181,8 +181,17 @@ $rating =5;
   </div>
 
   <?php
+  $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
+  $getMatches= sqlsrv_query($conn, $query);
+
+  $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+  $count = $row['view_count'];
+  $ids = $row['ID'];
+  $rating =5;
+
+  $currentUserId = $_SESSION['userID'];
   $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
-  $params2 = array($reviewBody,$rating,$currentId,$id);
+  $params2 = array($reviewBody,$rating,$currentUserId,$ids);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
