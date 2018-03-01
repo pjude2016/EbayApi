@@ -8,7 +8,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
  echo "<br><br><br><br><br>";
 
-echo "<h1 align='center'>All User Reviews for this Watch</h1>";
+echo "<h1 align='center'>Reviews for this Watch</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayIDShow'];
@@ -59,7 +59,8 @@ echo "</table>";
 
 //Display all reviews
 
-
+echo "<h4 align='center'>All user Reviews for this Watch</h4>";
+echo "</br>";
 $tsql = "SELECT * FROM auction.product_reviews WHERE product_id = '$prod_id'";
 $getResults= sqlsrv_query($conn, $tsql, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
 if ($getResults == FALSE)
@@ -82,6 +83,7 @@ if($num_of_rows > 0)
     </tr>";
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         $currnetUser = $row['user_id'];
+        $reviewID= $row['ID'];
 
         $queryB = "SELECT * FROM auction.users WHERE Id = '$currnetUser'";
         $getMatchesB= sqlsrv_query($conn, $queryB);
@@ -94,6 +96,7 @@ if($num_of_rows > 0)
         echo "<td>" . $first . "</td>";
         echo "<td>" . $row['comment'] . "</td>";
         echo "<td>" . $row['rating'] . "</td>";
+        // echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Remove Item</button></form> </td>";
         echo "</tr>";
 
   }
@@ -106,6 +109,20 @@ else{
   <p align='center'>No reviews added so far. Why not add a review for this product? LINK</p>";
 }
 
+
+// if (isset($_POST['delete_item'])){
+//   $review_id = $_POST['delete_item'];
+//   $current_user_id = $_SESSION['user_id'];
+//
+//   $tsql= "DELETE FROM auction.product_reviews WHERE ID = 'review_id' AND user_id = '$current_user_id'";
+//   $getResults= sqlsrv_query($conn, $tsql);
+//
+//   $rowsAffected = sqlsrv_rows_affected($getResults);
+//   if ($getResults == FALSE or $rowsAffected == FALSE)
+//       die(FormatErrors(sqlsrv_errors()));
+//   echo "<meta http-equiv='refresh' content='0'>";
+//
+// }
 ?>
 
 
