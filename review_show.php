@@ -84,7 +84,7 @@ echo "</table>";
 echo "</br>";
 echo "<h4 align='center'>All user Reviews for this Watch</h4>";
 echo "</br>";
-$tsql = "SELECT * FROM auction.product_reviews WHERE product_id = '$prod_id'";
+$tsql = "SELECT * FROM auction.product_reviews WHERE product_id = '$prod_id' AND user_id != '$currentId'";
 $getResults= sqlsrv_query($conn, $tsql, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
 if ($getResults == FALSE)
     die(FormatErrors(sqlsrv_errors()));
