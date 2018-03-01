@@ -8,7 +8,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
  echo "<br><br><br><br><br>";
 
-echo "<h1 align='center'>eBay Watch Review</h1>";
+echo "<h1 align='center'>All User Reviews for this Watch</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayIDShow'];
@@ -35,7 +35,7 @@ echo $prod_id;
 
 
 echo "
-
+<br>
 <table border='1' align='center'>
 <tr>
 <th>Image</th>
@@ -56,6 +56,7 @@ echo "<td>" . $row['price'] . "</td>";
 echo "<td>" . $row['serviceCost'] . "</td>";
 echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
+echo "</table>";
 
 ?>
 

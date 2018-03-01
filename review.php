@@ -56,7 +56,7 @@ echo "<td>" . $row['price'] . "</td>";
 echo "<td>" . $row['serviceCost'] . "</td>";
 echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
-
+echo "</table>";
 
 
 if (isset($_POST['comment_posted'])){
