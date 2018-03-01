@@ -81,7 +81,8 @@ if($rowC)
 }
 else{
   echo "<br>
-  <p align='center'>No reviews have been added by other users so far. </p>";
+  <p align='center'>You have not given a Review. Why not add a review ?</p>";
+  echo "<form method=\"POST\" action=\"review.php\">  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$ebayItemId\" >Review</button></form> ";
 }
 
 
@@ -125,7 +126,6 @@ if($num_of_rows > 0)
         echo "<td>" . $first . "</td>";
         echo "<td>" . $row['comment'] . "</td>";
         echo "<td>" . $row['rating'] . "</td>";
-        // echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Remove Item</button></form> </td>";
         echo "</tr>";
 
   }
