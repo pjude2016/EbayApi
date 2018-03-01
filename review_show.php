@@ -54,11 +54,12 @@ echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
 echo "</table>";
 
-
+echo "</br>";
+echo "<h4 align='center'>My Reviews for this watch</h4>";
 
 
 //Display all reviews
-
+echo "</br>";
 echo "<h4 align='center'>All user Reviews for this Watch</h4>";
 echo "</br>";
 $tsql = "SELECT * FROM auction.product_reviews WHERE product_id = '$prod_id'";
@@ -74,7 +75,6 @@ if($num_of_rows > 0)
 {
 
   echo "
-    <br><br>
     <table border='1' align='center'>
     <tr>
     <th>User</th>
