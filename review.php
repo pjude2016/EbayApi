@@ -233,6 +233,9 @@ echo "</tr>";
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
     die(FormatErrors(sqlsrv_errors()));
   }
+  echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
+echo "code: ".$error[ 'code']."<br />";
+echo "message: ".$error[ 'message']."<br />";
   ?>
 <!-- <section>
 Welcome HERREE <span class="user"><?= $_SESSION['firstname'] ?></span>
