@@ -214,6 +214,7 @@ echo "</tr>";
   $comment = $_POST['reviewBody'];
   $currentUserId = $_SESSION['userID'];
   $ebayItemIds = $_POST['ebayID'];
+  echo $comment;
 
   $queryb = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemIds'";
   $getMatchesb= sqlsrv_query($conn, $queryb);
