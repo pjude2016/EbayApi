@@ -89,9 +89,9 @@ if($num_of_rows > 0)
 
         echo "<tr>";
 
-        echo "<td>" . $row['user_id'] . "</td>";
-        echo "<td>" . $row['comment'] . "</td>";
-        echo "<td>" . $row['rating'] . "</td>";
+        echo "<td>" . $rowB['user_id'] . "</td>";
+        echo "<td>" . $rowB['comment'] . "</td>";
+        echo "<td>" . $rowB['rating'] . "</td>";
         echo "</tr>";
 
   }
