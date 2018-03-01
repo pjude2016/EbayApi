@@ -29,7 +29,6 @@ $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 $count = $row['view_count'];
 //obtain below product primary key id from database
 $prod_id = $row['ID'];
-$_SESSION['productID'] = $prod_id;
 echo "product1_id ";
 echo $prod_id;
 
@@ -204,13 +203,11 @@ echo "</tr>";
           <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;">
         </form>
     </div>
-    <div class="col-md-2"></div>
 
 
   <?php
   $comment = $_POST['reviewBody'];
   $currentUserId = $_SESSION['userID'];
-  $productid=$_SESSION['productID']
 
 
   //echo "product";
@@ -220,7 +217,7 @@ echo "</tr>";
 
   //push review to database
   $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
-  $params2 = array($productid,$currentUserId,$comment,$rating);
+  $params2 = array($prod_id,$currentUserId,$comment,$rating);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
