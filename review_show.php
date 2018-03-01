@@ -61,21 +61,28 @@ $queryC = "SELECT * FROM auction.product_reviews WHERE user_id = '$currentId' AN
 $getMatchesC= sqlsrv_query($conn, $queryC);
 
 $rowC = sqlsrv_fetch_array($getMatchesC, SQLSRV_FETCH_ASSOC);
-echo "<br>";
-echo "
-  <table border='1' align='center'>
-  <tr>
-  <th>Comment</th>
-  <th>Rating</th>
-  </tr>";
+if($rowC)
+{
+    echo "<br>";
+    echo "
+      <table border='1' align='center'>
+      <tr>
+      <th>Comment</th>
+      <th>Rating</th>
+      </tr>";
 
 
-echo "<tr>";
-echo "<td>" . $rowC['comment'] . "</td>";
-echo "<td>" . $rowC['rating'] . "</td>";
-// echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Remove Item</button></form> </td>";
-echo "</tr>";
-echo "</table>";
+    echo "<tr>";
+    echo "<td>" . $rowC['comment'] . "</td>";
+    echo "<td>" . $rowC['rating'] . "</td>";
+    // echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Remove Item</button></form> </td>";
+    echo "</tr>";
+    echo "</table>";
+}
+else{
+  echo "<br>
+  <p align='center'>No reviews have been added by other users so far. </p>";
+}
 
 
 
@@ -127,8 +134,8 @@ echo "</table>";
 }
 
 else{
-  echo "<br><br><br><br><br>
-  <p align='center'>No reviews added so far. Why not add a review for this product? LINK</p>";
+  echo "<br>
+  <p align='center'>No reviews have been added by other users so far. </p>";
 }
 
 
