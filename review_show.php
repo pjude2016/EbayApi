@@ -19,9 +19,6 @@ $currentId = $_SESSION['userID'];
 
 echo "</br>";
 
-
-
-echo "</br></br>";
 $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
 $getMatches= sqlsrv_query($conn, $query);
 
@@ -79,15 +76,22 @@ if($num_of_rows > 0)
     <br><br>
     <table border='1' align='center'>
     <tr>
-    <th>User ID</th>
+    <th>User</th>
     <th>Comment</th>
     <th>Rating</th>
     </tr>";
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+        $currnetUser = $row['user_id'];
 
+        $queryB = "SELECT * FROM auction.users WHERE ID = '$currnetUser'";
+        $getMatchesb= sqlsrv_query($conn, $queryB);
+
+        $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
+        $first = $rowB['firstname'];
+        $second = $rowB['lastname'];
         echo "<tr>";
 
-        echo "<td>" . $row['user_id'] . "</td>";
+        echo "<td>" . $first  . $second . "</td>";
         echo "<td>" . $row['comment'] . "</td>";
         echo "<td>" . $row['rating'] . "</td>";
         echo "</tr>";
