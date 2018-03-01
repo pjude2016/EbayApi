@@ -84,7 +84,7 @@ if($num_of_rows > 0)
         $currnetUser = $row['user_id'];
 
         $queryB = "SELECT * FROM auction.users WHERE ID = '$currnetUser'";
-        $getMatchesb= sqlsrv_query($conn, $queryB);
+        $getMatchesB= sqlsrv_query($conn, $queryB);
 
         $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
         $first = $rowB['firstname'];
