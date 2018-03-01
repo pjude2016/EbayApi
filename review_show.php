@@ -13,7 +13,7 @@ echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayIDShow'];
 $current_uid = $_SESSION['user_id'];
-echo "Ebay item id is" . $ebayItemId;
+//echo "Ebay item id is" . $ebayItemId;
 //user primary key
 $currentId = $_SESSION['userID'];
 
@@ -30,12 +30,11 @@ $count = $row['view_count'];
 //obtain below product primary key id from database
 $prod_id = $row['ID'];
 $_SESSION['productID'] = $row['ID'];
-echo "product1_id ";
-echo $prod_id;
+//echo "product1_id ";
+//echo $prod_id;
 
 
 echo "
-<br>
 <table border='1' align='center'>
 <tr>
 <th>Image</th>
@@ -77,7 +76,7 @@ if($num_of_rows > 0)
 {
 
   echo "
-    <br><br><br><br><br>
+    <br><br>
     <table border='1' align='center'>
     <tr>
     <th>User ID</th>
