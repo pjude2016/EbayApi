@@ -227,15 +227,13 @@ echo "</tr>";
 
   //push review to database
   $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
-  $params2 = array($prod_ids,$currentUserId,$comment,$rating);
+  $params2 = array($row['ID'],$currentUserId,$comment,$rating);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
     die(FormatErrors(sqlsrv_errors()));
   }
-  echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
-echo "code: ".$error[ 'code']."<br />";
-echo "message: ".$error[ 'message']."<br />";
+
   ?>
 <!-- <section>
 Welcome HERREE <span class="user"><?= $_SESSION['firstname'] ?></span>
