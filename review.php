@@ -13,7 +13,7 @@ echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
 $current_uid = $_SESSION['user_id'];
-
+echo "Ebay item id is" . $ebayItemId;
 //user primary key
 $currentId = $_SESSION['userID'];
 
@@ -58,6 +58,31 @@ echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
 
 
+
+if (isset($_POST['comment_posted'])){
+
+  $comment = $_POST['reviewBody'];
+  $currentUserId = $_SESSION['userID'];
+  $vall = $_POST['comment_posted'];
+
+  echo "the value" . $vall;
+
+  //echo "product";
+  //echo $prod_id;
+
+  $rating =5;
+
+  //push review to database
+  $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
+
+  $params2 = array($vall,$currentUserId,$comment,$rating);
+  $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+  $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+  if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+    die(FormatErrors(sqlsrv_errors()));
+  }
+
+}
 
 // $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
 // $params2 = array($title,$rating,$currentId,$id);
@@ -199,15 +224,16 @@ echo "</tr>";
     <!-- Write review -->
     <div class="col-md-2"></div>
     <div class="col-md-8 container forum-full">
-        <form action="" method="post" id="writereviews">
+        <form method="post" id="writereviews">
           <textarea placeholder="Write your review..." class="col-md-12 ckeditor" name="reviewBody" rows="8"></textarea>
-          <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;">
+          <!-- <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;"> -->
+          <button type="submit" class="btn btn-warning" name="comment_posted" value="<?php echo $_SESSION['productID']; ?>">Post</button>
         </form>
     </div>
     <div class="col-md-2"></div>
 
 
-  <?php
+  <!--<?php
   $comment = $_POST['reviewBody'];
   $currentUserId = $_SESSION['userID'];
 
@@ -219,13 +245,15 @@ echo "</tr>";
 
   //push review to database
   $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
+  $prod_id = $_SESSION['productID'];
+  echo "HERE IS THE PROD ID" . $prod_id;
   $params2 = array($prod_id,$currentUserId,$comment,$rating);
   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
     die(FormatErrors(sqlsrv_errors()));
   }
-  ?>
+  ?> -->
 <!-- <section>
 Welcome HERREE <span class="user"><?= $_SESSION['firstname'] ?></span>
 </section> -->
