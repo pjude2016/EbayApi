@@ -63,6 +63,7 @@ $getMatchesC= sqlsrv_query($conn, $queryC);
 $rowC = sqlsrv_fetch_array($getMatchesC, SQLSRV_FETCH_ASSOC);
 if($rowC)
 {
+  $reviewID= $rowC['ID'];
     echo "<br>";
     echo "
       <table border='1' align='center'>
@@ -75,7 +76,7 @@ if($rowC)
     echo "<tr>";
     echo "<td>" . $rowC['comment'] . "</td>";
     echo "<td>" . $rowC['rating'] . "</td>";
-    // echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Remove Item</button></form> </td>";
+    echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Remove Item</button></form> </td>";
     echo "</tr>";
     echo "</table>";
 }
@@ -83,7 +84,7 @@ else{
   echo "<br>
   <p align='center'>You have not given a Review. Why not add a review ?</p>";
 
-  echo " <div style=\"text-align:center\"> <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$ebayItemId\" >Review</button></form> </div>";
+  echo " <div style=\"text-align:center\"> <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$ebayItemId\" >Add Your Review</button></form> </div>";
 }
 
 
@@ -114,7 +115,6 @@ if($num_of_rows > 0)
     </tr>";
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         $currnetUser = $row['user_id'];
-        $reviewID= $row['ID'];
 
         $queryB = "SELECT * FROM auction.users WHERE Id = '$currnetUser'";
         $getMatchesB= sqlsrv_query($conn, $queryB);
@@ -135,24 +135,24 @@ echo "</table>";
 }
 
 else{
-  echo "<br>
+  echo "
   <p align='center'>No reviews have been added by other users so far. </p>";
 }
 
 
-// if (isset($_POST['delete_item'])){
-//   $review_id = $_POST['delete_item'];
-//   $current_user_id = $_SESSION['user_id'];
-//
-//   $tsql= "DELETE FROM auction.product_reviews WHERE ID = 'review_id' AND user_id = '$current_user_id'";
-//   $getResults= sqlsrv_query($conn, $tsql);
-//
-//   $rowsAffected = sqlsrv_rows_affected($getResults);
-//   if ($getResults == FALSE or $rowsAffected == FALSE)
-//       die(FormatErrors(sqlsrv_errors()));
-//   echo "<meta http-equiv='refresh' content='0'>";
-//
-// }
+if (isset($_POST['delete_item'])){
+  $review_id = $_POST['delete_item'];
+  $current_user_id = $_SESSION['user_id'];
+
+  $tsql= "DELETE FROM auction.product_reviews WHERE ID = 'review_id' AND user_id = '$current_user_id'";
+  $getResults= sqlsrv_query($conn, $tsql);
+
+  $rowsAffected = sqlsrv_rows_affected($getResults);
+  if ($getResults == FALSE or $rowsAffected == FALSE)
+      die(FormatErrors(sqlsrv_errors()));
+  echo "<meta http-equiv='refresh' content='0'>";
+
+}
 ?>
 
 
