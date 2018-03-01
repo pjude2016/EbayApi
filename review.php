@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 $_SESSION['message'] = '';
@@ -6,22 +5,69 @@ $connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!",
 $serverName = "tcp:auctora-server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 
- echo "<br><br><br><br><br>";
+
+
+
+if (isset($_POST['comment_posted'])){
+
+  $comment = $_POST['reviewBody'];
+  $currentUserId = $_SESSION['userID'];
+  $vall = $_POST['comment_posted'];
+  $rating = 0;
+
+  if (isset($_POST['star']))
+  {
+    $rating = $_POST['star'];
+  }
+
+
+  // echo "the value" . $vall;
+
+  //echo "product";
+  //echo $prod_id;
+
+  $tsql_query_to_avoid_duplicates = "SELECT * FROM auction.product_reviews WHERE product_id = '$vall' AND user_id = '$currentUserId'";
+  $getResults= sqlsrv_query($conn, $tsql_query_to_avoid_duplicates, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+  if ($getResults == FALSE)
+      die(FormatErrors(sqlsrv_errors()));
+  $num_of_rows = sqlsrv_num_rows($getResults);
+
+  if($num_of_rows <= 0)
+  {
+    //push review to database
+  $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
+
+  $params2 = array($vall,$currentUserId,$comment,$rating);
+  $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+  $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+  if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+    die(FormatErrors(sqlsrv_errors()));
+  }
+
+  header("Location: products.php");
+
+  }
+  else{
+    header("Location: products.php");
+  }
+
+
+
+}
+
+
+echo "<br><br><br><br><br>";
 
 echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
 $current_uid = $_SESSION['user_id'];
-echo "Ebay item id is" . $ebayItemId;
+// echo "Ebay item id is" . $ebayItemId;
 //user primary key
 $currentId = $_SESSION['userID'];
 
-echo "</br>";
 
-
-
-echo "</br></br>";
 $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
 $getMatches= sqlsrv_query($conn, $query);
 
@@ -30,8 +76,8 @@ $count = $row['view_count'];
 //obtain below product primary key id from database
 $prod_id = $row['ID'];
 $_SESSION['productID'] = $row['ID'];
-echo "product1_id ";
-echo $prod_id;
+// echo "product1_id ";
+// echo $prod_id;
 
 
 echo "
@@ -56,33 +102,49 @@ echo "<td>" . $row['price'] . "</td>";
 echo "<td>" . $row['serviceCost'] . "</td>";
 echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
-echo "</table>";
 
 
-if (isset($_POST['comment_posted'])){
 
-  $comment = $_POST['reviewBody'];
-  $currentUserId = $_SESSION['userID'];
-  $vall = $_POST['comment_posted'];
+// if (isset($_POST['comment_posted'])){
 
-  echo "the value" . $vall;
+//   $comment = $_POST['reviewBody'];
+//   $currentUserId = $_SESSION['userID'];
+//   $vall = $_POST['comment_posted'];
 
-  //echo "product";
-  //echo $prod_id;
+//   // echo "the value" . $vall;
 
-  $rating =5;
+//   //echo "product";
+//   //echo $prod_id;
 
-  //push review to database
-  $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
+//   $rating =5;
+//   $tsql_query_to_avoid_duplicates = "SELECT * FROM auction.product_reviews WHERE product_id = '$vall' AND user_id = '$currentUserId'";
+//   $getResults= sqlsrv_query($conn, $tsql_query_to_avoid_duplicates);
+//   if ($getResults == FALSE)
+//       die(FormatErrors(sqlsrv_errors()));
+//   $num_of_rows = sqlsrv_num_rows($getResults);
 
-  $params2 = array($vall,$currentUserId,$comment,$rating);
-  $getResults2= sqlsrv_query($conn, $tsql2, $params2);
-  $rowsAffected2 = sqlsrv_rows_affected($getResults2);
-  if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
-    die(FormatErrors(sqlsrv_errors()));
-  }
+//   if($num_of_rows == 0)
+//   {
+//     //push review to database
+//   $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
 
-}
+//   $params2 = array($vall,$currentUserId,$comment,$rating);
+//   $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+//   $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+//   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+//     die(FormatErrors(sqlsrv_errors()));
+//   }
+
+//   header("Location: products.php");
+//   exit;
+//   }
+//   else{
+//     $_SESSION['message'] = 'You have already reviewed this item.';
+//   }
+
+
+
+// }
 
 // $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
 // $params2 = array($title,$rating,$currentId,$id);
@@ -128,7 +190,7 @@ if (isset($_POST['comment_posted'])){
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
 
@@ -145,7 +207,7 @@ if (isset($_POST['comment_posted'])){
       }
 
       .forum-full {
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(158, 158, 158, 0.7);
         max-width: 100%;
         max-height: 100%;
         border: 1px solid;
@@ -190,6 +252,42 @@ if (isset($_POST['comment_posted'])){
         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       }
 
+      div.stars {
+      width: 270px;
+      display: inline-block;
+      margin-left: 560px;
+    }
+
+      input.star { display: none; }
+
+      label.star {
+        float: right;
+        padding: 10px;
+        font-size: 36px;
+        color: #444;
+        transition: all .2s;
+      }
+
+      input.star:checked ~ label.star:before {
+        content: '\f005';
+        color: #FD4;
+        transition: all .25s;
+      }
+
+      input.star-5:checked ~ label.star:before {
+        color: #FE7;
+        text-shadow: 0 0 20px #952;
+      }
+
+      input.star-1:checked ~ label.star:before { color: #F62; }
+
+      label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+      label.star:before {
+        content: '\f006';
+        font-family: FontAwesome;
+      }
+
     </style>
 
   </head>
@@ -206,7 +304,7 @@ if (isset($_POST['comment_posted'])){
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
+              <a class="nav-link js-scroll-trigger" href="#">My Watchlist</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="products.php">Products</a>
@@ -220,11 +318,42 @@ if (isset($_POST['comment_posted'])){
     </nav>
 
     <!-- <a href="#writereview">Write a review</a> -->
-
     <!-- Write review -->
+    <!-- <div class="stars">
+  <form action="" method="post">
+    <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+    <label class="star star-5" for="star-5"></label>
+    <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+    <label class="star star-4" for="star-4"></label>
+    <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+    <label class="star star-3" for="star-3"></label>
+    <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+    <label class="star star-2" for="star-2"></label>
+    <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+    <label class="star star-1" for="star-1"></label>
+  </form>
+</div> -->
+
+
     <div class="col-md-2"></div>
     <div class="col-md-8 container forum-full">
+
         <form method="post" id="writereviews">
+          <h2 align='center'> Please rate the item </h2>
+          <div class="stars">
+          <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+    <label class="star star-5" for="star-5"></label>
+    <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+    <label class="star star-4" for="star-4"></label>
+    <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+    <label class="star star-3" for="star-3"></label>
+    <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+    <label class="star star-2" for="star-2"></label>
+    <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+    <label class="star star-1" for="star-1"></label>
+  </div>
+
+
           <textarea placeholder="Write your review..." class="col-md-12 ckeditor" name="reviewBody" rows="8"></textarea>
           <!-- <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;"> -->
           <button type="submit" class="btn btn-warning" name="comment_posted" value="<?php echo $_SESSION['productID']; ?>">Post</button>
