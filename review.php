@@ -29,7 +29,7 @@ $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 $count = $row['view_count'];
 //obtain below product primary key id from database
 $prod_id = $row['ID'];
-$_SESSION['productID'] = $row['Id'];
+$_SESSION['productID'] = $prod_id;
 echo "product1_id ";
 echo $prod_id;
 
