@@ -152,6 +152,7 @@ if (isset($_POST['delete_item'])){
   if ($getResults == FALSE or $rowsAffected == FALSE)
       die(FormatErrors(sqlsrv_errors()));
     echo "<meta http-equiv='refresh' content='0'>";
+    //header("Location: products.php");
 }
 ?>
 
