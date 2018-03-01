@@ -102,6 +102,7 @@ echo "<td>" . $row['price'] . "</td>";
 echo "<td>" . $row['serviceCost'] . "</td>";
 echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
+echo "</table>";
 
 
 
@@ -304,7 +305,7 @@ echo "</tr>";
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#">My Watchlist</a>
+              <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="products.php">Products</a>
