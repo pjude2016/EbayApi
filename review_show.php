@@ -143,7 +143,7 @@ else{
 
 if (isset($_POST['delete_item'])){
   $review_id = $_POST['delete_item'];
-  $current_user_id = $_SESSION['user_id'];
+  $current_user_id = $_SESSION['userID'];
 
   $tsql= "DELETE FROM auction.product_reviews WHERE ID = '$review_id' AND user_id = '$current_user_id'";
   $getResults= sqlsrv_query($conn, $tsql);
@@ -151,7 +151,7 @@ if (isset($_POST['delete_item'])){
   $rowsAffected = sqlsrv_rows_affected($getResults);
   if ($getResults == FALSE or $rowsAffected == FALSE)
       die(FormatErrors(sqlsrv_errors()));
-  echo "<meta http-equiv='refresh' content='0'>";
+  header("Location: products.php");
 }
 ?>
 
