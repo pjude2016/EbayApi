@@ -1,21 +1,30 @@
+
 <?php
 session_start();
 $_SESSION['message'] = '';
 $connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!", "Database" => "auctoraDB");
 $serverName = "tcp:auctora-server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
+
  echo "<br><br><br><br><br>";
+
 echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
 $current_uid = $_SESSION['user_id'];
+
 //user primary key
 $currentId = $_SESSION['userID'];
+
 echo "</br>";
+
+
+
 echo "</br></br>";
 $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
 $getMatches= sqlsrv_query($conn, $query);
+
 $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 $count = $row['view_count'];
 //obtain below product primary key id from database
@@ -23,7 +32,10 @@ $prod_id = $row['ID'];
 $_SESSION['productID'] = $row['ID'];
 echo "product1_id ";
 echo $prod_id;
+
+
 echo "
+
 <table border='1' align='center'>
 <tr>
 <th>Image</th>
@@ -32,6 +44,8 @@ echo "
 <th>Service Cost</th>
 <th>ebayID</th>
 </tr>";
+
+
 $product_link = $row['product_link'];
 $title = $row['title'];
 $img_src = $row['image'];
@@ -42,6 +56,9 @@ echo "<td>" . $row['price'] . "</td>";
 echo "<td>" . $row['serviceCost'] . "</td>";
 echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
+
+
+
 // $tsql2= "INSERT INTO auction.product_reviews (comment, rating, user_id, product_id ) VALUES (?,?,?,?);";
 // $params2 = array($title,$rating,$currentId,$id);
 // $getResults2= sqlsrv_query($conn, $tsql2, $params2);
@@ -49,6 +66,8 @@ echo "</tr>";
 // if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
 //   die(FormatErrors(sqlsrv_errors()));
 // }
+
+
 // $currentUserId = $_SESSION['userID'];
 //
 // $productid = $row['ID'];
@@ -95,9 +114,11 @@ echo "</tr>";
         overflow-x: hidden;
         margin-bottom: 15px;
       }
+
       textarea {
         resize: none;
       }
+
       .forum-full {
         background-color: rgba(0, 0, 0, 0.7);
         max-width: 100%;
@@ -106,24 +127,29 @@ echo "</tr>";
         padding: 15px;
         margin: .4%;
       }
+
       .topic {
         margin-top: 5px;
         color: rgba(215, 169, 60, 0.8);
       }
+
       .body-full {
         color: white;
         margin-bottom: 1%;
       }
+
       .comment {
         position: absolute;
         right: 35px;
         bottom: 10px;
         font-size: 40px
       }
+
       .comment-box {
         width: 100%;
         row: 9;
       }
+
       .post-by {
         position: absolute;
         color: rgba(255, 255, 255, 0.4);
@@ -131,12 +157,14 @@ echo "</tr>";
         right: 84%;
         font-size: 12px;
       }
+
       hr {
         border: 0;
         height: 0;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       }
+
     </style>
 
   </head>
@@ -182,11 +210,13 @@ echo "</tr>";
   <?php
   $comment = $_POST['reviewBody'];
   $currentUserId = $_SESSION['userID'];
-  echo $comment;
-  echo "</br>";
-  echo "product2: ";
-  echo $prod_id;
+
+
+  //echo "product";
+  //echo $prod_id;
+
   $rating =5;
+
   //push review to database
   $tsql2= "INSERT INTO auction.product_reviews (product_id, user_id, comment, rating) VALUES (?,?,?,?);";
   $params2 = array($prod_id,$currentUserId,$comment,$rating);
