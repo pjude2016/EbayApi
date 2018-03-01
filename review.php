@@ -169,14 +169,14 @@ echo "</tr>";
     <!-- <a href="#writereview">Write a review</a> -->
 
     <!-- Write review -->
-
+    <div class="col-md-2"></div>
     <div class="col-md-8 container forum-full">
         <form action="" method="post" id="writereviews">
           <textarea placeholder="Write your review..." class="col-md-12 ckeditor" name="reviewBody" rows="8"></textarea>
           <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;">
         </form>
     </div>
-
+    <div class="col-md-2"></div>
 
 
   <?php
@@ -184,7 +184,7 @@ echo "</tr>";
   $currentUserId = $_SESSION['userID'];
   echo $comment;
   echo "</br>";
-  echo "product2";
+  echo "product2: ";
   echo $prod_id;
   $rating =5;
   //push review to database
