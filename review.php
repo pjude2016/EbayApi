@@ -203,7 +203,6 @@ echo "</tr>";
         </form>
     </div>
 
-
   <?php
   // echo "    <div class=\"col-md-8 container forum-full\">
   //         <form action=\"\" method=\"post\" id=\"writereviews\">
