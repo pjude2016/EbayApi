@@ -11,7 +11,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
-$ebayItemId = $_POST['ebayID'];
+$ebayItemId = $_POST['ebayIDShow'];
 $current_uid = $_SESSION['user_id'];
 echo "Ebay item id is" . $ebayItemId;
 //user primary key
