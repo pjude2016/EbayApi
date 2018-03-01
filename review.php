@@ -205,12 +205,10 @@ echo "</tr>";
 
 
   <?php
-  echo "    <div class="col-md-8 container forum-full">
-          <form action="" method="post" id="writereviews">
+  echo "    <form action="" method="post" id="writereviews">
             <textarea placeholder="Write your review..." class="col-md-12 ckeditor" name="reviewBody" rows="8"></textarea>
             <input type="submit" value="Post" style="background:green;color:white;margin-top:10px;">
-          </form>
-      </div>";
+          </form>";
   $comment = $_POST['reviewBody'];
   $currentUserId = $_SESSION['userID'];
   $ebayItemIds = $_POST['ebayID'];
