@@ -91,7 +91,7 @@ if($num_of_rows > 0)
         $second = $rowB['lastname'];
         echo "<tr>";
 
-        echo "<td>" . $first  . $second . "</td>";
+        echo "<td>" . $first . "</td>";
         echo "<td>" . $row['comment'] . "</td>";
         echo "<td>" . $row['rating'] . "</td>";
         echo "</tr>";
