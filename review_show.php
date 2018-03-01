@@ -83,12 +83,12 @@ if($num_of_rows > 0)
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
         $currnetUser = $row['user_id'];
 
-        $queryB = "SELECT * FROM auction.users WHERE ID = '$currnetUser'";
+        $queryB = "SELECT * FROM auction.users WHERE Id = '$currnetUser'";
         $getMatchesB= sqlsrv_query($conn, $queryB);
 
         $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
-        $first = $rowB['firstname'];
-        $second = $rowB['lastname'];
+        $first = $rowB['FirstName'];
+        $second = $rowB['LastName'];
         echo "<tr>";
 
         echo "<td>" . $first . "</td>";
