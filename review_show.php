@@ -62,18 +62,17 @@ echo "</table>";
 
 
 //Display all reviews
-$queryB = "SELECT * FROM auction.product_reviews WHERE product_id = '$prod_id'";
-$getMatchesB= sqlsrv_query($conn, $queryB);
 
-$rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
 
-//$getResults= sqlsrv_query($conn, $query, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
-if ($getMatchesB == FALSE)
+$tsql = "SELECT * FROM auction.product_reviews WHERE product_id = '$prod_id'";
+$getResults= sqlsrv_query($conn, $tsql, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+if ($getResults == FALSE)
     die(FormatErrors(sqlsrv_errors()));
 
 // $row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC);
-$num_of_rows = sqlsrv_num_rows($getMatchesB);
+$num_of_rows = sqlsrv_num_rows($getResults);
 // echo "<br><br><br>num of rows: " . $num_of_rows;
+
 if($num_of_rows > 0)
 {
 
@@ -85,7 +84,7 @@ if($num_of_rows > 0)
     <th>Comment</th>
     <th>Rating</th>
     </tr>";
-    while ($rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC)) {
+    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 
         echo "<tr>";
 
