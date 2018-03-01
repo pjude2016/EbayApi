@@ -70,13 +70,14 @@ if($rowC)
       <tr>
       <th>Comment</th>
       <th>Rating</th>
+      <th></th>
       </tr>";
 
 
     echo "<tr>";
     echo "<td>" . $rowC['comment'] . "</td>";
     echo "<td>" . $rowC['rating'] . "</td>";
-    echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Remove Item</button></form> </td>";
+    echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Delete Comment</button></form> </td>";
     echo "</tr>";
     echo "</table>";
 }
@@ -150,7 +151,7 @@ if (isset($_POST['delete_item'])){
   $rowsAffected = sqlsrv_rows_affected($getResults);
   if ($getResults == FALSE or $rowsAffected == FALSE)
       die(FormatErrors(sqlsrv_errors()));
-  echo "<meta http-equiv='refresh' content='0'>";
+  header("Location: products.php");
 
 }
 ?>
