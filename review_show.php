@@ -58,6 +58,52 @@ echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
 echo "</table>";
 
+
+
+
+//Display all reviews
+$query = "SELECT * FROM auction.product_searches WHERE ebayID = '$ebayItemId'";
+$getMatches= sqlsrv_query($conn, $query);
+
+//$row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+
+$getResults= sqlsrv_query($conn, $query, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+if ($getResults == FALSE)
+    die(FormatErrors(sqlsrv_errors()));
+
+// $row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC);
+$num_of_rows = sqlsrv_num_rows($getResults);
+// echo "<br><br><br>num of rows: " . $num_of_rows;
+if($num_of_rows > 0)
+{
+
+  echo "
+    <br><br><br><br><br>
+    <table border='1' align='center'>
+    <tr>
+    <th>User ID</th>
+    <th>Comment</th>
+    <th>Rating</th>
+    </tr>";
+    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
+
+        echo "<tr>";
+
+        echo "<td>" . $row['user_id'] . "</td>";
+        echo "<td>" . $row['comment'] . "</td>";
+        echo "<td>" . $row['rating'] . "</td>";
+        echo "</tr>";
+
+  }
+
+echo "</table>";
+}
+
+else{
+  echo "<br><br><br><br><br>
+  <p align='center'>No reviews added so far. Why not add a review for this product? LINK</p>";
+}
+
 ?>
 
 
