@@ -82,7 +82,8 @@ if($rowC)
 else{
   echo "<br>
   <p align='center'>You have not given a Review. Why not add a review ?</p>";
-  echo "<form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-danger\" align=\"center\" name=\"ebayID\" value=\"$ebayItemId\" >Review</button></form> ";
+
+  echo " <div style=\"text-align:center\"> <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$ebayItemId\" >Review</button></form> </div>";
 }
 
 
