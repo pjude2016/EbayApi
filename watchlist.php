@@ -56,7 +56,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   // $ebayidval = $row['ebayID'];
   $product_id = $row['ID'];
   $img_src = $row['image'];
-  //$ebay = $row['ebayID']
+  $ebay = (float)$row['ebayID']
   echo "<tr>";
 
   echo "<td>" . "<a href=\"$product_link\"><img src=\"$img_src\"></a>" . "</td>";
