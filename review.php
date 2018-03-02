@@ -67,7 +67,7 @@ echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
 //$some=	202241977639;
-$_SESSION['ebayItem'] = sprintf("%f",$ebayItemId);
+$_SESSION['ebayItem'] = sprintf("%i",$ebayItemId);
 echo "it is";
 echo $_SESSION['ebayItem'];
 $current_uid = $_SESSION['userID'];
