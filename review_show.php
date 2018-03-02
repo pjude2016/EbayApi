@@ -15,7 +15,7 @@ $review=$_SESSION['reviewBool'];
 if($review == 1){
 $ebayItemId = $_POST['ebayIDShow'];
 }
-else{
+else if ($review == 0){
   $ebayItemId = $_SESSION['ebayItem'];
 }
 

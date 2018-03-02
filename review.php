@@ -43,7 +43,7 @@ if (isset($_POST['comment_posted'])){
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
     die(FormatErrors(sqlsrv_errors()));
   }
-  $_SESSION['ebayItem'] = $_POST['ebayID'];
+  $_SESSION['ebayItem'] = $ebayItemId;
   $value=0;
   $_SESSION['reviewBool'] =$value ;
   header("Location: review_show.php");
@@ -52,7 +52,7 @@ if (isset($_POST['comment_posted'])){
   else{
     $value=0;
     $_SESSION['reviewBool'] = $value;
-    $_SESSION['ebayItem'] = $_POST['ebayID'];
+    $_SESSION['ebayItem'] = $ebayItemId;
     header("Location: review_show.php");
   }
 
