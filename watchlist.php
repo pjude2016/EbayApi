@@ -39,6 +39,7 @@ echo "
 <th>Price</th>
 <th>Service Cost</th>
 <th>ebayID</th>
+<th>Reviews</th>
 <th>Remove Item</th>
 </tr>";
 
@@ -63,6 +64,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   echo "<td>" . $row['price'] . "</td>";
   echo "<td>" . $row['serviceCost'] . "</td>";
   echo "<td>" . $row['ebayID'] . "</td>";
+  echo "<td>" . $product_id . "</td>";
   echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$product_id\">Remove Item</button></form> </td>";
   echo "</tr>";
 
