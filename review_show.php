@@ -11,7 +11,8 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 echo "<h1 align='center'>Reviews for this Watch</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
-if($_POST['ebayIDShow']){
+$review=$_POST['reviewBool']
+if($review == 1){
 $ebayItemId = $_POST['ebayIDShow'];
 }
 else{
