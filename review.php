@@ -43,15 +43,16 @@ if (isset($_POST['comment_posted'])){
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
     die(FormatErrors(sqlsrv_errors()));
   }
-
+  $_SESSION['ebayItem'] = $_POST['ebayID'];
   header("Location: products.php");
 
   }
   else{
+    $_SESSION['ebayItem'] = $_POST['ebayID'];
     header("Location: products.php");
   }
 
-  
+
 
 }
 
@@ -142,7 +143,7 @@ echo "</tr>";
 //     $_SESSION['message'] = 'You have already reviewed this item.';
 //   }
 
-  
+
 
 // }
 
