@@ -42,9 +42,7 @@ if (isset($_POST['comment_posted'])){
   if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
     die(FormatErrors(sqlsrv_errors()));
   }
-  $_SESSION['ebayItem'] = $ebayItemId;
-  echo "itemid";
-  echo "$ebayItemId";
+  // $_SESSION['ebayItem'] = $ebayItemId;
   $value=0;
   $_SESSION['reviewBool'] =$value ;
   header("Location: review_show.php");
@@ -53,7 +51,7 @@ if (isset($_POST['comment_posted'])){
   else{
     $value=0;
     $_SESSION['reviewBool'] = $value;
-    $_SESSION['ebayItem'] = $ebayItemId;
+    // $_SESSION['ebayItem'] = $ebayItemId;
     header("Location: review_show.php");
   }
 
@@ -68,6 +66,7 @@ echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
+$_SESSION['ebayItem'] = $ebayItemId;
 $current_uid = $_SESSION['userID'];
 // echo "Ebay item id is" . $ebayItemId;
 //user primary key
@@ -82,6 +81,8 @@ $count = $row['view_count'];
 //obtain below product primary key id from database
 $prod_id = $row['ID'];
 $_SESSION['productID'] = $row['ID'];
+
+
 // echo "product1_id ";
 // echo $prod_id;
 
