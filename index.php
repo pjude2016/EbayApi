@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // $_SESSION['logged_in'] = true;
       $_SESSION['logged_in_val'] = true;
       $_SESSION['firstname'] = $row['FirstName'];
-      $_SESSION['user_id'] = $row['Email'];
+      // $_SESSION['user_id'] = $row['Email'];
       $_SESSION['userID'] = $row['Id'];
       header("Location: products.php");
       sqlsrv_free_stmt($getResults);

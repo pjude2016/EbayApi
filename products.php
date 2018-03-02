@@ -23,12 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['add_to_watchlist'])){
     // echo "WE ARE IN NOW";
     $my_ebay_id = $_POST['add_to_watchlist'];
+
+    $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$my_ebay_id'";
+    $getMatches= sqlsrv_query($conn, $query);
+    $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+    $product_id = $row['ID'];
+
+
     $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$my_ebay_id'";
     $getMatches= sqlsrv_query($conn, $query);
     $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
 
-    $current_uid = $_SESSION['user_id'];
-    $query_to_avoid_watchlist_duplication = "SELECT * FROM auction.watch_list WHERE ebayID = '$my_ebay_id' AND user_id = '$current_uid'";
+    $current_uid = $_SESSION['userID'];
+    $query_to_avoid_watchlist_duplication = "SELECT * FROM auction.watch_list WHERE ebayID = '$product_id' AND user_id = '$current_uid'";
     $getMatches2= sqlsrv_query($conn, $query_to_avoid_watchlist_duplication);
     $row_2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
 
@@ -38,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // echo "WE ARE IN";
 
       $tsql= "INSERT INTO auction.watch_list (ebayID, user_id) VALUES (?,?);";
-      $params = array($my_ebay_id, $_SESSION['user_id']);
+      $params = array($product_id, $_SESSION['userID']);
       $getResults= sqlsrv_query($conn, $tsql, $params);
       $rowsAffected = sqlsrv_rows_affected($getResults);
       if ($getResults == FALSE or $rowsAffected == FALSE)
@@ -326,7 +333,7 @@ if(isset($_POST['Query']))
   $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
   if(!$rowB){*/
 
-    $current_uid = $_SESSION['user_id'];
+    $current_uid = $_SESSION['userID'];
     $gend_for_filters = str_replace ("'s","",$gend);
     $query = "SELECT * FROM auction.filters
     WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max'
@@ -601,9 +608,9 @@ if(isset($_POST['Query']))
         //check for duplication
         $status_on_ebay = 'active';
         if(!$row){
-        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID, product_link, image, view_count, status, brand) VALUES (?,?,?,?,?,?,?,?,?);";
+        $tsql= "INSERT INTO auction.product_searches (title, price, serviceCost, ebayID, product_link, image, view_count, status, brand, display, condition, gender) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
         // $user_id = $_SESSION['user_id'];
-        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID,$sqlLink,$image,$viewcount,$status_on_ebay,$brand);
+        $params = array($sqlItemTitle,$sqlItemSellingStatus,$sqlItemShippingInfo,$sqlEbayItemID,$sqlLink,$image,$viewcount,$status_on_ebay,$brand,$disp,$cond,$gend);
         $getResults= sqlsrv_query($conn, $tsql, $params);
         $rowsAffected = sqlsrv_rows_affected($getResults);
         if ($getResults == FALSE or $rowsAffected == FALSE)

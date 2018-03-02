@@ -51,7 +51,7 @@ if (isset($_POST['comment_posted'])){
     header("Location: products.php");
   }
 
-
+  
 
 }
 
@@ -62,7 +62,7 @@ echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
-$current_uid = $_SESSION['user_id'];
+$current_uid = $_SESSION['userID'];
 // echo "Ebay item id is" . $ebayItemId;
 //user primary key
 $currentId = $_SESSION['userID'];
@@ -102,7 +102,6 @@ echo "<td>" . $row['price'] . "</td>";
 echo "<td>" . $row['serviceCost'] . "</td>";
 echo "<td>" . $row['ebayID'] . "</td>";
 echo "</tr>";
-echo "</table>";
 
 
 
@@ -143,7 +142,7 @@ echo "</table>";
 //     $_SESSION['message'] = 'You have already reviewed this item.';
 //   }
 
-
+  
 
 // }
 
@@ -305,7 +304,7 @@ echo "</table>";
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
+              <a class="nav-link js-scroll-trigger" href="#">My Watchlist</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="products.php">Products</a>

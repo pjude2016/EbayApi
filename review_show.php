@@ -12,7 +12,7 @@ echo "<h1 align='center'>Reviews for this Watch</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayIDShow'];
-$current_uid = $_SESSION['user_id'];
+$current_uid = $_SESSION['userID'];
 //echo "Ebay item id is" . $ebayItemId;
 //user primary key
 $currentId = $_SESSION['userID'];

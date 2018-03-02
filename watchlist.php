@@ -13,11 +13,11 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 
-$current_user_id = $_SESSION['user_id'];
+$current_user_id = $_SESSION['userID'];
 
 // $tsql= "SELECT * FROM auction.watch_list WHERE user_id = '$current_user_id'";
 $tsql = "SELECT * FROM auction.product_searches AS auc
-WHERE auc.ebayID IN (SELECT ebayID FROM auction.watch_list WHERE user_id = '$current_user_id') AND auc.status LIKE 'active'";
+WHERE auc.ID IN (SELECT ebayID FROM auction.watch_list WHERE user_id = '$current_user_id') AND auc.status LIKE 'active'";
 $getResults= sqlsrv_query($conn, $tsql, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
 if ($getResults == FALSE)
     die(FormatErrors(sqlsrv_errors()));
@@ -53,7 +53,8 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 
   $product_link = $row['product_link'];
   $title = $row['title'];
-  $ebayidval = $row['ebayID'];
+  // $ebayidval = $row['ebayID'];
+  $product_id = $row['ID'];
   $img_src = $row['image'];
   echo "<tr>";
 
@@ -62,7 +63,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   echo "<td>" . $row['price'] . "</td>";
   echo "<td>" . $row['serviceCost'] . "</td>";
   echo "<td>" . $row['ebayID'] . "</td>";
-  echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$ebayidval\">Remove Item</button></form> </td>";
+  echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$product_id\">Remove Item</button></form> </td>";
   echo "</tr>";
 
   }
@@ -79,7 +80,7 @@ else{
 
 if (isset($_POST['delete_item'])){
   $my_ebay_id = $_POST['delete_item'];
-  $current_user_id = $_SESSION['user_id'];
+  $current_user_id = $_SESSION['userID'];
 
   $tsql= "DELETE FROM auction.watch_list WHERE ebayID = '$my_ebay_id' AND user_id = '$current_user_id'";
   $getResults= sqlsrv_query($conn, $tsql);
@@ -88,10 +89,8 @@ if (isset($_POST['delete_item'])){
   if ($getResults == FALSE or $rowsAffected == FALSE)
       die(FormatErrors(sqlsrv_errors()));
   echo "<meta http-equiv='refresh' content='0'>";
-
-
-
 }
+
 
 
 ?>
