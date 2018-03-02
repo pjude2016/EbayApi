@@ -11,7 +11,9 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 echo "<h1 align='center'>Reviews for this Watch</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
+if($_POST['ebayIDShow']){
 $ebayItemId = $_POST['ebayIDShow'];
+}
 $current_uid = $_SESSION['userID'];
 //echo "Ebay item id is" . $ebayItemId;
 //user primary key
@@ -68,7 +70,7 @@ if($rowC)
     echo "
       <table border='1' align='center'>
       <tr>
-      <th>Comment</th>
+      <th>Review</th>
       <th>Rating</th>
       <th></th>
       </tr>";
@@ -77,7 +79,7 @@ if($rowC)
     echo "<tr>";
     echo "<td>" . $rowC['comment'] . "</td>";
     echo "<td>" . $rowC['rating'] . "</td>";
-    echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Delete Comment</button></form> </td>";
+    echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$reviewID\">Delete Review</button></form> </td>";
     echo "</tr>";
     echo "</table>";
 }
@@ -111,7 +113,7 @@ if($num_of_rows > 0)
     <table border='1' align='center'>
     <tr>
     <th>User</th>
-    <th>Comment</th>
+    <th>Review</th>
     <th>Rating</th>
     </tr>";
     while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
