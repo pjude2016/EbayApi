@@ -7,7 +7,6 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
 
 
 
-
 if (isset($_POST['comment_posted'])){
 
   $comment = $_POST['reviewBody'];
