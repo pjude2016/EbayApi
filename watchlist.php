@@ -53,10 +53,10 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 
   $product_link = $row['product_link'];
   $title = $row['title'];
-  // $ebayidval = $row['ebayID'];
+  $ebayidval = $row['ebayID'];
   $product_id = $row['ID'];
   $img_src = $row['image'];
-  $ebay = (string)$row['ebayID']
+
   echo "<tr>";
 
   echo "<td>" . "<a href=\"$product_link\"><img src=\"$img_src\"></a>" . "</td>";
@@ -66,7 +66,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   echo "<td>" . $row['ebayID'] . "</td>";
   echo "<td>" ;
   echo $row['ebayID'];
-  //echo " <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$row['ebayID']\" >Add Your Review</button></form>";
+  echo " <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$ebayidval\" >Add Your Review</button></form>";
   echo "</td>";
   echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$product_id\">Remove Item</button></form> </td>";
   echo "</tr>";
