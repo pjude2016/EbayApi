@@ -66,6 +66,7 @@ echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
+echo $ebayItemId;
 //$some=	202241977639;
 $_SESSION['ebayItem'] = $ebayItemId;
 echo "it is";
