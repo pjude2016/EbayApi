@@ -44,12 +44,12 @@ if (isset($_POST['comment_posted'])){
     die(FormatErrors(sqlsrv_errors()));
   }
   $_SESSION['ebayItem'] = $_POST['ebayID'];
-  header("Location: products.php");
+  header("Location: review_show.php");
 
   }
   else{
     $_SESSION['ebayItem'] = $_POST['ebayID'];
-    header("Location: products.php");
+    header("Location: review_show.php");
   }
 
 

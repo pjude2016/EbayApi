@@ -15,7 +15,7 @@ if($_POST['ebayIDShow']){
 $ebayItemId = $_POST['ebayIDShow'];
 }
 else{
-  $ebayItemId = $_SESSION['ebayItem'];
+  $ebayItemId = $_SESSION['productID'];
 }
 $current_uid = $_SESSION['userID'];
 //echo "Ebay item id is" . $ebayItemId;
