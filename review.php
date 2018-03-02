@@ -50,6 +50,7 @@ if (isset($_POST['comment_posted'])){
 
   }
   else{
+    $value=0;
     $_SESSION['reviewBool'] = $value;
     $_SESSION['ebayItem'] = $_POST['ebayID'];
     header("Location: review_show.php");
