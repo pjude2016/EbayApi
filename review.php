@@ -43,6 +43,8 @@ if (isset($_POST['comment_posted'])){
     die(FormatErrors(sqlsrv_errors()));
   }
   $_SESSION['ebayItem'] = $ebayItemId;
+  echo "itemid";
+  echo "$ebayItemId";
   $value=0;
   $_SESSION['reviewBool'] =$value ;
   header("Location: review_show.php");
