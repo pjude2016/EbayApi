@@ -65,8 +65,8 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   echo "<td>" . $row['serviceCost'] . "</td>";
   echo "<td>" . $row['ebayID'] . "</td>";
   echo "<td>" ;
-  echo $row['ebayID'];
   echo " <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$ebayidval\" >Add Your Review</button></form>";
+  echo "<form method=\"POST\" action=\"review_show.php\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"ebayIDShow\" value=\"$ebayidval\" >Show all Reviews</button></form>";
   echo "</td>";
   echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$product_id\">Remove Item</button></form> </td>";
   echo "</tr>";
