@@ -37,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['firstname'] = $row['FirstName'];
       // $_SESSION['user_id'] = $row['Email'];
       $_SESSION['userID'] = $row['Id'];
-      header("Location: products.php");
+      // header("Location: products.php");
+      header("Location: ml.php");
       sqlsrv_free_stmt($getResults);
       exit;
     }

@@ -16,8 +16,6 @@ if($review == 1){
 $ebayItemId = $_POST['ebayIDShow'];
 }
 else if ($review == 0){
-  echo "hello";
-  echo $_SESSION['ebayItem'];
   $ebayItemId = $_SESSION['ebayItem'];
 }
 
@@ -154,6 +152,11 @@ if (isset($_POST['delete_item'])){
   $review_id = $_POST['delete_item'];
   $current_user_id = $_SESSION['userID'];
 
+  $queryB = "SELECT * FROM auction.product_reviews WHERE ID = '$review_id' AND user_id = '$current_user_id' ";
+  $getMatchesB= sqlsrv_query($conn, $queryB);
+  $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
+  $ebayProductid = $rowB['product_id'];
+
   $tsql= "DELETE FROM auction.product_reviews WHERE ID = '$review_id' AND user_id = '$current_user_id'";
   $getResults= sqlsrv_query($conn, $tsql);
 
@@ -161,7 +164,21 @@ if (isset($_POST['delete_item'])){
   if ($getResults == FALSE or $rowsAffected == FALSE)
       die(FormatErrors(sqlsrv_errors()));
     //echo "<meta http-equiv='refresh' content='0'>";
-    header("Location: products.php");
+    $value=0;
+    $_SESSION['reviewBool'] = $value;
+
+
+
+
+
+    $query = "SELECT * FROM auction.product_searches WHERE ID = '$ebayProductid'";
+    $getMatches= sqlsrv_query($conn, $query);
+
+    $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+    $ebayIdent = $row['ebayID'];
+
+    $_SESSION['ebayItem'] = $ebayIdent;
+    header("Location: review_show.php");
 }
 ?>
 
@@ -198,6 +215,10 @@ if (isset($_POST['delete_item'])){
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="ml.php">Home</a>
+            </li>
+            
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
             </li>

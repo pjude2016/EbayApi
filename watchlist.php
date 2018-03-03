@@ -165,6 +165,9 @@ if (isset($_POST['delete_item'])){
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="ml.php">Home</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#">My Watchlist</a>
             </li>
             <li class="nav-item">

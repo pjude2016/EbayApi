@@ -14,6 +14,12 @@ if (isset($_POST['comment_posted'])){
   $vall = $_POST['comment_posted'];
   $rating = 0;
 
+  $query = "SELECT * FROM auction.product_searches WHERE ID = '$vall'";
+  $getMatches= sqlsrv_query($conn, $query);
+
+  $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+  $ebayIdent = $row['ebayID'];
+
   if (isset($_POST['star']))
   {
     $rating = $_POST['star'];
@@ -45,12 +51,17 @@ if (isset($_POST['comment_posted'])){
   // $_SESSION['ebayItem'] = $ebayItemId;
   $value=0;
   $_SESSION['reviewBool'] =$value ;
+  //$ebayItemIds = $_POST['ebayID'];
+  //$some=	202241977639;
+  $_SESSION['ebayItem'] = $ebayIdent;
   header("Location: review_show.php");
 
   }
   else{
     $value=0;
     $_SESSION['reviewBool'] = $value;
+    //$some=	202241977639;
+    $_SESSION['ebayItem'] = $ebayIdent;
     // $_SESSION['ebayItem'] = $ebayItemId;
     header("Location: review_show.php");
   }
@@ -66,11 +77,11 @@ echo "<h1 align='center'>eBay Watch Review</h1>";
 echo "</br>";
 //ebayItem id from product_searches page
 $ebayItemId = $_POST['ebayID'];
-echo $ebayItemId;
+//echo $ebayItemId;
 //$some=	202241977639;
-$_SESSION['ebayItem'] = $ebayItemId;
-echo "it is";
-echo $_SESSION['ebayItem'];
+// $_SESSION['ebayItem'] = $ebayItemId;
+//echo "it is";
+//echo $_SESSION['ebayItem'];
 $current_uid = $_SESSION['userID'];
 // echo "Ebay item id is" . $ebayItemId;
 //user primary key
@@ -315,7 +326,10 @@ echo "</tr>";
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#">My Watchlist</a>
+              <a class="nav-link js-scroll-trigger" href="ml.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="products.php">Products</a>

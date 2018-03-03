@@ -186,6 +186,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="ml.php">Home</a>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
             </li>
 <li class="nav-item">
