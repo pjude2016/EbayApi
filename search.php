@@ -4,10 +4,11 @@ $responseEncoding = 'XML';   // Format of the response
 
 
   // Construct the FindItems call
-  $apicall = "https://api.ebay.com/buy/browse/v1/item_summary/search?epid=152922098420";
+  $apicall = "https://api.ebay.com/buy/browse/v1/item_summary/search?epid=182527490"
+  . "&RESPONSE-DATA-FORMAT=$responseEncoding";
   // . "&GLOBAL-ID=EBAY-GB"
   // . "&SECURITY-APPNAME=PiusJude-Ragnarok-PRD-c5d80d3bd-40178424" //replace with your app id
-  // . "&RESPONSE-DATA-FORMAT=$responseEncoding";
+  //
 
        // . "&SERVICE-VERSION=1.0.0"
 
