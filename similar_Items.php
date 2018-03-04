@@ -59,7 +59,7 @@ $ebayItemId = $_POST['ebayID'];
               echo "Needs to be added";
               $count=0;
               echo "<tr>";
-              echo "<td>" . "<a href=\"$link\"><img src=\"$picURL\"></a>" "</td>";
+              echo "<td>" . "<a href=\"$link\"><img src=\"$picURL\"></a>" . "</td>";
               echo "<td>" . "<a href=\"$link\">$title</a>" . " <span class=\"note\" style=\"color:red;\"> * </span>" . "</td>";
               echo "<td>" . $price . "</td>";
               echo "<td>" . $servicecost . "</td>";
