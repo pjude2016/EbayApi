@@ -117,7 +117,7 @@ $ebayItemId = $_POST['ebayID'];
                 $display=$row['display'];
                 $brand=$row['brand'];
 
-                //echo "<br><br>";
+                echo "<br>";
                 echo "<tr>";
 
                 echo "<td>" . "<a href=\"$product_link\"><img src=\"$img_src\"></a>" . "</td>";
@@ -135,13 +135,13 @@ $ebayItemId = $_POST['ebayID'];
 
                 echo "<td align='center'>" . $ebayId. "</td>";
                 echo "<td>" ;
-              //  echo " <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayidval\" >Add Your Review</button></form>";
-              //  echo "<form method=\"POST\" action=\"review_show.php\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"ebayIDShow\" value=\"$ebayidval\" >Show all Reviews</button></form>";
-              //  echo " <form method=\"POST\" action=\"bid.php\">  <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"$ebayidval\" >Place bid</button></form>";
+                echo " <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayId\" >Add Your Review</button></form>";
+                echo "<form method=\"POST\" action=\"review_show.php\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"ebayIDShow\" value=\"$ebayId\" >Show all Reviews</button></form>";
+                echo " <form method=\"POST\" action=\"bid.php\">  <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"$ebayId\" >Place bid</button></form>";
 
                 echo "</td>";
                 echo "<td>";
-              //  echo "<form method=\"POST\" action=\"similar_Items.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayidval\" >View Similar Items on Auction</button></form>";
+                echo "<form method=\"POST\" action=\"similar_Items.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayId\" >View Similar Items on Auction</button></form>";
                 echo "</td>";;
                 echo "</tr>";
               }
