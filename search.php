@@ -4,7 +4,7 @@ $responseEncoding = 'XML';   // Format of the response
 
 
   // Construct the FindItems call
-  $apicall = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=phone"
+  $apicall = "http://api.ebay.com/buy/browse/v1/item_summary/search?q=phone"
 
   // . "&GLOBAL-ID=EBAY-GB"
    . "&SERVICE-VERSION=1.0.0"
