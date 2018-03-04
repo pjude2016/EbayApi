@@ -25,7 +25,7 @@ $ebayItemId = $_POST['ebayID'];
        <h3 align='center'> Similar Items on Auction</h3>
        <br><br>
        <h5 align='center'>Items Currently not supported in our Database</h5>
-       <p align='center' style=\"color:red;\">*Please view the product on eBay for more details.</p>
+       <p align='center' style=\"color:red;\">*Please view the product on eBay for more details</p>
        <table border='1' align='center'>
        <tr>
        <th>Image</th>
@@ -57,7 +57,7 @@ $ebayItemId = $_POST['ebayID'];
             //check for duplication
             //$status_on_ebay = 'active';
             if(!$row){
-              echo "Needs to be added";
+              //echo "Needs to be added";
               $count=0;
               echo "<tr>";
               echo "<td>" . "<a href=\"$link\"><img src=\"$picURL\"></a>" . "</td>";
@@ -66,29 +66,87 @@ $ebayItemId = $_POST['ebayID'];
               echo "<td>" . $servicecost . "</td>";
               echo "<td>" . $id . "</td>";
               echo "<td>";
-              echo "<form action=\"$link\"> <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"ebayidval\" >Bid on eBay</button></form>";
+              echo "<form action=\"$link\"> <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"ebayidval\" >Go to eBay</button></form>";
               echo "</td>";
               echo "</tr>";
             }
 
 
             else{
-                echo "Already added";
+                //echo "Already added";
                 $count=1;
-                //update count.
-                //implement bidding, review and watchlist.
+                //update view count.
+
                 array_push($my_array,$id);
             }
 
 
         }
         echo "</table>";
-        echo "<br>";
+        echo "<br><br>";
         $arrlength = count($my_array);
-        for($x = 0; $x < $arrlength; $x++) {
-            echo $my_array[$x];
-            echo "<br>";
-          }
+        if($arrlength>0){
+            echo "<h5 align='center'>View, Bid and Review other related Items on Auction</h5>
+            <table border='1' align='center'>
+            <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Details</th>
+            <th>Price</th>
+            <th>ebayID</th>
+            <th>Review/ Place Bid</th>
+            <th>Similar Items on Auction</th>
+            <th></th>
+            </tr>";
+            for($x = 0; $x < $arrlength; $x++) {
+                //echo $my_array[$x];
+                //implement bidding, review and watchlist.
+                $temp=$my_array[$x];
+                $query = "SELECT * FROM auction.product_searches WHERE ebayID ='$temp'";
+                $getMatches= sqlsrv_query($conn, $query);
+
+                $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+                //$count = $row['view_count'];
+                //$prod_id = $row['ID'];
+                $product_link=$row['product_link'];
+                $img_src=$row['image'];
+                $title=$row['title'];
+                $ebayId=$row['ebayID'];
+                $gender=$row['gender'];
+                $condition=$row['condtion'];
+                $display=$row['display'];
+                $brand=$row['brand'];
+
+                echo "<br><br>";
+                echo "<tr>";
+
+                echo "<td>" . "<a href=\"$product_link\"><img src=\"$img_src\"></a>" . "</td>";
+                echo "<td>" . "<a href=\"$product_link\" target=\"_blank\">$title</a>" . "</td>";
+                echo "<td align='center'>";
+                echo "Gender: " . $gender;
+                echo "</br>";
+                echo "Condition: " . $condition;
+                echo "</br>";
+                echo "Display: " . $display;
+                echo "</br>";
+                echo "Brand: " . $brand;
+                echo "</td>";
+                echo "<td align='center'>" . $row['price'] . "</td>";
+
+                echo "<td align='center'>" . $ebayId. "</td>";
+                echo "<td>" ;
+              //  echo " <form method=\"POST\" action=\"review.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayidval\" >Add Your Review</button></form>";
+              //  echo "<form method=\"POST\" action=\"review_show.php\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"ebayIDShow\" value=\"$ebayidval\" >Show all Reviews</button></form>";
+              //  echo " <form method=\"POST\" action=\"bid.php\">  <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"$ebayidval\" >Place bid</button></form>";
+
+                echo "</td>";
+                echo "<td>";
+              //  echo "<form method=\"POST\" action=\"similar_Items.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayidval\" >View Similar Items on Auction</button></form>";
+                echo "</td>";;
+                echo "</tr>";
+              }
+              echo "</table>";
+        }
 ?>
 
 
