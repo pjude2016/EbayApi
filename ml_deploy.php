@@ -1,4 +1,11 @@
 <?php
+
+/*
+                              WARNING!!!!!!!!!!!!!!!!!!!!
+INCLUDING THIS FILE MIGHT INCUR API COSTS BY USING AZURE ML WEB API.
+
+*/
+
 session_start();
 $connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!", "Database" => "auctoraDB");
 $serverName = "tcp:auctora-server.database.windows.net,1433";
@@ -185,7 +192,9 @@ echo "</table>";
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="ml.php">Home</a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="my_watches.php">My Watches</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
             </li>

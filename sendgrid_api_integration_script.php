@@ -3,6 +3,11 @@
 Send email to user if a particular item is no longer active or in the future -> user can select a threshold for the price
 of the item and if the item falls below this threshold we send an email to the user 
 ~~~~~~~~~~~UNCOMMENT THE CODE ONLY WHEN EVERYONE HAS A VALID EMAIL ADDRESS IN THE users TABLE~~~~~~~~~~~~~~~~~~
+
+
+                              WARNING!!!!!!!!!!!!!!!!!!!!
+INCLUDING THIS FILE MIGHT INCUR API COSTS BY USING THE AZURE SENDGRID API.
+
 */
 
 

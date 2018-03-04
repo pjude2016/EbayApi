@@ -329,6 +329,9 @@ echo "</tr>";
               <a class="nav-link js-scroll-trigger" href="ml.php">Home</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="my_watches.php">My Watches</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="watchlist.php">My Watchlist</a>
             </li>
             <li class="nav-item">
