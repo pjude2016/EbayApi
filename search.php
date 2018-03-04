@@ -10,6 +10,13 @@ $responseEncoding = 'XML';   // Format of the response
        $rest = simplexml_load_file($apicall) or die("Error: Please select the required filters");
        echo "hello";
        echo $rest->Item->ItemID;
+       echo "</br>";
+       echo "FeedbackScore ";
        $fb=sprintf("%01.2f", $rest->Item->Seller->FeedbackScore);
+       echo $fb;
+       echo "</br>";
+       echo "Postive FeedbackScore percent ";
+       $fb=sprintf("%01.2f", $rest->Item->Seller->PositiveFeedbackPercent);
+
        echo $fb;
 ?>
