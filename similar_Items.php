@@ -113,11 +113,11 @@ $ebayItemId = $_POST['ebayID'];
                 $title=$row['title'];
                 $ebayId=$row['ebayID'];
                 $gender=$row['gender'];
-                $condition=$row['condtion'];
+                $condition=$row['condition'];
                 $display=$row['display'];
                 $brand=$row['brand'];
 
-                echo "<br><br>";
+                //echo "<br><br>";
                 echo "<tr>";
 
                 echo "<td>" . "<a href=\"$product_link\"><img src=\"$img_src\"></a>" . "</td>";
