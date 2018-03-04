@@ -25,7 +25,7 @@ $ebayItemId = $_POST['ebayID'];
        <h3 align='center'> Similar Items on Auction</h3>
        <br><br>
        <h5 align='center'>Items Currently not supported in our Database</h5>
-       <p style=\"color:red;\">Please view the product on eBay for more details.</p>
+       <p align='center' style=\"color:red;\">*Please view the product on eBay for more details.</p>
        <table border='1' align='center'>
        <tr>
        <th>Image</th>
@@ -59,7 +59,7 @@ $ebayItemId = $_POST['ebayID'];
               echo "Needs to be added";
               $count=0;
               echo "<tr>";
-              echo "<td>" . "<a href=\"$link\"><img src=\"$picURL\"></a>" . "</td>";
+              echo "<td>" . "<a href=\"$link\"><img src=\"$picURL\"></a>" . " * " "</td>";
               echo "<td>" . "<a href=\"$link\">$title</a>" . "</td>";
               echo "<td>" . $price . "</td>";
               echo "<td>" . $servicecost . "</td>";
