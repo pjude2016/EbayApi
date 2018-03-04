@@ -33,6 +33,7 @@ $ebayItemId = $_POST['ebayID'];
        <th>Price</th>
        <th>Service Cost</th>
        <th>ebayID</th>
+       <th></th>
        </tr>";
        foreach($rest->itemRecommendations->item as $item) {
             $id=$item->itemId;
@@ -64,6 +65,9 @@ $ebayItemId = $_POST['ebayID'];
               echo "<td>" . $price . "</td>";
               echo "<td>" . $servicecost . "</td>";
               echo "<td>" . $id . "</td>";
+              echo "<td>";
+              echo "<form action=\"$link\"> <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"ebayidval\" >Bid on eBay</button></form>";
+              echo "</td>";
               echo "</tr>";
             }
 
