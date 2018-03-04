@@ -7,7 +7,7 @@ $ebayItemId = $_POST['ebayID'];
   // Construct the getSimilarItems call
   $apicall = "http://svcs.ebay.com/MerchandisingService?OPERATION-NAME=getSimilarItems&SERVICE-NAME=MerchandisingService&SERVICE-VERSION=1.1.0&CONSUMER-ID=PiusJude-Ragnarok-PRD-c5d80d3bd-40178424&RESPONSE-DATA-FORMAT=XML"
    . "&REST-PAYLOAD"
-   . "&itemId=391989027483"
+   . "&itemId=$ebayItemId "
    . "&maxResults=3"
    . "&listingType=Chinese";
 

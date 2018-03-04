@@ -40,6 +40,7 @@ echo "
 <th>My bid</th>
 <th>Highest Bid</th>
 <th>Review/ Place Bid</th>
+<th> Similar Items on Auction</th>
 <th>Remove Item</th>
 </tr>";
 
@@ -79,7 +80,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   echo "<tr>";
 
   echo "<td>" . "<a href=\"$product_link\"><img src=\"$img_src\"></a>" . "</td>";
-  echo "<td>" . "<a href=\"$product_link\" target=\"_blank\">$title</a>" . " <form method=\"POST\" action=\"similar_Items.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayidval\" >Add Your Review</button></form>" . "</td>";
+  echo "<td>" . "<a href=\"$product_link\" target=\"_blank\">$title</a>" . "</td>";
   echo "<td align='center'>" . $row['price'] . "</td>";
   echo "<td align='center'>" . $row_2['my_bid'] . "</td>";
   echo "<td align='center'>" . $highest_bid . "</td>";
@@ -89,6 +90,9 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   echo " <form method=\"POST\" action=\"bid.php\">  <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"$ebayidval\" >Place bid</button></form>";
 
   echo "</td>";
+  echo "<td">;
+  echo "<form method=\"POST\" action=\"similar_Items.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayidval\" >View Similar Items on Auction</button></form>";
+  echo "</td>"
   echo "<td>" . "<form id= \"delete_item\" method=\"post\">  <button type=\"submit\" class=\"btn btn-danger\" name=\"delete_item\" onclick=\"return confirm('Remove item?');\" value=\"$product_id\">Remove Item</button></form> </td>";
   echo "</tr>";
   }
