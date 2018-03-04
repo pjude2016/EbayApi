@@ -1,4 +1,11 @@
 <?php
+session_start();
+$_SESSION['message'] = '';
+$connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!", "Database" => "auctoraDB");
+$serverName = "tcp:auctora-server.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+
+
 //$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
 $responseEncoding = 'XML';   // Format of the response
 $ebayItemId = $_POST['ebayID'];
@@ -41,6 +48,23 @@ $ebayItemId = $_POST['ebayID'];
             echo "<td>" . $servicecost . "</td>";
             echo "<td>" . $id . "</td>";
             echo "</tr>";
+
+            $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$id'";
+            $getMatches= sqlsrv_query($conn, $query);
+
+            $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+            $viewcount =1;
+            //check for duplication
+            $status_on_ebay = 'active';
+            if(!$row){
+              echo "Needs to be added";
+            }
+
+
+            else{
+                echo "Already added";
+            }
+
         }
         echo "</table>";
 ?>
