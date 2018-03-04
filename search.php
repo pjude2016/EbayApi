@@ -10,7 +10,7 @@ $responseEncoding = 'XML';   // Format of the response
       . "&responseencoding=XML"
       . "&appid=PiusJude-Ragnarok-PRD-c5d80d3bd-40178424" //replace with your app id
       . "&version=967"
-      . "&ItemID=273084369154"
+      . "&ItemID=273084369154";
 
 
        $rest = simplexml_load_file($apicall) or die("Error: Please select the required filters");
