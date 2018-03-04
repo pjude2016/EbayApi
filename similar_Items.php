@@ -147,6 +147,7 @@ $ebayItemId = $_POST['ebayID'];
               }
               echo "</table>";
         }
+        echo "<br><br><br>";
 ?>
 
 
