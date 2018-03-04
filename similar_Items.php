@@ -25,6 +25,7 @@ $ebayItemId = $_POST['ebayID'];
        <h3 align='center'> Similar Items on Auction</h3>
        <br><br>
        <h5 align='center'>Items Currently not supported in our Database</h5>
+       <p style="color:red;">Please view the product on eBay for more details.</p>
        <table border='1' align='center'>
        <tr>
        <th>Image</th>
