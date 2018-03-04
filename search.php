@@ -14,5 +14,6 @@ $responseEncoding = 'XML';   // Format of the response
 
 
        $rest = simplexml_load_file($apicall) or die("Error: Please select the required filters");
+       echo "hello";
        echo $rest->Seller->FeedbackScore;
 ?>
