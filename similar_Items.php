@@ -8,17 +8,13 @@ echo $ebayItemId ;
   $apicall = "http://svcs.ebay.com/MerchandisingService?OPERATION-NAME=getSimilarItems&SERVICE-NAME=MerchandisingService&SERVICE-VERSION=1.1.0&CONSUMER-ID=PiusJude-Ragnarok-PRD-c5d80d3bd-40178424&RESPONSE-DATA-FORMAT=XML"
    . "&REST-PAYLOAD"
    . "&itemId=$ebayItemId"
-
  //. "&itemId=202239352926"
    . "&maxResults=3"
    . "&listingType=Chinese";
-
-
     $rest = simplexml_load_file($apicall) or die("Error: Please select the required filters");
        echo "
        <br><br><br><br><br>
        <h3 align='center'> Similar Items on Auction</h3>
-
        <table border='1' align='center'>
        <tr>
        <th>Image</th>
@@ -31,7 +27,6 @@ echo $ebayItemId ;
             $id=$item->itemId;
             $title=$item->title;
             $price=$item->currentPrice;
-
             if ($item->imageURL) {
               $picURL = $item->imageURL;
             } else {
@@ -41,7 +36,6 @@ echo $ebayItemId ;
             $link  = $item->viewItemURL;
             $servicecost=$item->shippingCost;
             echo "<tr>";
-
             echo "<td>" . "<a href=\"$link\"><img src=\"$picURL\"></a>" . "</td>";
             echo "<td>" . "<a href=\"$link\">$title</a>" . "</td>";
             echo "<td>" . $price . "</td>";
@@ -50,7 +44,6 @@ echo $ebayItemId ;
             echo "</tr>";
         }
         echo "</table>";
-
 ?>
 
 
