@@ -79,7 +79,7 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
   echo "<tr>";
 
   echo "<td>" . "<a href=\"$product_link\"><img src=\"$img_src\"></a>" . "</td>";
-  echo "<td>" . "<a href=\"$product_link\" target=\"_blank\">$title</a>" . "</td>";
+  echo "<td>" . "<a href=\"$product_link\" target=\"_blank\">$title</a>" . " <form method=\"POST\" action=\"similar_Items.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayidval\" >Add Your Review</button></form>" . "</td>";
   echo "<td align='center'>" . $row['price'] . "</td>";
   echo "<td align='center'>" . $row_2['my_bid'] . "</td>";
   echo "<td align='center'>" . $highest_bid . "</td>";

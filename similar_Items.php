@@ -1,7 +1,8 @@
 <?php
 //$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
 $responseEncoding = 'XML';   // Format of the response
-
+$ebayItemId = $_POST['ebayID'];
+echo $ebayItemId ;
 
   // Construct the getSimilarItems call
   $apicall = "http://svcs.ebay.com/MerchandisingService?OPERATION-NAME=getSimilarItems&SERVICE-NAME=MerchandisingService&SERVICE-VERSION=1.1.0&CONSUMER-ID=PiusJude-Ragnarok-PRD-c5d80d3bd-40178424&RESPONSE-DATA-FORMAT=XML"
