@@ -4,6 +4,8 @@ $_SESSION['message'] = '';
 $connectionInfo = array("UID" => "auctora@auctora-server", "pwd" => "arotcua1!", "Database" => "auctoraDB");
 $serverName = "tcp:auctora-server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
+$my_array=array();
+
 
 
 //$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
@@ -15,12 +17,14 @@ $ebayItemId = $_POST['ebayID'];
    . "&REST-PAYLOAD"
    . "&itemId=$ebayItemId"
  //. "&itemId=202239352926"
-   . "&maxResults=3"
+   . "&maxResults=5"
    . "&listingType=Chinese";
     $rest = simplexml_load_file($apicall) or die("Error: Please select the required filters");
        echo "
        <br><br><br><br><br>
        <h3 align='center'> Similar Items on Auction</h3>
+       <br><br>
+       <h5 align='center'>Items Currently not supported in our Database</h5>
        <table border='1' align='center'>
        <tr>
        <th>Image</th>
@@ -41,13 +45,7 @@ $ebayItemId = $_POST['ebayID'];
             $image = (string) $picURL;
             $link  = $item->viewItemURL;
             $servicecost=$item->shippingCost;
-            echo "<tr>";
-            echo "<td>" . "<a href=\"$link\"><img src=\"$picURL\"></a>" . "</td>";
-            echo "<td>" . "<a href=\"$link\">$title</a>" . "</td>";
-            echo "<td>" . $price . "</td>";
-            echo "<td>" . $servicecost . "</td>";
-            echo "<td>" . $id . "</td>";
-            echo "</tr>";
+
 
             $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$id'";
             $getMatches= sqlsrv_query($conn, $query);
@@ -55,18 +53,37 @@ $ebayItemId = $_POST['ebayID'];
             $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
             $viewcount =1;
             //check for duplication
-            $status_on_ebay = 'active';
+            //$status_on_ebay = 'active';
             if(!$row){
               echo "Needs to be added";
+              $count=0;
+              echo "<tr>";
+              echo "<td>" . "<a href=\"$link\"><img src=\"$picURL\"></a>" . "</td>";
+              echo "<td>" . "<a href=\"$link\">$title</a>" . "</td>";
+              echo "<td>" . $price . "</td>";
+              echo "<td>" . $servicecost . "</td>";
+              echo "<td>" . $id . "</td>";
+              echo "</tr>";
             }
 
 
             else{
                 echo "Already added";
+                $count=1;
+                //update count.
+                //implement bidding, review and watchlist.
+                array_push($my_array,$id);
             }
+
 
         }
         echo "</table>";
+        echo "<br>";
+        $arrlength = count($my_array);
+        for($x = 0; $x < $arrlength; $x++) {
+            echo $my_array[$x];
+            echo "<br>";
+          }
 ?>
 
 
