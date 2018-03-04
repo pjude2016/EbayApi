@@ -183,7 +183,7 @@ $ebayItemId = $_POST['ebayID'];
                 echo "</td>";
                 echo "<td>";
                 echo "<form method=\"POST\" action=\"similar_Items.php\" >  <button type=\"submit\" class=\"btn btn-primary\" name=\"ebayID\" value=\"$ebayId\" >View Similar Items on Auction</button></form>";
-                echo "<form id= \"add_to_watchlist\" target=\"votar\" method=\"post\">  <button type=\"submit\" class=\"btn btn-success\" name=\"add_to_watchlist\" onclick=\"return confirm('Want to add item?');\" value=\"$ebayId\">Add to Watchlist</button></form>";
+                echo "<iframe name=\"votar\" style=\"display:none;\"></iframe> <form id= \"add_to_watchlist\" target=\"votar\" method=\"post\">  <button type=\"submit\" class=\"btn btn-success\" name=\"add_to_watchlist\" onclick=\"return confirm('Want to add item?');\" value=\"$ebayId\">Add to Watchlist</button></form>";
                 echo "</td>";;
                 echo "</tr>";
               }
