@@ -16,7 +16,7 @@ $responseEncoding = 'XML';   // Format of the response
        echo $fb;
        echo "</br>";
        echo "Postive FeedbackScore percent ";
-       $fb=sprintf("%01.2f", $rest->Item->Seller->PositiveFeedbackPercent);
+       $fbs=sprintf("%01.2f", $rest->Item->Seller->PositiveFeedbackPercent);
 
-       echo $fb;
+       echo $fbs;
 ?>
