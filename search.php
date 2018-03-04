@@ -1,6 +1,6 @@
 <?php
 //$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
-$responseEncoding = 'JSON';   // Format of the response
+$responseEncoding = 'XML';   // Format of the response
 
 
   // Construct the FindItems call
