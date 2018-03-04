@@ -6,6 +6,47 @@ $serverName = "tcp:auctora-server.database.windows.net,1433";
 $conn = sqlsrv_connect($serverName, $connectionInfo);
 $my_array=array();
 
+if (isset($_POST['add_to_watchlist'])){
+  // echo "WE ARE IN NOW";
+  $my_ebay_id = $_POST['add_to_watchlist'];
+
+  $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$my_ebay_id'";
+  $getMatches= sqlsrv_query($conn, $query);
+  $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+  $product_id = $row['ID'];
+
+
+  $query = "SELECT * FROM auction.product_searches WHERE ebayID = '$my_ebay_id'";
+  $getMatches= sqlsrv_query($conn, $query);
+  $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+
+  $current_uid = $_SESSION['userID'];
+  $query_to_avoid_watchlist_duplication = "SELECT * FROM auction.watch_list WHERE ebayID = '$product_id' AND user_id = '$current_uid'";
+  $getMatches2= sqlsrv_query($conn, $query_to_avoid_watchlist_duplication);
+  $row_2 = sqlsrv_fetch_array($getMatches2, SQLSRV_FETCH_ASSOC);
+
+
+  if($row and !$row_2){
+    // $_SESSION['logged_in'] = true;
+    // echo "WE ARE IN";
+
+    $tsql= "INSERT INTO auction.watch_list (ebayID, user_id) VALUES (?,?);";
+    $params = array($product_id, $_SESSION['userID']);
+    $getResults= sqlsrv_query($conn, $tsql, $params);
+    $rowsAffected = sqlsrv_rows_affected($getResults);
+    if ($getResults == FALSE or $rowsAffected == FALSE)
+        die(FormatErrors(sqlsrv_errors()));
+
+    // exit;
+
+
+
+  }
+
+
+
+
+}
 
 
 //$endpoint = 'http://svcs.ebay.com/services/search/FindingService/v1';  // URL to call
