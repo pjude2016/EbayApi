@@ -341,28 +341,6 @@ if(isset($_POST['Query']))
   $rowB = sqlsrv_fetch_array($getMatchesB, SQLSRV_FETCH_ASSOC);
   if(!$rowB){*/
 
-    $current_uid = $_SESSION['userID'];
-    $gend_for_filters = str_replace ("'s","",$gend);
-    $query = "SELECT * FROM auction.filters
-    WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max'
-    AND display ='$disp' AND condition = '$cond' AND gender = '$gend_for_filters' AND user_id = '$current_uid' ";
-    $getMatches= sqlsrv_query($conn, $query);
-
-    $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
-    // echo "HERE -> " . $row;
-
-    if(!$row){
-
-      $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id) VALUES (?,?,?,?,?,?,?);";
-      $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid);
-      $getResults2= sqlsrv_query($conn, $tsql2, $params2);
-      $rowsAffected2 = sqlsrv_rows_affected($getResults2);
-      if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
-        die(FormatErrors(sqlsrv_errors()));
-      }
-
-
-    }
 
 
 
@@ -441,6 +419,8 @@ if(isset($_POST['Query']))
          //print_r($resp);
          // Check to see if the response was loaded, else print an error
          // Probably best to split into two different tests, but have as one for brevity
+
+
 
 
            echo $rest->paginationOutput->totalEntries;
@@ -701,6 +681,29 @@ if(isset($_POST['Query']))
 
   } // foreach
       echo $results;
+      
+      $current_uid = $_SESSION['userID'];
+      $gend_for_filters = str_replace ("'s","",$gend);
+      $query = "SELECT * FROM auction.filters
+      WHERE brand = '$brand' AND min_price = '$min' AND max_price = '$max'
+      AND display ='$disp' AND condition = '$cond' AND gender = '$gend_for_filters' AND user_id = '$current_uid' ";
+      $getMatches= sqlsrv_query($conn, $query);
+
+      $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
+      // echo "HERE -> " . $row;
+
+      if(!$row){
+
+        $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id) VALUES (?,?,?,?,?,?,?);";
+        $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid);
+        $getResults2= sqlsrv_query($conn, $tsql2, $params2);
+        $rowsAffected2 = sqlsrv_rows_affected($getResults2);
+        if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
+          die(FormatErrors(sqlsrv_errors()));
+        }
+
+
+      }
       exit;
 } // if
 
