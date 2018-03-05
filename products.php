@@ -681,7 +681,7 @@ if(isset($_POST['Query']))
 
   } // foreach
       echo $results;
-      
+
       $current_uid = $_SESSION['userID'];
       $gend_for_filters = str_replace ("'s","",$gend);
       $query = "SELECT * FROM auction.filters
@@ -704,6 +704,7 @@ if(isset($_POST['Query']))
 
 
       }
+
       exit;
 } // if
 
