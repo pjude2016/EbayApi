@@ -424,7 +424,7 @@ if(isset($_POST['Query']))
 
 
 
-           echo $rest->paginationOutput->totalEntries;
+           //echo $rest->paginationOutput->totalEntries;
            echo "</br>";
            $pageCount=(int)($rest->paginationOutput->totalEntries /$itemsPerRange)+1;
            //echo $pageCount;
@@ -701,8 +701,8 @@ if(isset($_POST['Query']))
       // echo "HERE -> " . $row;
 
       if(!$row){
-        $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id) VALUES (?,?,?,?,?,?,?);";
-        $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid);
+        $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id, results) VALUES (?,?,?,?,?,?,?);";
+        $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid,$result_returnA);
         $getResults2= sqlsrv_query($conn, $tsql2, $params2);
         $rowsAffected2 = sqlsrv_rows_affected($getResults2);
         if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
