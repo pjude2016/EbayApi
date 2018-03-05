@@ -331,6 +331,7 @@ if(isset($_POST['Query']))
   $priceRangeMax = $_POST['MaxPrice'];
   $min = $_POST['MinPrice'];
   $max = $_POST['MaxPrice'];
+  $result_returned=0;
   if(!($max>0) || !($min>=0) ||!($max>$min) ) {
     $rest2 = die("Error: Please input valid price");
 }
@@ -435,6 +436,9 @@ if(isset($_POST['Query']))
 
 
     if ($rest && $rest->paginationOutput->totalEntries > 0) {
+      if($result_returned==0){
+        $result_returned=1;
+      }
     for($pageNumber=1;$pageNumber<=$pageCount;$pageNumber++){
     $apicall = "$endpoint?OPERATION-NAME=findItemsAdvanced"
          . "&SERVICE-VERSION=1.0.0"
@@ -675,13 +679,17 @@ if(isset($_POST['Query']))
 }
   else {
     $results .= "<p> $range <i><b>No items found</b></i></p>". "<br />\n";
+
   }
     $results .= "</table>";
     $priceRangeMin = $priceRangeMax; // set up for next iteration
 
   } // foreach
       echo $results;
-
+      $result_returnA = $result_returned;
+      echo "</br>";
+      echo "result ";
+      echo $result_returnA;
       $current_uid = $_SESSION['userID'];
       $gend_for_filters = str_replace ("'s","",$gend);
       $query = "SELECT * FROM auction.filters
@@ -693,7 +701,6 @@ if(isset($_POST['Query']))
       // echo "HERE -> " . $row;
 
       if(!$row){
-
         $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id) VALUES (?,?,?,?,?,?,?);";
         $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid);
         $getResults2= sqlsrv_query($conn, $tsql2, $params2);
