@@ -688,8 +688,8 @@ if(isset($_POST['Query']))
       echo $results;
       $result_returnA = $result_returned;
       echo "</br>";
-      echo "result ";
-      echo $result_returnA;
+      // echo "result ";
+      // echo $result_returnA;
       $current_uid = $_SESSION['userID'];
       $gend_for_filters = str_replace ("'s","",$gend);
       $query = "SELECT * FROM auction.filters
@@ -700,14 +700,31 @@ if(isset($_POST['Query']))
       $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
       // echo "HERE -> " . $row;
       if(!$row){
-        $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id, results) VALUES (?,?,?,?,?,?,?,?);";
-        $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid,$result_returnA);
+        $filter_count=1;
+        $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id, results, filter_count) VALUES (?,?,?,?,?,?,?,?,?);";
+        $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid,$result_returnA,$filter_count);
         $getResults2= sqlsrv_query($conn, $tsql2, $params2);
         $rowsAffected2 = sqlsrv_rows_affected($getResults2);
         if ($getResults2 == FALSE or $rowsAffected2 == FALSE){
           die(FormatErrors(sqlsrv_errors()));
         }
 
+
+      }
+      else{
+        $count = $row['filter_count'];
+        $id = $row['ID'];
+      //  echo "id ";
+        echo $id;
+        echo "</br>";
+        $viewcount = $count + 1;
+        echo $viewcount;
+        echo "</br>";
+        // $sql = "UPDATE auction.filters SET filter_count=$viewcount WHERE id=$id";
+        // $getResultsD= sqlsrv_query($conn, $sql);
+        // $rowsAffectedD = sqlsrv_rows_affected($getResultsD);
+        // if ($getResultsD == FALSE or $rowsAffectedD == FALSE)
+        //     die(FormatErrors(sqlsrv_errors()));
 
       }
 
