@@ -700,7 +700,7 @@ if(isset($_POST['Query']))
       $row = sqlsrv_fetch_array($getMatches, SQLSRV_FETCH_ASSOC);
       // echo "HERE -> " . $row;
       if(!$row){
-        $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id, results) VALUES (?,?,?,?,?,?,?);";
+        $tsql2= "INSERT INTO auction.filters (brand, min_price, max_price, display, condition, gender, user_id, results) VALUES (?,?,?,?,?,?,?,?);";
         $params2 = array($brand,$min,$max,$disp,$cond,$gend_for_filters,$current_uid,$result_returnA);
         $getResults2= sqlsrv_query($conn, $tsql2, $params2);
         $rowsAffected2 = sqlsrv_rows_affected($getResults2);
