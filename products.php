@@ -712,19 +712,19 @@ if(isset($_POST['Query']))
 
       }
       else{
-        $count = $row['filter_count'];
+        $countings = $row['filter_count'];
         $id = $row['ID'];
       //  echo "id ";
         echo $id;
         echo "</br>";
-        $viewcount = $count + 1;
-        echo $viewcount;
+        $filterviewcount = $countings + 1;
+        echo $filterviewcount;
         echo "</br>";
-        // $sql = "UPDATE auction.filters SET filter_count=$viewcount WHERE id=$id";
-        // $getResultsD= sqlsrv_query($conn, $sql);
-        // $rowsAffectedD = sqlsrv_rows_affected($getResultsD);
-        // if ($getResultsD == FALSE or $rowsAffectedD == FALSE)
-        //     die(FormatErrors(sqlsrv_errors()));
+        $sql = "UPDATE auction.filters SET filter_count=$filterviewcount WHERE id=$id";
+        $getResultsD= sqlsrv_query($conn, $sql);
+        $rowsAffectedD = sqlsrv_rows_affected($getResultsD);
+        if ($getResultsD == FALSE or $rowsAffectedD == FALSE)
+            die(FormatErrors(sqlsrv_errors()));
 
       }
 
