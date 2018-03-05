@@ -715,11 +715,11 @@ if(isset($_POST['Query']))
         $countings = $row['filter_count'];
         $id = $row['ID'];
       //  echo "id ";
-        echo $id;
+        //echo $id;
         echo "</br>";
         $filterviewcount = $countings + 1;
-        echo $filterviewcount;
-        echo "</br>";
+        // echo $filterviewcount;
+        //echo "</br>";
         $sql = "UPDATE auction.filters SET filter_count=$filterviewcount WHERE id=$id";
         $getResultsD= sqlsrv_query($conn, $sql);
         $rowsAffectedD = sqlsrv_rows_affected($getResultsD);
