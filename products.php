@@ -131,8 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       headers: {
         1: { sorter: false },  // col 0 = first = left most column - no sorting
         7: { sorter: false },
-        8: { sorter: false },
-        10: { sorter: false }
+        9: { sorter: false }
       }
     });
   });
@@ -407,7 +406,7 @@ if(isset($_POST['Query']))
            //echo "</br>";
            $results .= 'Total items : ' . $rest->paginationOutput->totalEntries . "<br />\n";
            $results .= '<table id="example" class="tablesorter" border="0" width="100%" cellpadding="0" cellspacing="1">' . "\n";
-           $results .= "<thead><tr><th>Count</th><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Number of views on this app</th><th></th></tr></thead>\n";
+           $results .= "<thead><tr><th>Count</th><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th>Time Left</th><th>Number of views on this app</th><th></th></tr></thead>\n";
            $countItems=1;
 
 
@@ -641,7 +640,7 @@ if(isset($_POST['Query']))
 
         //  @odbc_close($conn);
         $results .= "<tr><td>$countItems</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> $ebayItemId</br></br> $display</br></br><td >$location</td>"
-             .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td><p id=\"$ident\"></p><script>countDown('".$ident."','".$endTime."')</script></td><td>$viewcount</td><td> <form method=\"POST\" action=\"bid.php\">  <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"$sqlEbayItemID\" >Place bid</button></form> &nbsp;&nbsp;  <iframe name=\"votar\" style=\"display:none;\"></iframe>  <form id= \"add_to_watchlist\" target=\"votar\" method=\"post\">  <button type=\"submit\" class=\"btn btn-success\" name=\"add_to_watchlist\" onclick=\"return confirm('Want to add item?');\" value=\"$sqlEbayItemID\">Add to Watchlist</button></form> &nbsp;&nbsp;   <form method=\"POST\" action=\"review.php\">  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$sqlEbayItemID\" >Add a Review</button></form> &nbsp;&nbsp; <form method=\"POST\" action=\"review_show.php\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"ebayIDShow\" value=\"$sqlEbayItemID\" >Show all Reviews</button></form>  &nbsp;&nbsp; </td></tr>";
+             .  "<td>£$price</td><td>£$ship</td><td>£$total</td><td><p id=\"$ident\"></p><script>countDown('".$ident."','".$endTime."')</script></td><td>$viewcount</td><td> <form method=\"POST\" action=\"bid.php\">  <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"$sqlEbayItemID\" >Place bid</button></form> &nbsp;&nbsp;  <iframe name=\"votar\" style=\"display:none;\"></iframe>  <form id= \"add_to_watchlist\" target=\"votar\" method=\"post\">  <button type=\"submit\" class=\"btn btn-success\" name=\"add_to_watchlist\" onclick=\"return confirm('Want to add item?');\" value=\"$sqlEbayItemID\">Add to Watchlist</button></form> &nbsp;&nbsp;   <form method=\"POST\" action=\"review.php\">  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$sqlEbayItemID\" >Add a Review</button></form> &nbsp;&nbsp; <form method=\"POST\" action=\"review_show.php\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"ebayIDShow\" value=\"$sqlEbayItemID\" >Show all Reviews</button></form>  &nbsp;&nbsp; </td></tr>";
             $countItems++;
             $ident++;
       }// each item
