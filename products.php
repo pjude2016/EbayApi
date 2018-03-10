@@ -221,7 +221,7 @@ $Gender = $_POST["Gender"];
 <br>
 <br>
 <h1 align='center'>eBay Watch Search form</h1>
-<p align='center'> Please select filters below to search for watches being sold on Auction. The result will be split into low, mid range and high range products according to the pricing preference you select. </p>
+<p align='center'> Select filters below to search for watches available on Auction. The result will be split into low, mid and high range products according to the pricing preference you select. </p>
 <h4 style="color:red;" align='center'><span class="note">*</span> All filter options must be selected.</h4>
 <form action="products.php" method="post">
 
