@@ -266,13 +266,6 @@ $Gender = $_POST["Gender"];
           <option value="Unisex" <?php if (isset($Gender) && $Gender=="Unisex") echo "selected";?>>Unisex </option>
           <option value="Children" <?php if (isset($Gender) && $Gender=="Children") echo "selected";?>>Children</option>
     </select></td>
-
-    <!-- <td align="center">
-    <select name="Debug" >
-      <option value="1">true</option>
-      <option selected value="0">false</option>
-      </select>
-    </td> -->
   </tr>
   <tr>
 
@@ -291,7 +284,7 @@ $Gender = $_POST["Gender"];
 require_once('DisplayUtils.php');  // functions to aid with display of information
 error_reporting(E_ALL);  // turn on all errors, warnings and notices for easier debugging
 
-$results = '';
+//$results = '';
 
 //checking for non-empty and non-negative integer
 
