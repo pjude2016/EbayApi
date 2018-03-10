@@ -221,19 +221,20 @@ $Gender = $_POST["Gender"];
 <br>
 <br>
 <h1 align='center'>eBay Watch Search form</h1>
-<h4 style="color:red;" align='center'><span class="note">*</span> denotes mandatory</h4>
+<p align='center'> Please select filters below to search for watches being sold on Auction. The result will be split into low, mid range and high range products according to the pricing preference you select. </p>
+<h4 style="color:red;" align='center'><span class="note">*</span> All filter options must be selected.</h4>
 <form action="products.php" method="post">
 
 <table cellpadding="2" border="0" align="center">
   <tr>
-    <th>Shop by Brand <span class="note" style="color:red;">*</span></th>
+    <th align='center'>Shop by Brand <span class="note" style="color:red;">*</span></th>
     <!-- <th>Country <span class="note" style="color:red;">*</span></th> -->
     <!-- <th>Buying Format <span class="note" style="color:red;">*</span></th> -->
-    <th>Min Price <span class="note" style="color:red;">*</span></th>
-    <th>Max Price <span class="note" style="color:red;">*</span></th>
-    <th>Display</th>
-    <th>Condition</th>
-    <th>Gender</th>
+    <th align='center'>Min Price <span class="note" style="color:red;">*</span></th>
+    <th align='center'>Max Price <span class="note" style="color:red;">*</span></th>
+    <th align='center'>Display <span class="note" style="color:red;">*</span></th>
+    <th align='center'>Condition <span class="note" style="color:red;">*</span></th>
+    <th align='center'>Gender <span class="note" style="color:red;">*</span></th>
     <!-- <th align="center">Debug</th> -->
   </tr>
   <tr>
