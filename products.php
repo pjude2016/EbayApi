@@ -131,7 +131,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       headers: {
         1: { sorter: false },  // col 0 = first = left most column - no sorting
         7: { sorter: false },
-        8: { sorter: false }
+        8: { sorter: false },
+        10: { sorter: false }
       }
     });
   });
@@ -230,6 +231,9 @@ $Gender = $_POST["Gender"];
     <!-- <th>Buying Format <span class="note" style="color:red;">*</span></th> -->
     <th>Min Price <span class="note" style="color:red;">*</span></th>
     <th>Max Price <span class="note" style="color:red;">*</span></th>
+    <th>Display</th>
+    <th>Condition</th>
+    <th>Gender</th>
     <!-- <th align="center">Debug</th> -->
   </tr>
   <tr>
@@ -245,6 +249,22 @@ $Gender = $_POST["Gender"];
 
     <td align="center"><input type="text" name="MinPrice" value="<?php if (isset($_POST['MinPrice'])) echo $_POST['MinPrice']; ?>"></td>
     <td align="center"><input type="text" name="MaxPrice" value="<?php if (isset($_POST['MaxPrice'])) echo $_POST['MaxPrice']; ?>"></td>
+    <td align="center"> <select name="Display">
+
+          <option value="Analog" <?php if (isset($Display) && $Display=="Analog") echo "selected";?>>Analog</option>
+          <option value="Digital" <?php if (isset($Display) && $Display=="Digital") echo "selected";?>>Digital</option>
+          <option value="Analog & Digital" <?php if (isset($Display) && $Display=="Analog & Digital") echo "selected";?>>Analog & Digital</option>
+    </select></td>
+    <td align="center"> <select name="Condition">
+          <option value="New" <?php if (isset($Condition) && $Condition=="New") echo "selected";?>>New</option>
+          <option value="Used" <?php if (isset($Condition) && $Condition=="Used") echo "selected";?>>Used</option>
+    </select></td>
+    <td align="center"> <select name="Gender">
+          <option value="Men's" <?php if (isset($Gender) && $Gender=="Men's") echo "selected";?>>Men's</option>
+          <option value="Women's" <?php if (isset($Gender) && $Gender=="Women's") echo "selected";?>>Women's</option>
+          <option value="Unisex" <?php if (isset($Gender) && $Gender=="Unisex") echo "selected";?>>Unisex </option>
+          <option value="Children" <?php if (isset($Gender) && $Gender=="Children") echo "selected";?>>Children</option>
+    </select></td>
 
     <!-- <td align="center">
     <select name="Debug" >
@@ -258,32 +278,7 @@ $Gender = $_POST["Gender"];
 
   </tr>
 </table>
-<table cellpadding="2" border="0" align="center">
-  <tr><th>Display</th>
-     <th>Condition</th>
-     <th>Gender</th>
-     <!-- <th>Year of Manufacture</th> -->
-  </tr>
-  <tr> <td align="center"> <select name="Display">
 
-        <option value="Analog" <?php if (isset($Display) && $Display=="Analog") echo "selected";?>>Analog</option>
-        <option value="Digital" <?php if (isset($Display) && $Display=="Digital") echo "selected";?>>Digital</option>
-        <option value="Analog & Digital" <?php if (isset($Display) && $Display=="Analog & Digital") echo "selected";?>>Analog & Digital</option>
-      </select></td>
-      <td align="center"> <select name="Condition">
-        <option value="New" <?php if (isset($Condition) && $Condition=="New") echo "selected";?>>New</option>
-        <option value="Used" <?php if (isset($Condition) && $Condition=="Used") echo "selected";?>>Used</option>
-      </select></td>
-      <td align="center"> <select name="Gender">
-        <option value="Men's" <?php if (isset($Gender) && $Gender=="Men's") echo "selected";?>>Men's</option>
-        <option value="Women's" <?php if (isset($Gender) && $Gender=="Women's") echo "selected";?>>Women's</option>
-        <option value="Unisex" <?php if (isset($Gender) && $Gender=="Unisex") echo "selected";?>>Unisex </option>
-        <option value="Children" <?php if (isset($Gender) && $Gender=="Children") echo "selected";?>>Children</option>
-      </select></td>
-
-
-    </tr>
-</table>
 
     <p align="center"> <INPUT type="submit" name="submit" value="Search" ></p>
 
@@ -652,7 +647,7 @@ if(isset($_POST['Query']))
           // Free the connection
 
         //  @odbc_close($conn);
-        $results .= "<tr><td>$countItems</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
+        $results .= "<tr><td>$countItems</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> $ebayItemId</br></br> $display</br></br><td >$location</td>"
              .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td><p id=\"$ident\"></p><script>countDown('".$ident."','".$endTime."')</script></td><td>$viewcount</td><td> <form method=\"POST\" action=\"bid.php\">  <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"$sqlEbayItemID\" >Place bid</button></form> &nbsp;&nbsp;  <iframe name=\"votar\" style=\"display:none;\"></iframe>  <form id= \"add_to_watchlist\" target=\"votar\" method=\"post\">  <button type=\"submit\" class=\"btn btn-success\" name=\"add_to_watchlist\" onclick=\"return confirm('Want to add item?');\" value=\"$sqlEbayItemID\">Add to Watchlist</button></form> &nbsp;&nbsp;   <form method=\"POST\" action=\"review.php\">  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$sqlEbayItemID\" >Add a Review</button></form> &nbsp;&nbsp; <form method=\"POST\" action=\"review_show.php\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"ebayIDShow\" value=\"$sqlEbayItemID\" >Show all Reviews</button></form>  &nbsp;&nbsp; </td></tr>";
             $countItems++;
             $ident++;
