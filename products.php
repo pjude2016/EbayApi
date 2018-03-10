@@ -210,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <link rel="stylesheet" href="./css/flora.all.css" type="text/css" media="screen" title="Flora (Default)">
 <?php
 $Query = $_POST["Query"];
-$GlobalID = $_POST["GlobalID"];
+//$GlobalID = $_POST["GlobalID"];
 // $BuyingFormat = $_POST["BuyingFormat"];
 $Display = $_POST["Display"];
 $Condition = $_POST["Condition"];
@@ -228,7 +228,7 @@ $Gender = $_POST["Gender"];
 <table cellpadding="2" border="0" align="center">
   <tr>
     <th>Shop by Brand <span class="note" style="color:red;">*</span></th>
-    <th>Country <span class="note" style="color:red;">*</span></th>
+    <!-- <th>Country <span class="note" style="color:red;">*</span></th> -->
     <!-- <th>Buying Format <span class="note" style="color:red;">*</span></th> -->
     <th>Min Price <span class="note" style="color:red;">*</span></th>
     <th>Max Price <span class="note" style="color:red;">*</span></th>
@@ -243,17 +243,7 @@ $Gender = $_POST["Gender"];
       <option value="Seiko" <?php if (isset($Query) && $Query=="Seiko") echo "selected";?>>Seiko</option>
       </select>
     </td>
-    <td align="center">
-    <select name="GlobalID">
-      <option value="EBAY-GB"<?php if (isset($GlobalID) && $GlobalID=="EBAY-GB") echo "selected";?>>United Kingdom - EBAY-GB - GBP</option>
-      <option value="EBAY-US"<?php if (isset($GlobalID) && $GlobalID=="EBAY-US") echo "selected";?>>United States - EBAY-US - USD</option>
-      <!-- <option value="EBAY-AU">Australia - EBAY-AU - AUD</option> -->
-      <!-- <option value="EBAY-ENCA">Canada (English) - EBAY-ENCA - CAD</option> -->
-      <!-- <option value="EBAY-DE">Germany - EBAY-DE - EUR</option>
-      <option value="EBAY-GB">United Kingdom - EBAY-GB - GBP</option>
-      <option value="EBAY-US">United States - EBAY-US - USD</option> -->
-      </select>
-    </td>
+
 
     <td align="center"><input type="text" name="MinPrice" value="<?php if (isset($_POST['MinPrice'])) echo $_POST['MinPrice']; ?>"></td>
     <td align="center"><input type="text" name="MaxPrice" value="<?php if (isset($_POST['MaxPrice'])) echo $_POST['MaxPrice']; ?>"></td>
@@ -321,7 +311,7 @@ if(isset($_POST['Query']))
   $brand = $_POST['Query'];
   $brand1 = (string)$brand;
 
-  $site  = $_POST['GlobalID'];
+  //$site  = $_POST['GlobalID'];
   //$format  = $_POST['BuyingFormat'];
   $disp  = $_POST['Display'];
   $cond  = $_POST['Condition'];
@@ -381,7 +371,7 @@ if(isset($_POST['Query']))
     // Construct the FindItems call
     $apicall = "$endpoint?OPERATION-NAME=findItemsAdvanced"
          . "&SERVICE-VERSION=1.0.0"
-         . "&GLOBAL-ID=$site"
+         . "&GLOBAL-ID=EBAY-GB"
          . "&SECURITY-APPNAME=PiusJude-Ragnarok-PRD-c5d80d3bd-40178424" //replace with your app id
          . "&keywords=$safeQuery"
          . "&paginationInput.entriesPerPage=$itemsPerRange"
@@ -442,7 +432,7 @@ if(isset($_POST['Query']))
     for($pageNumber=1;$pageNumber<=$pageCount;$pageNumber++){
     $apicall = "$endpoint?OPERATION-NAME=findItemsAdvanced"
          . "&SERVICE-VERSION=1.0.0"
-         . "&GLOBAL-ID=$site"
+         . "&GLOBAL-ID=EBAY-GB"
          . "&SECURITY-APPNAME=PiusJude-Ragnarok-PRD-c5d80d3bd-40178424" //replace with your app id
          . "&keywords=$safeQuery"
          . "&paginationInput.entriesPerPage=$itemsPerRange"
