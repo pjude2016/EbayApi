@@ -227,14 +227,14 @@ $Gender = $_POST["Gender"];
 
 <table cellpadding="2" border="0" align="center">
   <tr>
-    <th align="center">Shop by Brand <span class="note" style="color:red;">*</span></th>
+    <th class="text-center">Shop by Brand <span class="note" style="color:red;">*</span></th>
     <!-- <th>Country <span class="note" style="color:red;">*</span></th> -->
     <!-- <th>Buying Format <span class="note" style="color:red;">*</span></th> -->
-    <th align="center">Min Price <span class="note" style="color:red;">*</span></th>
-    <th align="center">Max Price <span class="note" style="color:red;">*</span></th>
-    <th align="center">Display <span class="note" style="color:red;">*</span></th>
-    <th align="center">Condition <span class="note" style="color:red;">*</span></th>
-    <th align="center">Gender <span class="note" style="color:red;">*</span></th>
+    <th class="text-center">Min Price <span class="note" style="color:red;">*</span></th>
+    <th class="text-center">Max Price <span class="note" style="color:red;">*</span></th>
+    <th class="text-center">Display <span class="note" style="color:red;">*</span></th>
+    <th class="text-center">Condition <span class="note" style="color:red;">*</span></th>
+    <th class="text-center">Gender <span class="note" style="color:red;">*</span></th>
   </tr>
   <tr>
 
