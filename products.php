@@ -131,9 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       headers: {
         1: { sorter: false },  // col 0 = first = left most column - no sorting
         7: { sorter: false },
-        9: { sorter: 'text'},
-        10: { sorter: 'text'},   // specify text sorter, otherwise mistakenly takes shortDate parser
-        11: { sorter: false }
+        8: { sorter: false }
       }
     });
   });
