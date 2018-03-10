@@ -227,18 +227,18 @@ $Gender = $_POST["Gender"];
 
 <table cellpadding="2" border="0" align="center">
   <tr>
-    <th class="text-center">Shop by Brand <span class="note" style="color:red;">*</span></th>
+    <th class="text-center" width="(100/6)%">Shop by Brand <span class="note" style="color:red;">*</span></th>
     <!-- <th>Country <span class="note" style="color:red;">*</span></th> -->
     <!-- <th>Buying Format <span class="note" style="color:red;">*</span></th> -->
-    <th class="text-center">Min Price <span class="note" style="color:red;">*</span></th>
-    <th class="text-center">Max Price <span class="note" style="color:red;">*</span></th>
-    <th class="text-center">Display <span class="note" style="color:red;">*</span></th>
-    <th class="text-center">Condition <span class="note" style="color:red;">*</span></th>
-    <th class="text-center">Gender <span class="note" style="color:red;">*</span></th>
+    <th class="text-center" width="(100/6)%">Min Price <span class="note" style="color:red;">*</span></th>
+    <th class="text-center" width="(100/6)%">Max Price <span class="note" style="color:red;">*</span></th>
+    <th class="text-center" width="(100/6)%">Display <span class="note" style="color:red;">*</span></th>
+    <th class="text-center" width="(100/6)%">Condition <span class="note" style="color:red;">*</span></th>
+    <th class="text-center" width="(100/6)%">Gender <span class="note" style="color:red;">*</span></th>
   </tr>
   <tr>
 
-    <td align="center">
+    <td align="center" width="(100/6)%">
     <select name="Query">
       <option value="Casio" <?php if (isset($Query) && $Query=="Casio") echo "selected";?>>Casio</option>
       <option value="Rolex" <?php if (isset($Query) && $Query=="Rolex") echo "selected";?>>Rolex</option>
@@ -247,19 +247,19 @@ $Gender = $_POST["Gender"];
     </td>
 
 
-    <td align="center"><input type="text" name="MinPrice" value="<?php if (isset($_POST['MinPrice'])) echo $_POST['MinPrice']; ?>"></td>
-    <td align="center"><input type="text" name="MaxPrice" value="<?php if (isset($_POST['MaxPrice'])) echo $_POST['MaxPrice']; ?>"></td>
-    <td align="center"> <select name="Display">
+    <td align="center" width="(100/6)%"><input type="text" name="MinPrice" value="<?php if (isset($_POST['MinPrice'])) echo $_POST['MinPrice']; ?>"></td>
+    <td align="center" width="(100/6)%"><input type="text" name="MaxPrice" value="<?php if (isset($_POST['MaxPrice'])) echo $_POST['MaxPrice']; ?>"></td>
+    <td align="center" width="(100/6)%"> <select name="Display">
 
           <option value="Analog" <?php if (isset($Display) && $Display=="Analog") echo "selected";?>>Analog</option>
           <option value="Digital" <?php if (isset($Display) && $Display=="Digital") echo "selected";?>>Digital</option>
           <option value="Analog & Digital" <?php if (isset($Display) && $Display=="Analog & Digital") echo "selected";?>>Analog & Digital</option>
     </select></td>
-    <td align="center"> <select name="Condition">
+    <td align="center" width="(100/6)%"> <select name="Condition">
           <option value="New" <?php if (isset($Condition) && $Condition=="New") echo "selected";?>>New</option>
           <option value="Used" <?php if (isset($Condition) && $Condition=="Used") echo "selected";?>>Used</option>
     </select></td>
-    <td align="center"> <select name="Gender">
+    <td align="center" width="(100/6)%"> <select name="Gender">
           <option value="Men's" <?php if (isset($Gender) && $Gender=="Men's") echo "selected";?>>Men's</option>
           <option value="Women's" <?php if (isset($Gender) && $Gender=="Women's") echo "selected";?>>Women's</option>
           <option value="Unisex" <?php if (isset($Gender) && $Gender=="Unisex") echo "selected";?>>Unisex </option>
