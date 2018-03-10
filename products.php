@@ -500,7 +500,7 @@ if(isset($_POST['Query']))
           $conditionInfo = sprintf("A brand-new, unused, unworn and undamaged item in the original packaging (such as the original box or bag) and/or with the original tags attached.");
         }
         else if((string) $item->condition->conditionDisplayName == "New without tags"){
-            $conditionInfo = sprintf("A brand-new, unused and unworn item that is not in its original retail packaging or may be missing its original retail packaging materials (such as the original box or bag). The original tags may not be attached. For example, new shoes (with absolutely no signs of wear) that are no longer in their original box fall into this category.");
+            $conditionInfo = sprintf("A brand-new, unused and unworn item that is not in its original retail packaging or may be missing its original retail packaging materials (such as the original box or bag). The original tags may not be attached.");
         }
         else if((string) $item->condition->conditionDisplayName == "New with defects"){
             $conditionInfo = sprintf("A brand-new, unused and unworn item with some kind of defect.  Possible cosmetic imperfections range from natural colour variations to scuffs, cuts or nicks, and hanging threads or missing buttons that occasionally occur during the manufacturing or delivery process. Apparel may contain irregular or mismarked size tags.  Item may be missing its original retail packaging materials (such as original box or bag).  New factory seconds and/or new irregular items may fall into this category. The original tags may or may not be attached. See seller’s listing for full details and description of any imperfections.");
@@ -654,7 +654,7 @@ if(isset($_POST['Query']))
           // Free the connection
 
         //  @odbc_close($conn);
-        $results .= "<tr><td>$countItems</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br></br>       </br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
+        $results .= "<tr><td>$countItems</td><td><a href=\"$link\"><img src=\"$picURL\"></a></td><td> <a href=\"$link\">$title</a></br> $subtitle </br></br> $sellingState </br></br> $bids</br></br> $condition</br></br>$conditionInfo</br></br> </br> $ebayItemId</br></br> $display</br><td >$location</td>"
              .  "<td>$price</td><td>$ship</td><td>$total</td><td>$curr</td><td><p id=\"$ident\"></p><script>countDown('".$ident."','".$endTime."')</script></td><td>$viewcount</td><td> <form method=\"POST\" action=\"bid.php\">  <button type=\"submit\" class=\"btn btn-success\" name=\"ebayID\" value=\"$sqlEbayItemID\" >Place bid</button></form> &nbsp;&nbsp;  <iframe name=\"votar\" style=\"display:none;\"></iframe>  <form id= \"add_to_watchlist\" target=\"votar\" method=\"post\">  <button type=\"submit\" class=\"btn btn-success\" name=\"add_to_watchlist\" onclick=\"return confirm('Want to add item?');\" value=\"$sqlEbayItemID\">Add to Watchlist</button></form> &nbsp;&nbsp;   <form method=\"POST\" action=\"review.php\">  <button type=\"submit\" class=\"btn btn-danger\" name=\"ebayID\" value=\"$sqlEbayItemID\" >Add a Review</button></form> &nbsp;&nbsp; <form method=\"POST\" action=\"review_show.php\">  <button type=\"submit\" class=\"btn btn-warning\" name=\"ebayIDShow\" value=\"$sqlEbayItemID\" >Show all Reviews</button></form>  &nbsp;&nbsp; </td></tr>";
             $countItems++;
             $ident++;
