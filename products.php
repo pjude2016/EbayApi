@@ -421,7 +421,7 @@ if(isset($_POST['Query']))
            //echo "</br>";
            $results .= 'Total items : ' . $rest->paginationOutput->totalEntries . "<br />\n";
            $results .= '<table id="example" class="tablesorter" border="0" width="100%" cellpadding="0" cellspacing="1">' . "\n";
-           $results .= "<thead><tr><th>Count</th><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Start Time</th><th>End Time</th><th>Number of views on this app</th></tr></thead>\n";
+           $results .= "<thead><tr><th>Count</th><th /><th>Product details</th><th>Seller Info </th><th>Price &nbsp; &nbsp; </th><th>Shipping &nbsp; &nbsp; </th><th>Total &nbsp; &nbsp; </th><th><!--Currency--></th><th>Time Left</th><th>Number of views on this app</th></tr></thead>\n";
            $countItems=1;
 
 
