@@ -56,6 +56,7 @@ if(isset($_POST['bid_placed']))
 echo "<br><br><br><br><br>";
 
 echo "<h1 align='center'>Place your bid</h1>";
+echo "<p align='center' style=\"color:red;\">*Placing a bid will automatically add this watch to your watchlist.</p>";
 echo "</br>";
 //ebayItem id from product_searches page
 

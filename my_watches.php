@@ -34,6 +34,8 @@ if($num_of_rows > 0)
 
 echo "
 <br><br><br><br><br>
+<h3 align='center'>Watches that you won in auctions!</h3>
+
 <table border='1' align='center'>
 <tr>
 <th>Image</th>
